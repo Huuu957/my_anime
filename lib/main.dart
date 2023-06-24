@@ -3,10 +3,10 @@ import 'widgets/navigation_bar_widget.dart';
 import 'package:get/get.dart';
 import 'constants.dart';
 
-void main() => runApp(myApp());
+void main() => runApp(const MyApp());
 
-class myApp extends StatelessWidget {
-  const myApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class myApp extends StatelessWidget {
       ),
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => NavigationBarWidget()),
+        GetPage(name: '/', page: () => const NavigationBarWidget()),
       ],
     );
   }

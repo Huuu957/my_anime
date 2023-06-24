@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/screens/home_screen.dart';
 
 class NavigationBarWidget extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_anime_list/constants.dart';
-import 'package:my_anime_list/screens/anime_screen.dart';
+import 'package:my_anime_list/screens/anime_screens/anime_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
