@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'widgets/navigation_bar_widget.dart';
 import 'package:get/get.dart';
+import 'widgets/navigation_bar_widget.dart';
 import 'constants.dart';
+import 'screens/splash_screen.dart';
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kPrimaryColor,
       ),
-      initialRoute: '/',
+      initialRoute: '/splash', // Set the initial route to the splash screen
       getPages: [
+        GetPage(
+            name: '/splash',
+            page: () => SplashScreen()), // Add the splash screen route
         GetPage(name: '/', page: () => const NavigationBarWidget()),
       ],
     );
