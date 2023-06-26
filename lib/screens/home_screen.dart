@@ -66,7 +66,6 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           body: TabBarView(
-            physics: NeverScrollableScrollPhysics(),
             children: [
               AnimeScreen(),
               Text('yep'),

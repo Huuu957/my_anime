@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/models/anime_model.dart';
+import 'package:get/get.dart';
 import 'package:my_anime_list/screens/anime_screens/anime_card.dart';
 import 'package:my_anime_list/screens/anime_screens/list_view_container.dart';
 
@@ -43,11 +44,8 @@ class AnimeScreen extends StatelessWidget {
                 itemCount: animes.length,
                 itemBuilder: (context, index) => InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AnimeCard(anime: animes[index]),
-                        ));
+                    Get.toNamed(AnimeCard.animeCardRoute,
+                        arguments: animes[index]);
                   },
                   child: ListViewContainer(size: size),
                 ),

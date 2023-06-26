@@ -6,3 +6,5 @@ const kSecondaryColor = Colors.black;
 const kDefaultPadding = 10.0;
 
 const kFonts = 'Ubuntu';
+
+const kBorderRadius = 20.0;

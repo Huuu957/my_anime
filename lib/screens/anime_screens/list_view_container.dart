@@ -32,11 +32,14 @@ class ListViewContainer extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: [
-                Image.asset(
-                  animes[index].image,
-                  width: double.infinity,
-                  height: size.height * 0.25,
-                  fit: BoxFit.cover,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(kBorderRadius),
+                  child: Image.asset(
+                    animes[index].image,
+                    width: double.infinity,
+                    height: size.height * 0.25,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(height: 10),
                 Text(

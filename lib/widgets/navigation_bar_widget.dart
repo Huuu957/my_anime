@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_anime_list/screens/favorite_screen.dart';
 import 'package:my_anime_list/screens/home_screen.dart';
 
 class NavigationBarWidget extends StatefulWidget {
@@ -38,11 +39,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
       ),
       body: <Widget>[
         HomeScreen(),
-        Container(
-          color: Colors.green,
-          alignment: Alignment.center,
-          child: const Text('Page 2'),
-        ),
+        FavoriteScreen(),
         Container(
           color: Colors.blue,
           alignment: Alignment.center,
