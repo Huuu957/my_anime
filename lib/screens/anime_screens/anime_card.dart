@@ -1,30 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:my_anime_list/models/anime_model.dart';
 import 'package:my_anime_list/constants.dart';
-import 'package:my_anime_list/screens/anime_screens/add_favorite_button.dart';
+import 'package:my_anime_list/screens/anime_screens/favorite_button.dart';
 
-class AnimeCard extends StatefulWidget {
+class AnimeCard extends StatelessWidget {
   final Anime anime;
 
   const AnimeCard({super.key, required this.anime});
 
-  static const animeCardRoute = '/animeCard';
-
-  @override
-  State<AnimeCard> createState() => _AnimeCardState();
-}
-
-class _AnimeCardState extends State<AnimeCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: const Color(0xFFF7F5F9),
+        backgroundColor: kLightPurple,
         iconTheme: const IconThemeData(color: kSecondaryColor),
         title: Text(
-          widget.anime.title,
+          anime.title,
           style: const TextStyle(color: kSecondaryColor),
         ),
       ),
@@ -34,8 +27,8 @@ class _AnimeCardState extends State<AnimeCard> {
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color(0xFFF7F5F9),
-                  Color(0xFFF0EEFF),
+                  kLightPurple,
+                  kPaleLavender,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -43,7 +36,7 @@ class _AnimeCardState extends State<AnimeCard> {
             ),
           ),
           Positioned(
-            bottom: 10,
+            bottom: kDefaultPadding * 5.5,
             left: 0,
             right: 0,
             child: Container(
@@ -79,7 +72,7 @@ class _AnimeCardState extends State<AnimeCard> {
                               borderRadius:
                                   BorderRadius.circular(kBorderRadius),
                               child: Image.asset(
-                                widget.anime.image,
+                                anime.image,
                                 fit: BoxFit.cover,
                                 width: double.infinity,
                               ),
@@ -87,12 +80,12 @@ class _AnimeCardState extends State<AnimeCard> {
                           ),
                           Column(
                             children: [
-                              Text(widget.anime.title),
+                              Text(anime.title),
                               const SizedBox(height: kDefaultPadding),
                               Row(
                                 children: [
                                   Text(
-                                    '${widget.anime.episodes} Episodes',
+                                    '${anime.episodes} Episodes',
                                     style: const TextStyle(
                                       fontSize: kDefaultPadding,
                                       fontWeight: FontWeight.bold,
@@ -100,14 +93,14 @@ class _AnimeCardState extends State<AnimeCard> {
                                   ),
                                   const SizedBox(width: kDefaultPadding * 2),
                                   Text(
-                                    'Duration: ${widget.anime.duration} mins',
+                                    'Duration: ${anime.duration} mins',
                                     style: const TextStyle(
                                       fontSize: kDefaultPadding,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                           Column(
@@ -131,7 +124,7 @@ class _AnimeCardState extends State<AnimeCard> {
                                 ),
                                 padding: const EdgeInsets.all(kDefaultPadding),
                                 child: Text(
-                                  '${widget.anime.score}',
+                                  '${anime.score}',
                                   style: const TextStyle(
                                     fontSize: kDefaultPadding,
                                     fontWeight: FontWeight.bold,
@@ -166,24 +159,24 @@ class _AnimeCardState extends State<AnimeCard> {
                             Container(
                               margin: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 10),
-                              child: Text(widget.anime.description),
+                              child: Text(anime.description),
                             ),
                             Container(
                               margin: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 10),
-                              child: Text(widget.anime.description),
+                              child: Text(anime.description),
                             ),
                             Container(
                               margin: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 10),
-                              child: Text(widget.anime.description),
+                              child: Text(anime.description),
                             ),
                           ],
                         ),
                       ),
                       Container(
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const AddFavoriteButton(),
+                        child: const FavoriteButton(),
                       ),
                     ],
                   ),
@@ -208,7 +201,7 @@ class _AnimeCardState extends State<AnimeCard> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(kBorderRadius),
               child: Image.asset(
-                widget.anime.image,
+                anime.image,
                 fit: BoxFit.cover,
                 width: double.infinity,
               ),

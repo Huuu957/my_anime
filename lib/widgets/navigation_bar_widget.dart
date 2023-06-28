@@ -5,6 +5,8 @@ import 'package:my_anime_list/screens/home_screen.dart';
 class NavigationBarWidget extends StatefulWidget {
   const NavigationBarWidget({super.key});
 
+  static const homeRoute = '/home';
+
   @override
   State<NavigationBarWidget> createState() => _NavigationBarWidgetState();
 }
@@ -38,7 +40,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
         ],
       ),
       body: <Widget>[
-        HomeScreen(),
+        const HomeScreen(),
         FavoriteScreen(),
         Container(
           color: Colors.blue,

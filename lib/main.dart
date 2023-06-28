@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_anime_list/screens/favorite_screen.dart';
 import 'widgets/navigation_bar_widget.dart';
 import 'constants.dart';
 import 'screens/splash_screen.dart';
@@ -17,12 +18,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kPrimaryColor,
       ),
-      initialRoute: '/splash', // Set the initial route to the splash screen
+      initialRoute: SplashScreen.splashScreenRoute,
       getPages: [
         GetPage(
-            name: '/splash',
-            page: () => SplashScreen()), // Add the splash screen route
-        GetPage(name: '/', page: () => const NavigationBarWidget()),
+          name: SplashScreen.splashScreenRoute,
+          page: () => const SplashScreen(),
+        ),
+        GetPage(
+          name: NavigationBarWidget.homeRoute,
+          page: () => const NavigationBarWidget(),
+        ),
+        GetPage(
+          name: FavoriteScreen.favoriteScreenRoute,
+          page: () => const FavoriteScreen(),
+        ),
       ],
     );
   }

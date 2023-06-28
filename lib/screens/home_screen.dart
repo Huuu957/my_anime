@@ -13,26 +13,26 @@ class HomeScreen extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(120),
+            preferredSize: const Size.fromHeight(120),
             child: AppBar(
               elevation: 0,
-              backgroundColor: Colors.transparent,
+              backgroundColor: kPaleLavender,
               centerTitle: true,
-              title: Text(
+              title: const Text(
                 'Browse Anime',
                 style: TextStyle(
                   color: kSecondaryColor,
                   fontFamily: 'Ubuntu',
                 ),
               ),
-              leading: IconButton(
+              leading: const IconButton(
                 onPressed: null,
                 icon: Icon(
                   Icons.filter,
                   color: kSecondaryColor,
                 ),
               ),
-              actions: [
+              actions: const [
                 IconButton(
                   onPressed: null,
                   icon: Icon(
@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ],
-              bottom: TabBar(
+              bottom: const TabBar(
                 indicatorColor: kPrimaryColor,
                 indicatorSize: TabBarIndicatorSize.label,
                 labelPadding:
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               AnimeScreen(),
               Text('yep'),

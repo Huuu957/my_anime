@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_anime_list/models/anime_model.dart';
 import 'anime_card.dart';
 import 'package:my_anime_list/constants.dart';
+import 'package:get/get.dart';
 
 class ListViewContainer extends StatelessWidget {
   const ListViewContainer({
@@ -13,7 +14,7 @@ class ListViewContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: size.height * 0.4,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -21,15 +22,11 @@ class ListViewContainer extends StatelessWidget {
         itemCount: animes.length,
         itemBuilder: (context, index) => InkWell(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AnimeCard(anime: animes[index]),
-                ));
+            Get.to(AnimeCard(anime: animes[index]));
           },
           child: Container(
             width: size.width * 0.4,
-            margin: EdgeInsets.symmetric(horizontal: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: [
                 ClipRRect(
@@ -41,15 +38,15 @@ class ListViewContainer extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   animes[index].title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: kSecondaryColor,
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   'Episodes: ${animes[index].episodes}',
                   style: TextStyle(

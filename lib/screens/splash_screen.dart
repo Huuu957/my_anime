@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
+import 'package:my_anime_list/widgets/navigation_bar_widget.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const String routeName = '/splash'; // Route name for navigation
+  static const String splashScreenRoute = '/splash';
+
+  const SplashScreen({super.key});
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -11,27 +16,24 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Add any initialization or delay logic here if needed
-    navigateToHome(); // Example navigation after the splash screen
+    navigateToHome();
   }
 
   void navigateToHome() {
-    // Example navigation to the home screen after a delay
     Future.delayed(const Duration(seconds: 1), () {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        '/', // Replace with your home screen route
-        (route) => false, // Remove all routes below the home screen route
-      );
+      Get.offAllNamed(NavigationBarWidget.homeRoute);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.white, // Adjust the background color if needed
-      body: Center(
-        child: Text('Hello Everyone'),
+      body: Align(
+        alignment: Alignment.center,
+        child: SpinKitPumpingHeart(
+          color: Colors.red,
+          size: 50.0,
+        ),
       ),
     );
   }

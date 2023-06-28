@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:my_anime_list/constants.dart';
 
-class AddFavoriteButton extends StatefulWidget {
-  const AddFavoriteButton({super.key});
+class FavoriteButton extends StatefulWidget {
+  const FavoriteButton({super.key});
 
   @override
-  _AddFavoriteButtonState createState() => _AddFavoriteButtonState();
+  _FavoriteButtonState createState() => _FavoriteButtonState();
 }
 
-class _AddFavoriteButtonState extends State<AddFavoriteButton> {
+class _FavoriteButtonState extends State<FavoriteButton> {
   bool isFavorite = false;
 
   @override

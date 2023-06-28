@@ -18,6 +18,8 @@ class Anime {
   });
 }
 
+List<Anime> favorites = [];
+
 List<Anime> animes = [
   Anime(
     id: '1',
