@@ -1,48 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_anime_list/constants.dart';
+import '../../controller/favorite_controller.dart';
+import '../../models/anime_model.dart';
 
-class FavoriteButton extends StatefulWidget {
-  const FavoriteButton({super.key});
-
-  @override
-  _FavoriteButtonState createState() => _FavoriteButtonState();
-}
-
-class _FavoriteButtonState extends State<FavoriteButton> {
-  bool isFavorite = false;
+class FavoriteButton extends StatelessWidget {
+  const FavoriteButton({Key? key, required this.anime}) : super(key: key);
+  final AnimeModel anime;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        setState(() {
-          isFavorite = !isFavorite;
-        });
+    final FavoriteController favoriteController = Get.find();
 
-        if (isFavorite) {
-          // Add the anime to favorites
-          print('Anime added to favorites');
-        } else {
-          // Remove the anime from favorites
-          print('Anime removed from favorites');
-        }
-      },
-      style: ElevatedButton.styleFrom(
-        elevation: 0,
-        backgroundColor: isFavorite ? kPrimaryColor : Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kBorderRadius),
-          side: BorderSide(
+    return Obx(() {
+      final isFavorite = favoriteController.favList.contains(anime);
+      return ElevatedButton(
+        onPressed: () {
+          favoriteController.toggleFavorite(anime);
+        },
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          backgroundColor: isFavorite ? kPrimaryColor : Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(kBorderRadius),
+            side: BorderSide(
+              color: isFavorite ? Colors.white : kPrimaryColor,
+            ),
+          ),
+        ),
+        child: Text(
+          isFavorite ? 'Got Added' : 'Add To My Favorites',
+          style: TextStyle(
             color: isFavorite ? Colors.white : kPrimaryColor,
           ),
         ),
-      ),
-      child: Text(
-        isFavorite ? 'Got Added' : 'Add To My Favorites',
-        style: TextStyle(
-          color: isFavorite ? Colors.white : kPrimaryColor,
-        ),
-      ),
-    );
+      );
+    });
   }
 }

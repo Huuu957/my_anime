@@ -4,9 +4,12 @@ import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/screens/anime_screens/favorite_button.dart';
 
 class AnimeCard extends StatelessWidget {
-  final Anime anime;
+  final AnimeModel anime;
 
-  const AnimeCard({super.key, required this.anime});
+  AnimeCard({
+    super.key,
+    required this.anime,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +179,7 @@ class AnimeCard extends StatelessWidget {
                       ),
                       Container(
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: const FavoriteButton(),
+                        child: FavoriteButton(anime: anime),
                       ),
                     ],
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_anime_list/constants.dart';
 
 class MangaScreen extends StatelessWidget {
   const MangaScreen({super.key});
@@ -6,7 +7,8 @@ class MangaScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      backgroundColor: kPaleLavender,
+      body: Center(child: Text('Manga Here')),
     );
   }
 }

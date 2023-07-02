@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/screens/anime_screens/anime_screen.dart';
+import 'package:my_anime_list/screens/manga_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +26,18 @@ class HomeScreen extends StatelessWidget {
                   fontFamily: 'Ubuntu',
                 ),
               ),
-              leading: const IconButton(
-                onPressed: null,
-                icon: Icon(
-                  Icons.filter,
-                  color: kSecondaryColor,
-                ),
+              leading: Builder(
+                builder: (BuildContext context) {
+                  return IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    icon: Icon(
+                      Icons.menu,
+                      color: kSecondaryColor,
+                    ),
+                  );
+                },
               ),
               actions: const [
                 IconButton(
@@ -65,10 +72,37 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          body: const TabBarView(
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                const DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: kPaleLavender,
+                  ),
+                  child: Text(
+                    'Drawer Header',
+                    style: TextStyle(
+                      color: kSecondaryColor,
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  title: const Text('Switch'),
+                  trailing: Switch(
+                    value: false,
+                    onChanged: (bool value) {
+                      print('Switch Pressed');
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          body: TabBarView(
             children: [
               AnimeScreen(),
-              Text('yep'),
+              MangaScreen(),
             ],
           ),
         ),

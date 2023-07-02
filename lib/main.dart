@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'My Anime List',
+      title: 'My Anime',
       theme: ThemeData(
         primaryColor: kPrimaryColor,
       ),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_anime_list/constants.dart';
-
-import '../models/anime_model.dart';
-import 'anime_screens/anime_card.dart';
+import 'package:my_anime_list/controller/favorite_controller.dart';
+import 'package:my_anime_list/models/anime_model.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key});
@@ -12,6 +11,8 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FavoriteController favoriteController = Get.find();
+
     return Scaffold(
       backgroundColor: kPaleLavender,
       appBar: AppBar(
@@ -19,7 +20,7 @@ class FavoriteScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: kPaleLavender,
         title: const Text(
-          'Favorties',
+          'Favorites',
           style: TextStyle(color: kSecondaryColor),
         ),
         bottom: PreferredSize(
@@ -30,9 +31,38 @@ class FavoriteScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: const Center(
-        child: Text('Your Favorites Collection is Empty'),
-      ),
+      body: Obx(() {
+        final favorites = favoriteController.favList;
+        if (favorites.isEmpty) {
+          return const Center(
+            child: Text('Your Favorites Collection is Empty'),
+          );
+        } else {
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.75,
+            ),
+            itemCount: favorites.length,
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.all(kDefaultPadding),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(kBorderRadius),
+                        child: Image.asset(favorites[index].imageUrl)),
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Text(
+                    favorites[index].title,
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+      }),
     );
   }
 }

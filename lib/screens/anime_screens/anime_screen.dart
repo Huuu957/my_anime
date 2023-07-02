@@ -3,7 +3,7 @@ import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/screens/anime_screens/list_view_container.dart';
 
 class AnimeScreen extends StatelessWidget {
-  const AnimeScreen({Key? key});
+  AnimeScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_anime_list/constants.dart';
+import 'package:my_anime_list/screens/setting_screen.dart';
 import 'package:my_anime_list/screens/favorite_screen.dart';
 import 'package:my_anime_list/screens/home_screen.dart';
 
@@ -18,6 +20,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: NavigationBar(
+        backgroundColor: kPaleLavender,
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
@@ -33,20 +36,11 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
             icon: Icon(Icons.favorite),
             label: 'Favorites',
           ),
-          NavigationDestination(
-            icon: Icon(Icons.person),
-            label: 'Account',
-          ),
         ],
       ),
       body: <Widget>[
         const HomeScreen(),
-        FavoriteScreen(),
-        Container(
-          color: Colors.blue,
-          alignment: Alignment.center,
-          child: const Text('Page 3'),
-        ),
+        const FavoriteScreen(),
       ][currentPageIndex],
     );
   }
