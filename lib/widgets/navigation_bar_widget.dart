@@ -8,6 +8,7 @@ class NavigationBarWidget extends StatefulWidget {
   const NavigationBarWidget({super.key});
 
   static const homeRoute = '/home';
+  final int animeId = 1;
 
   @override
   State<NavigationBarWidget> createState() => _NavigationBarWidgetState();
@@ -36,11 +37,16 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
             icon: Icon(Icons.favorite),
             label: 'Favorites',
           ),
+          NavigationDestination(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
         ],
       ),
       body: <Widget>[
         const HomeScreen(),
         const FavoriteScreen(),
+        SettingScreen(),
       ][currentPageIndex],
     );
   }

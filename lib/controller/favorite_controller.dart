@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:my_anime_list/models/anime_model.dart';
 
@@ -9,11 +10,15 @@ class FavoriteController extends GetxController {
     if (favList.contains(anime)) {
       // Remove the anime from favorites
       favList.remove(anime);
-      print('Anime Removed');
+      if (kDebugMode) {
+        print('Anime Removed');
+      }
     } else {
       // Add the anime to favorites
       favList.add(anime);
-      print('Anime Added');
+      if (kDebugMode) {
+        print('Anime Added');
+      }
     }
   }
 }

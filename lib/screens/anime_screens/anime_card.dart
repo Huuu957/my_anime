@@ -74,7 +74,7 @@ class AnimeCard extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius:
                                   BorderRadius.circular(kBorderRadius),
-                              child: Image.asset(
+                              child: Image.network(
                                 anime.image,
                                 fit: BoxFit.cover,
                                 width: double.infinity,
@@ -203,7 +203,7 @@ class AnimeCard extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(kBorderRadius),
-              child: Image.asset(
+              child: Image.network(
                 anime.image,
                 fit: BoxFit.cover,
                 width: double.infinity,

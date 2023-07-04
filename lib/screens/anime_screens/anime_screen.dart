@@ -51,7 +51,6 @@ class AnimeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            ListViewContainer(size: size),
           ],
         ),
       ),
