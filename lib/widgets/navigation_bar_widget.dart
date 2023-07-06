@@ -8,7 +8,6 @@ class NavigationBarWidget extends StatefulWidget {
   const NavigationBarWidget({super.key});
 
   static const homeRoute = '/home';
-  final int animeId = 1;
 
   @override
   State<NavigationBarWidget> createState() => _NavigationBarWidgetState();
@@ -20,34 +19,44 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavigationBar(
-        backgroundColor: kPaleLavender,
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPageIndex = index;
-          });
-        },
-        selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.favorite),
-            label: 'Favorites',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
+      bottomNavigationBar: Container(
+        height: 64,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+        ),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: kPrimaryColor,
+          onTap: (int index) {
+            setState(() {
+              currentPageIndex = index;
+            });
+          },
+          currentIndex: currentPageIndex,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: '', // Empty string to remove the label
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: '',
+            ),
+          ],
+        ),
+      ),
+      body: IndexedStack(
+        index: currentPageIndex,
+        children: <Widget>[
+          HomeScreen(),
+          const FavoriteScreen(),
+          const SettingScreen(),
         ],
       ),
-      body: <Widget>[
-        const HomeScreen(),
-        const FavoriteScreen(),
-        SettingScreen(),
-      ][currentPageIndex],
     );
   }
 }

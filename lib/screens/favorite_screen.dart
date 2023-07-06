@@ -4,7 +4,7 @@ import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/controller/favorite_controller.dart';
 
 class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({Key? key});
+  const FavoriteScreen({super.key});
 
   static const favoriteScreenRoute = '/favoriteScreenRoute';
 
@@ -50,7 +50,7 @@ class FavoriteScreen extends StatelessWidget {
                   Expanded(
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(kBorderRadius),
-                        child: Image.asset(favorites[index].image)),
+                        child: Image.network(favorites[index].image)),
                   ),
                   const SizedBox(height: kDefaultPadding),
                   Text(

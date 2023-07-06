@@ -1,10 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/screens/anime_screens/anime_screen.dart';
 import 'package:my_anime_list/screens/manga_screen.dart';
 
+import '../controller/favorite_controller.dart';
+
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key});
+  HomeScreen({super.key});
+  final controller = Get.put(FavoriteController(), permanent: true);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,8 @@ class HomeScreen extends StatelessWidget {
                 'Browse Anime',
                 style: TextStyle(
                   color: kSecondaryColor,
-                  fontFamily: 'Ubuntu',
+                  fontFamily: kDefaultFont,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               leading: Builder(
@@ -32,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                     onPressed: () {
                       Scaffold.of(context).openDrawer();
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.menu,
                       color: kSecondaryColor,
                     ),
@@ -59,6 +65,7 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(
                       color: kSecondaryColor,
                       fontSize: kDefaultPadding * 1.75,
+                      fontFamily: kDefaultFont,
                     ),
                   ),
                   Text(
@@ -66,6 +73,7 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(
                       color: kSecondaryColor,
                       fontSize: kDefaultPadding * 1.75,
+                      fontFamily: kDefaultFont,
                     ),
                   ),
                 ],
@@ -92,14 +100,16 @@ class HomeScreen extends StatelessWidget {
                   trailing: Switch(
                     value: false,
                     onChanged: (bool value) {
-                      print('Switch Pressed');
+                      if (kDebugMode) {
+                        print('Switch Pressed');
+                      }
                     },
                   ),
                 ),
               ],
             ),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               AnimeScreen(),
               MangaScreen(),

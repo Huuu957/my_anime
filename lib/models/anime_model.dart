@@ -8,12 +8,12 @@ class AnimeModel {
   final String duration;
 
   AnimeModel({
-    required this.score,
-    required this.episodes,
-    required this.duration,
     required this.id,
     required this.image,
     required this.title,
     required this.description,
+    required this.episodes,
+    required this.score,
+    required this.duration,
   });
 }

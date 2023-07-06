@@ -22,7 +22,7 @@ class FavoriteButton extends StatelessWidget {
           elevation: 0,
           backgroundColor: isFavorite ? kPrimaryColor : Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(kBorderRadius),
+            borderRadius: BorderRadius.circular(kButtonBorder),
             side: BorderSide(
               color: isFavorite ? Colors.white : kPrimaryColor,
             ),

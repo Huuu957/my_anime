@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_anime_list/constants.dart';
-import 'package:my_anime_list/screens/anime_screens/list_view_container.dart';
+import 'package:my_anime_list/screens/anime_screens/top_movie_list.dart';
+import 'package:my_anime_list/screens/anime_screens/top_anime_list.dart';
 
 class AnimeScreen extends StatelessWidget {
-  AnimeScreen({Key? key});
+  const AnimeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +28,22 @@ class AnimeScreen extends StatelessWidget {
                     style: TextStyle(
                       color: kSecondaryColor,
                       fontSize: 17.5,
+                      fontFamily: kDefaultFont,
+                    ),
+                  ),
+                  Spacer(),
+                  TextButton(
+                    onPressed: null,
+                    child: Text(
+                      'MORE',
+                      style: TextStyle(fontFamily: kDefaultFont),
                     ),
                   ),
                 ],
               ),
             ),
-            ListViewContainer(size: size),
+            const SizedBox(height: kDefaultPadding),
+            TopAnimeList(size: size),
             Container(
               height: 50,
               padding: const EdgeInsets.symmetric(
@@ -42,15 +53,26 @@ class AnimeScreen extends StatelessWidget {
               child: const Row(
                 children: [
                   Text(
-                    'Most Watched',
+                    'Top Movies',
                     style: TextStyle(
                       color: kSecondaryColor,
                       fontSize: 17.5,
+                      fontFamily: kDefaultFont,
+                    ),
+                  ),
+                  Spacer(),
+                  TextButton(
+                    onPressed: null,
+                    child: Text(
+                      'MORE',
+                      style: TextStyle(fontFamily: kDefaultFont),
                     ),
                   ),
                 ],
               ),
             ),
+            const SizedBox(height: kDefaultPadding),
+            TopMovieList(size: size),
           ],
         ),
       ),

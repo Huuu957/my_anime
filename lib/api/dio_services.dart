@@ -6,9 +6,9 @@ import '../models/anime_model.dart';
 class APIService {
   final Dio _dio = Dio();
 
-  Future<List<AnimeModel>> fetchTopAnimes() async {
+  Future<List<AnimeModel>> fetchTop(String endpoint) async {
     try {
-      final response = await _dio.get('https://api.jikan.moe/v4/top/anime');
+      final response = await _dio.get(endpoint);
 
       if (response.statusCode == 200) {
         final dynamic responseData = response.data;
@@ -38,14 +38,12 @@ class APIService {
 
         return topAnimes;
       } else {
-        // Handle error
         if (kDebugMode) {
           print('Failed to fetch top animes: ${response.statusCode}');
         }
         return [];
       }
     } catch (e) {
-      // Handle error
       if (kDebugMode) {
         print('Failed to fetch top animes: $e');
       }

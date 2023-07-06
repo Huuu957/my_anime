@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:my_anime_list/models/anime_model.dart';
 import 'package:my_anime_list/constants.dart';
+import 'package:my_anime_list/models/anime_model.dart';
 import 'package:my_anime_list/screens/anime_screens/favorite_button.dart';
 
-class AnimeCard extends StatelessWidget {
+class AnimeCardWidget extends StatelessWidget {
   final AnimeModel anime;
 
-  AnimeCard({
-    super.key,
+  const AnimeCardWidget({
+    Key? key,
     required this.anime,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,10 @@ class AnimeCard extends StatelessWidget {
         iconTheme: const IconThemeData(color: kSecondaryColor),
         title: Text(
           anime.title,
-          style: const TextStyle(color: kSecondaryColor),
+          style: const TextStyle(
+            color: kSecondaryColor,
+            fontFamily: kDefaultFont,
+          ),
         ),
       ),
       body: Stack(
@@ -83,23 +86,36 @@ class AnimeCard extends StatelessWidget {
                           ),
                           Column(
                             children: [
-                              Text(anime.title),
+                              SizedBox(
+                                width: 200,
+                                child: Text(
+                                  anime.title,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: kBigText,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: kDefaultFont,
+                                  ),
+                                ),
+                              ),
                               const SizedBox(height: kDefaultPadding),
                               Row(
                                 children: [
                                   Text(
-                                    '${anime.episodes} Episodes',
+                                    '${anime.episodes} Episodes -',
                                     style: const TextStyle(
                                       fontSize: kDefaultPadding,
-                                      fontWeight: FontWeight.bold,
+                                      fontFamily: kDefaultFont,
                                     ),
                                   ),
-                                  const SizedBox(width: kDefaultPadding * 2),
+                                  const SizedBox(width: kDefaultPadding - 7),
                                   Text(
-                                    'Duration: ${anime.duration} mins',
+                                    'Duration: ${anime.duration}',
                                     style: const TextStyle(
                                       fontSize: kDefaultPadding,
-                                      fontWeight: FontWeight.bold,
+                                      fontFamily: kDefaultFont,
                                     ),
                                   ),
                                 ],
@@ -113,25 +129,39 @@ class AnimeCard extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: kDefaultPadding,
                                   fontWeight: FontWeight.w400,
+                                  fontFamily: kDefaultFont,
                                 ),
                               ),
                               const SizedBox(height: kDefaultPadding / 2),
                               Container(
-                                height: 30,
+                                height: 25,
+                                width: 37,
                                 decoration: const BoxDecoration(
-                                  color: Colors.purple,
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: [
+                                      kPinkishPurple,
+                                      kBluishPurple,
+                                    ],
+                                  ),
                                   borderRadius: BorderRadius.horizontal(
                                     left: Radius.elliptical(100, 100),
                                     right: Radius.elliptical(100, 100),
                                   ),
                                 ),
-                                padding: const EdgeInsets.all(kDefaultPadding),
-                                child: Text(
-                                  '${anime.score}',
-                                  style: const TextStyle(
-                                    fontSize: kDefaultPadding,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                padding: EdgeInsets.zero, // Remove all padding
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    '${anime.score}',
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: kDefaultPadding,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: kDefaultFont,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -159,20 +189,34 @@ class AnimeCard extends StatelessWidget {
                         ),
                         child: TabBarView(
                           children: [
-                            Container(
-                              margin: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
-                              child: Text(anime.description),
+                            SingleChildScrollView(
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 10),
+                                child: Text(
+                                  anime.description,
+                                  style: const TextStyle(
+                                    fontFamily: kDefaultFont,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SingleChildScrollView(
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 10),
+                                child: Text(
+                                  anime.description,
+                                  style: const TextStyle(
+                                    fontFamily: kDefaultFont,
+                                  ),
+                                ),
+                              ),
                             ),
                             Container(
                               margin: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 10),
-                              child: Text(anime.description),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
-                              child: Text(anime.description),
+                              child: const Text('Nothing yet'),
                             ),
                           ],
                         ),
