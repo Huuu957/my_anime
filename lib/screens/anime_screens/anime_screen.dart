@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_anime_list/constants.dart';
+import 'package:my_anime_list/screens/anime_screens/more_anime_screen.dart';
 import 'package:my_anime_list/screens/anime_screens/top_movie_list.dart';
 import 'package:my_anime_list/screens/anime_screens/top_anime_list.dart';
+import 'package:get/get.dart';
 
 class AnimeScreen extends StatelessWidget {
   const AnimeScreen({super.key});
@@ -21,9 +23,9 @@ class AnimeScreen extends StatelessWidget {
                 horizontal: 10,
                 vertical: 10,
               ),
-              child: const Row(
+              child: Row(
                 children: [
-                  Text(
+                  const Text(
                     'Top Animes',
                     style: TextStyle(
                       color: kSecondaryColor,
@@ -31,12 +33,17 @@ class AnimeScreen extends StatelessWidget {
                       fontFamily: kDefaultFont,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   TextButton(
-                    onPressed: null,
-                    child: Text(
+                    onPressed: () {
+                      Get.toNamed(MoreAnimeScreen.moreAnimeScreenRoute);
+                    },
+                    child: const Text(
                       'MORE',
-                      style: TextStyle(fontFamily: kDefaultFont),
+                      style: TextStyle(
+                        fontFamily: kDefaultFont,
+                        color: kGrey,
+                      ),
                     ),
                   ),
                 ],
@@ -50,9 +57,9 @@ class AnimeScreen extends StatelessWidget {
                 horizontal: 10,
                 vertical: 10,
               ),
-              child: const Row(
+              child: Row(
                 children: [
-                  Text(
+                  const Text(
                     'Top Movies',
                     style: TextStyle(
                       color: kSecondaryColor,
@@ -60,12 +67,17 @@ class AnimeScreen extends StatelessWidget {
                       fontFamily: kDefaultFont,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   TextButton(
-                    onPressed: null,
-                    child: Text(
+                    onPressed: () {
+                      Get.toNamed(MoreAnimeScreen.moreAnimeScreenRoute);
+                    },
+                    child: const Text(
                       'MORE',
-                      style: TextStyle(fontFamily: kDefaultFont),
+                      style: TextStyle(
+                        fontFamily: kDefaultFont,
+                        color: kGrey,
+                      ),
                     ),
                   ),
                 ],

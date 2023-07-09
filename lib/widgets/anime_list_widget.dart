@@ -14,16 +14,16 @@ class AnimeListWidget extends StatelessWidget {
   }) : super(key: key);
 
   final Size size;
-  final Future<List<AnimeModel>> Function() apiMethod;
+  final Future<List<TopAnimeModel>> Function() apiMethod;
   final APIService apiService = APIService();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<AnimeModel>>(
+    return FutureBuilder<List<TopAnimeModel>>(
       future: apiMethod(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          final List<AnimeModel> animes = snapshot.data!;
+          final List<TopAnimeModel> animes = snapshot.data!;
 
           return SizedBox(
             height: size.height * 0.36,

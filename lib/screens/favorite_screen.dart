@@ -6,8 +6,6 @@ import 'package:my_anime_list/controller/favorite_controller.dart';
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
 
-  static const favoriteScreenRoute = '/favoriteScreenRoute';
-
   @override
   Widget build(BuildContext context) {
     final FavoriteController favoriteController = Get.find();
@@ -43,20 +41,31 @@ class FavoriteScreen extends StatelessWidget {
               childAspectRatio: 0.75,
             ),
             itemCount: favorites.length,
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.all(kDefaultPadding),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: ClipRRect(
+            itemBuilder: (context, index) => GestureDetector(
+              onTap: () {
+                favoriteController.goToAnimeDetails(favorites[index]);
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(kDefaultPadding),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(kBorderRadius),
-                        child: Image.network(favorites[index].image)),
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Text(
-                    favorites[index].title,
-                  ),
-                ],
+                        child: Image.network(favorites[index].image),
+                      ),
+                    ),
+                    const SizedBox(height: kDefaultPadding),
+                    Text(
+                      favorites[index].title,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontFamily: kDefaultFont,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

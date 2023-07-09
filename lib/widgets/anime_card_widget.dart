@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/models/anime_model.dart';
 import 'package:my_anime_list/screens/anime_screens/favorite_button.dart';
+import 'package:get/get.dart';
+import 'package:my_anime_list/screens/watch_trailer_screen.dart';
 
 class AnimeCardWidget extends StatelessWidget {
-  final AnimeModel anime;
+  final TopAnimeModel anime;
 
   const AnimeCardWidget({
     Key? key,
@@ -172,7 +174,7 @@ class AnimeCardWidget extends StatelessWidget {
                       const TabBar(
                         tabs: [
                           Tab(text: 'Overview'),
-                          Tab(text: 'Review'),
+                          Tab(text: 'More info'),
                           Tab(text: 'Episodes'),
                         ],
                         labelColor: kSecondaryColor,
@@ -183,8 +185,8 @@ class AnimeCardWidget extends StatelessWidget {
                         height: 150,
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            topRight: Radius.circular(15),
+                            topLeft: Radius.circular(kBorderRadius),
+                            topRight: Radius.circular(kBorderRadius),
                           ),
                         ),
                         child: TabBarView(
@@ -192,7 +194,8 @@ class AnimeCardWidget extends StatelessWidget {
                             SingleChildScrollView(
                               child: Container(
                                 margin: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 10),
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding),
                                 child: Text(
                                   anime.description,
                                   style: const TextStyle(
@@ -204,19 +207,34 @@ class AnimeCardWidget extends StatelessWidget {
                             SingleChildScrollView(
                               child: Container(
                                 margin: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 10),
-                                child: Text(
-                                  anime.description,
-                                  style: const TextStyle(
-                                    fontFamily: kDefaultFont,
-                                  ),
+                                  vertical: kDefaultPadding,
+                                  horizontal: kDefaultPadding,
+                                ),
+                                padding: const EdgeInsets.all(kDefaultPadding),
+                                decoration: BoxDecoration(
+                                  color:
+                                      kPrimaryColor, // Set the desired shade of purple
+                                  borderRadius: BorderRadius.circular(
+                                      10), // Optionally, add rounded corners
+                                ),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    buildRow('Rank', anime.rank, 180),
+                                    buildRow('Scored by', anime.scoredBy, 160),
+                                    buildRow(
+                                        'Popularity', anime.popularity, 150),
+                                    buildRow('Favorites', anime.favorites, 160),
+                                    buildRow('Year', anime.year, 170),
+                                    buildRow('Season', anime.season, 160),
+                                  ],
                                 ),
                               ),
                             ),
-                            Container(
-                              margin: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
-                              child: const Text('Nothing yet'),
+                            const Center(
+                              child: Text(
+                                  'Watching anime without paying is illegal :)'),
                             ),
                           ],
                         ),
@@ -254,8 +272,71 @@ class AnimeCardWidget extends StatelessWidget {
               ),
             ),
           ),
+          Positioned(
+            top: 110,
+            left: 160,
+            child: GestureDetector(
+              onTap: () {
+                Get.toNamed(WatchTrailerScreen.watchMoreScreen,
+                    arguments: anime);
+              },
+              child: Container(
+                width: 80,
+                height: 80,
+                decoration: const BoxDecoration(
+                  color: kPrimaryColor,
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      kColorLightPurple,
+                      kColorMiddlePurple,
+                      kColorLightPink,
+                      kColorLighterPink,
+                    ],
+                  ),
+                ),
+                child: const Icon(
+                  Icons.play_arrow,
+                  color: Colors.white,
+                  size: 45,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
+}
+
+Widget buildRow(String label, String value, double spacing) {
+  return Column(
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+              color: Colors.white,
+              fontFamily: kDefaultFont,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(width: spacing),
+          Text(
+            value,
+            style: const TextStyle(
+              color: Colors.white,
+              fontFamily: kDefaultFont,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(height: kDefaultPadding),
+    ],
+  );
 }

@@ -6,7 +6,7 @@ import '../models/anime_model.dart';
 class APIService {
   final Dio _dio = Dio();
 
-  Future<List<AnimeModel>> fetchTop(String endpoint) async {
+  Future<List<TopAnimeModel>> fetchTop(String endpoint) async {
     try {
       final response = await _dio.get(endpoint);
 
@@ -16,7 +16,7 @@ class APIService {
         final List<dynamic> animeList = responseData['data'];
 
         // Process the animeList and convert it into AnimeModel objects
-        List<AnimeModel> topAnimes = animeList.map((anime) {
+        List<TopAnimeModel> topAnimes = animeList.map((anime) {
           final String id = anime['mal_id'].toString();
           final String image = anime['images']['jpg']['image_url'];
           final String title = anime['title'];
@@ -24,8 +24,16 @@ class APIService {
           final int episodes = anime['episodes'];
           final String duration = anime['duration'];
           final String description = anime['synopsis'];
+          final String trailer = anime['trailer']['url'] ?? '';
 
-          return AnimeModel(
+          final String rank = anime['rank']?.toString() ?? '';
+          final String scoredBy = anime['scored_by']?.toString() ?? '';
+          final String popularity = anime['popularity']?.toString() ?? '';
+          final String favorites = anime['favorites']?.toString() ?? '';
+          final String year = anime['year']?.toString() ?? '';
+          final String season = anime['season'] ?? '';
+
+          return TopAnimeModel(
             id: id,
             image: image,
             title: title,
@@ -33,6 +41,13 @@ class APIService {
             episodes: episodes,
             duration: duration,
             description: description,
+            trailer: trailer,
+            rank: rank,
+            scoredBy: scoredBy,
+            popularity: popularity,
+            favorites: favorites,
+            year: year,
+            season: season,
           );
         }).toList();
 

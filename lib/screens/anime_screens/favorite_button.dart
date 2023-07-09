@@ -6,7 +6,7 @@ import '../../models/anime_model.dart';
 
 class FavoriteButton extends StatelessWidget {
   const FavoriteButton({Key? key, required this.anime}) : super(key: key);
-  final AnimeModel anime;
+  final TopAnimeModel anime;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class FavoriteButton extends StatelessWidget {
           elevation: 0,
           backgroundColor: isFavorite ? kPrimaryColor : Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(kButtonBorder),
+            borderRadius: BorderRadius.circular(kButtonRadius),
             side: BorderSide(
               color: isFavorite ? Colors.white : kPrimaryColor,
             ),
