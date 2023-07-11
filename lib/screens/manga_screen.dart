@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:my_anime_list/constants.dart';
+import '../constants.dart';
+import '../models/manga_model.dart';
 
 import '../api/dio_services.dart';
-import '../models/anime_model.dart';
 import '../widgets/anime_card_widget/anime_card_widget.dart';
 
 class MangaScreen extends StatelessWidget {
@@ -13,24 +14,24 @@ class MangaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPaleLavender,
-      body: FutureBuilder<List<AnimeModel>>(
-        future: APIService().fetchTopAnime(kTopAnimeEndpoint),
+      body: FutureBuilder<List<MangaModel>>(
+        future: APIService().fetchTopManga(kMangas),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData) {
-            final animes = snapshot.data!;
+            final mangas = snapshot.data!;
             return GridView.builder(
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 mainAxisExtent: 250,
               ),
-              itemCount: animes.length,
+              itemCount: mangas.length,
               itemBuilder: (context, index) {
-                final anime = animes[index];
+                final anime = mangas[index];
                 return Container(
                   margin: EdgeInsets.symmetric(
                     vertical: kDefaultPadding,
@@ -38,42 +39,20 @@ class MangaScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      Stack(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(
-                                  () => AnimeCardWidget(anime: animes[index]));
-                            },
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.circular(kBorderRadius),
-                              child: Image.network(
-                                anime.image,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                      SizedBox(
+                        width: 100.w,
+                        height: 140.h,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(kBorderRadius),
+                          child: Image.network(
+                            anime.image,
+                            fit: BoxFit.cover,
                           ),
-                          Positioned(
-                            top: 150,
-                            left: 5,
-                            child: Container(
-                              color: kPrimaryColor,
-                              child: Text(
-                                'Eps: ${anime.episodes}',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: kDefaultPadding,
-                                  fontFamily: kDefaultFont,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
+                      SizedBox(height: 10.h),
                       Text(
-                        animes[index].title,
+                        mangas[index].title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -82,7 +61,9 @@ class MangaScreen extends StatelessWidget {
                           fontFamily: kDefaultFont,
                         ),
                       ),
+                      SizedBox(height: 5.h),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
                             'Score: ',
@@ -106,7 +87,7 @@ class MangaScreen extends StatelessWidget {
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
                               child: Text(
-                                '${animes[index].score}',
+                                '${mangas[index].score}',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: kDefaultPadding,
@@ -126,7 +107,7 @@ class MangaScreen extends StatelessWidget {
             );
           } else if (snapshot.hasError) {
             return const Center(
-              child: Text('Failed to fetch anime data'),
+              child: Text('Failed to fetch manga data'),
             );
           }
           return const Center(
