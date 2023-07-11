@@ -53,7 +53,7 @@ class _WatchTrailerScreenState extends State<WatchTrailerScreen> {
       ),
       body: Center(
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+          margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
           child: YoutubePlayer(
             controller: _controller,
             showVideoProgressIndicator: false,
@@ -64,7 +64,7 @@ class _WatchTrailerScreenState extends State<WatchTrailerScreen> {
                 isExpanded: true,
                 colors: const ProgressBarColors(
                   playedColor: kPrimaryColor,
-                  handleColor: kLightPurple,
+                  handleColor: kVeryLightPurple,
                 ),
               ),
               const PlaybackSpeedButton(),

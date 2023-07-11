@@ -46,7 +46,7 @@ class FavoriteScreen extends StatelessWidget {
                 favoriteController.goToAnimeDetails(favorites[index]);
               },
               child: Padding(
-                padding: const EdgeInsets.all(kDefaultPadding),
+                padding: EdgeInsets.all(kDefaultPadding),
                 child: Column(
                   children: [
                     Expanded(
@@ -55,14 +55,12 @@ class FavoriteScreen extends StatelessWidget {
                         child: Image.network(favorites[index].image),
                       ),
                     ),
-                    const SizedBox(height: kDefaultPadding),
+                    SizedBox(height: kDefaultPadding),
                     Text(
                       favorites[index].title,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontFamily: kDefaultFont,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      overflow: TextOverflow.ellipsis,
+                      style: myTextStyle(kSmallText + 2),
                     ),
                   ],
                 ),

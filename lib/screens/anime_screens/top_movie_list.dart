@@ -17,7 +17,7 @@ class TopMovieList extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimeListWidget(
       size: size,
-      apiMethod: () => apiService.fetchTop(topMovieEndpoint),
+      apiMethod: () => apiService.fetchTopAnime(kTopMovieEndpoint),
     );
   }
 }

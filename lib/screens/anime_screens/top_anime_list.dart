@@ -16,7 +16,7 @@ class TopAnimeList extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimeListWidget(
       size: size,
-      apiMethod: () => apiService.fetchTop(topAnimeEndpoint),
+      apiMethod: () => apiService.fetchTopAnime(kTopAnimeEndpoint),
     );
   }
 }

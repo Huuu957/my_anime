@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:my_anime_list/api/dio_services.dart';
 import 'package:my_anime_list/models/anime_model.dart';
 
-import 'anime_card_widget.dart';
+import 'anime_card_widget/anime_card_widget.dart';
 
 class AnimeListWidget extends StatelessWidget {
   AnimeListWidget({
@@ -14,16 +14,16 @@ class AnimeListWidget extends StatelessWidget {
   }) : super(key: key);
 
   final Size size;
-  final Future<List<TopAnimeModel>> Function() apiMethod;
+  final Future<List<AnimeModel>> Function() apiMethod;
   final APIService apiService = APIService();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<TopAnimeModel>>(
+    return FutureBuilder<List<AnimeModel>>(
       future: apiMethod(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          final List<TopAnimeModel> animes = snapshot.data!;
+          final List<AnimeModel> animes = snapshot.data!;
 
           return SizedBox(
             height: size.height * 0.36,
@@ -33,9 +33,7 @@ class AnimeListWidget extends StatelessWidget {
               itemCount: animes.length,
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  Get.to(() => AnimeCardWidget(
-                        anime: animes[index],
-                      ));
+                  Get.to(() => AnimeCardWidget(anime: animes[index]));
                 },
                 child: Container(
                   width: size.width * 0.4,
@@ -57,7 +55,7 @@ class AnimeListWidget extends StatelessWidget {
                         animes[index].title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: kSecondaryColor,
                           fontSize: kBigText,
                           fontFamily: kDefaultFont,
@@ -90,7 +88,7 @@ class AnimeListWidget extends StatelessWidget {
                               child: Text(
                                 '${animes[index].score}',
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: kDefaultPadding,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -101,7 +99,7 @@ class AnimeListWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: kDefaultPadding / 2),
+                      SizedBox(height: kDefaultPadding / 2),
                       Row(
                         children: [
                           Text(

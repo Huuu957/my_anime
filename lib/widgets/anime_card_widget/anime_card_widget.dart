@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/models/anime_model.dart';
-import 'package:my_anime_list/screens/anime_screens/favorite_button.dart';
-import 'package:get/get.dart';
-import 'package:my_anime_list/screens/watch_trailer_screen.dart';
+import 'package:my_anime_list/widgets/anime_card_widget/favorite_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_anime_list/widgets/anime_card_widget/play_button.dart';
+
+import 'more_info.dart';
 
 class AnimeCardWidget extends StatelessWidget {
-  final TopAnimeModel anime;
+  final AnimeModel anime;
 
   const AnimeCardWidget({
     Key? key,
@@ -19,14 +21,13 @@ class AnimeCardWidget extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: kLightPurple,
+        backgroundColor: kVeryLightPurple,
         iconTheme: const IconThemeData(color: kSecondaryColor),
         title: Text(
           anime.title,
-          style: const TextStyle(
-            color: kSecondaryColor,
-            fontFamily: kDefaultFont,
-          ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: myTextStyle(kBigText),
         ),
       ),
       body: Stack(
@@ -35,7 +36,7 @@ class AnimeCardWidget extends StatelessWidget {
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  kLightPurple,
+                  kVeryLightPurple,
                   kPaleLavender,
                 ],
                 begin: Alignment.topCenter,
@@ -44,13 +45,13 @@ class AnimeCardWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: kDefaultPadding * 5.5,
-            left: 0,
-            right: 0,
+            bottom: 50.h,
+            left: 0.w,
+            right: 0.w,
             child: Container(
-              height: 500,
-              padding: const EdgeInsets.only(top: 160),
-              margin: const EdgeInsets.symmetric(horizontal: 15),
+              height: 420.h,
+              padding: EdgeInsets.only(top: 120.h),
+              margin: EdgeInsets.symmetric(horizontal: 15.w),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(kBorderRadius),
@@ -66,56 +67,51 @@ class AnimeCardWidget extends StatelessWidget {
               child: DefaultTabController(
                 length: 3,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: kDefaultPadding * 2),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           SizedBox(
-                            height: 75,
-                            width: 75,
+                            height: 75.h,
+                            width: 75.w,
                             child: ClipRRect(
                               borderRadius:
                                   BorderRadius.circular(kBorderRadius),
                               child: Image.network(
                                 anime.image,
                                 fit: BoxFit.cover,
-                                width: double.infinity,
+                                width: double.infinity.w,
                               ),
                             ),
                           ),
                           Column(
                             children: [
                               SizedBox(
-                                width: 200,
+                                width: 175.w,
                                 child: Text(
                                   anime.title,
                                   textAlign: TextAlign.center,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    fontSize: kBigText,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: kDefaultFont,
-                                  ),
+                                  style: myTextStyle(kSmallText),
                                 ),
                               ),
-                              const SizedBox(height: kDefaultPadding),
+                              SizedBox(height: 10.h),
                               Row(
                                 children: [
                                   Text(
                                     '${anime.episodes} Episodes -',
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: kDefaultPadding,
                                       fontFamily: kDefaultFont,
                                     ),
                                   ),
-                                  const SizedBox(width: kDefaultPadding - 7),
+                                  SizedBox(width: 3.w),
                                   Text(
                                     'Duration: ${anime.duration}',
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: kDefaultPadding,
                                       fontFamily: kDefaultFont,
                                     ),
@@ -126,7 +122,7 @@ class AnimeCardWidget extends StatelessWidget {
                           ),
                           Column(
                             children: [
-                              const Text(
+                              Text(
                                 'Score',
                                 style: TextStyle(
                                   fontSize: kDefaultPadding,
@@ -134,10 +130,10 @@ class AnimeCardWidget extends StatelessWidget {
                                   fontFamily: kDefaultFont,
                                 ),
                               ),
-                              const SizedBox(height: kDefaultPadding / 2),
+                              SizedBox(height: 5.h),
                               Container(
-                                height: 25,
-                                width: 37,
+                                height: 25.h,
+                                width: 37.w,
                                 decoration: const BoxDecoration(
                                   gradient: LinearGradient(
                                     begin: Alignment.topLeft,
@@ -158,7 +154,7 @@ class AnimeCardWidget extends StatelessWidget {
                                   child: Text(
                                     '${anime.score}',
                                     textAlign: TextAlign.center,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       color: Colors.white,
                                       fontSize: kDefaultPadding,
                                       fontWeight: FontWeight.bold,
@@ -182,8 +178,8 @@ class AnimeCardWidget extends StatelessWidget {
                         indicatorColor: kPrimaryColor,
                       ),
                       Container(
-                        height: 150,
-                        decoration: const BoxDecoration(
+                        height: 125.h,
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(kBorderRadius),
                             topRight: Radius.circular(kBorderRadius),
@@ -193,12 +189,13 @@ class AnimeCardWidget extends StatelessWidget {
                           children: [
                             SingleChildScrollView(
                               child: Container(
-                                margin: const EdgeInsets.symmetric(
+                                margin: EdgeInsets.symmetric(
                                     vertical: kDefaultPadding,
                                     horizontal: kDefaultPadding),
                                 child: Text(
                                   anime.description,
-                                  style: const TextStyle(
+                                  style: TextStyle(
+                                    fontSize: 12.5.sp,
                                     fontFamily: kDefaultFont,
                                   ),
                                 ),
@@ -206,41 +203,46 @@ class AnimeCardWidget extends StatelessWidget {
                             ),
                             SingleChildScrollView(
                               child: Container(
-                                margin: const EdgeInsets.symmetric(
+                                margin: EdgeInsets.symmetric(
                                   vertical: kDefaultPadding,
                                   horizontal: kDefaultPadding,
                                 ),
-                                padding: const EdgeInsets.all(kDefaultPadding),
+                                padding: EdgeInsets.all(kDefaultPadding),
                                 decoration: BoxDecoration(
-                                  color:
-                                      kPrimaryColor, // Set the desired shade of purple
-                                  borderRadius: BorderRadius.circular(
-                                      10), // Optionally, add rounded corners
+                                  color: kPrimaryColor,
+                                  borderRadius:
+                                      BorderRadius.circular(kBorderRadius),
                                 ),
                                 child: Column(
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: [
-                                    buildRow('Rank', anime.rank, 180),
-                                    buildRow('Scored by', anime.scoredBy, 160),
-                                    buildRow(
-                                        'Popularity', anime.popularity, 150),
-                                    buildRow('Favorites', anime.favorites, 160),
-                                    buildRow('Year', anime.year, 170),
-                                    buildRow('Season', anime.season, 160),
+                                    moreInfo('Rank', anime.rank, 10.w),
+                                    moreInfo('Scored by', anime.scoredBy, 10.w),
+                                    moreInfo(
+                                        'Popularity', anime.popularity, 10.w),
+                                    moreInfo(
+                                        'Favorites', anime.favorites, 10.w),
+                                    moreInfo('Year', anime.year, 10.w),
+                                    moreInfo('Season', anime.season, 10.w),
                                   ],
                                 ),
                               ),
                             ),
-                            const Center(
+                            Center(
                               child: Text(
-                                  'Watching anime without paying is illegal :)'),
+                                'Watching anime without paying is illegal :)',
+                                style: TextStyle(
+                                  fontSize: 12.5.sp,
+                                  fontFamily: kDefaultFont,
+                                ),
+                              ),
                             ),
                           ],
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(bottom: 10),
+                        margin: EdgeInsets.only(bottom: 10.h),
                         child: FavoriteButton(anime: anime),
                       ),
                     ],
@@ -250,8 +252,8 @@ class AnimeCardWidget extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 75),
-            height: 250,
+            margin: EdgeInsets.symmetric(vertical: 30.h, horizontal: 75.w),
+            height: 200.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(kBorderRadius),
               boxShadow: [
@@ -268,75 +270,13 @@ class AnimeCardWidget extends StatelessWidget {
               child: Image.network(
                 anime.image,
                 fit: BoxFit.cover,
-                width: double.infinity,
+                width: double.infinity.w,
               ),
             ),
           ),
-          Positioned(
-            top: 110,
-            left: 160,
-            child: GestureDetector(
-              onTap: () {
-                Get.toNamed(WatchTrailerScreen.watchMoreScreen,
-                    arguments: anime);
-              },
-              child: Container(
-                width: 80,
-                height: 80,
-                decoration: const BoxDecoration(
-                  color: kPrimaryColor,
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      kColorLightPurple,
-                      kColorMiddlePurple,
-                      kColorLightPink,
-                      kColorLighterPink,
-                    ],
-                  ),
-                ),
-                child: const Icon(
-                  Icons.play_arrow,
-                  color: Colors.white,
-                  size: 45,
-                ),
-              ),
-            ),
-          ),
+          PlayButton(anime: anime),
         ],
       ),
     );
   }
-}
-
-Widget buildRow(String label, String value, double spacing) {
-  return Column(
-    children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(
-              color: Colors.white,
-              fontFamily: kDefaultFont,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(width: spacing),
-          Text(
-            value,
-            style: const TextStyle(
-              color: Colors.white,
-              fontFamily: kDefaultFont,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(height: kDefaultPadding),
-    ],
-  );
 }

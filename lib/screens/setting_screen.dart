@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_anime_list/constants.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -17,10 +18,10 @@ class SettingScreen extends StatelessWidget {
           style: TextStyle(color: kSecondaryColor),
         ),
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1.0),
+          preferredSize: Size.fromHeight(1.0.h),
           child: Container(
             color: Colors.black,
-            height: 1.0,
+            height: 1.0.h,
           ),
         ),
       ),

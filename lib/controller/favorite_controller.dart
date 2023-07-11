@@ -2,13 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:my_anime_list/models/anime_model.dart';
 
-import '../widgets/anime_card_widget.dart';
+import '../widgets/anime_card_widget/anime_card_widget.dart';
 
 class FavoriteController extends GetxController {
   RxBool isFavorite = false.obs;
-  var favList = <TopAnimeModel>[].obs;
+  var favList = <AnimeModel>[].obs;
 
-  toggleFavorite(TopAnimeModel anime) {
+  toggleFavorite(AnimeModel anime) {
     if (favList.contains(anime)) {
       // Remove the anime from favorites
       favList.remove(anime);
@@ -24,7 +24,7 @@ class FavoriteController extends GetxController {
     }
   }
 
-  void goToAnimeDetails(TopAnimeModel anime) {
+  void goToAnimeDetails(AnimeModel anime) {
     Get.to(() => AnimeCardWidget(anime: anime));
   }
 }

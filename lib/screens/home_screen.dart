@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/screens/anime_screens/anime_screen.dart';
@@ -19,18 +20,14 @@ class HomeScreen extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(120),
+            preferredSize: Size.fromHeight(100.h),
             child: AppBar(
               elevation: 0,
               backgroundColor: kPaleLavender,
               centerTitle: true,
-              title: const Text(
+              title: Text(
                 'Browse Anime',
-                style: TextStyle(
-                  color: kSecondaryColor,
-                  fontFamily: kDefaultFont,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: myTextStyle(kBigText + 5),
               ),
               leading: Builder(
                 builder: (BuildContext context) {
@@ -54,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ],
-              bottom: const TabBar(
+              bottom: TabBar(
                 indicatorColor: kPrimaryColor,
                 indicatorSize: TabBarIndicatorSize.label,
                 labelPadding:

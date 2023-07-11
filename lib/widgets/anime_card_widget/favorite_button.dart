@@ -6,7 +6,7 @@ import '../../models/anime_model.dart';
 
 class FavoriteButton extends StatelessWidget {
   const FavoriteButton({Key? key, required this.anime}) : super(key: key);
-  final TopAnimeModel anime;
+  final AnimeModel anime;
 
   @override
   Widget build(BuildContext context) {
