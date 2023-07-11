@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../constants.dart';
 import '../models/manga_model.dart';
-
 import '../api/dio_services.dart';
-import '../widgets/anime_card_widget/anime_card_widget.dart';
 
 class MangaScreen extends StatelessWidget {
   const MangaScreen({super.key});
@@ -31,7 +29,7 @@ class MangaScreen extends StatelessWidget {
               ),
               itemCount: mangas.length,
               itemBuilder: (context, index) {
-                final anime = mangas[index];
+                final manga = mangas[index];
                 return Container(
                   margin: EdgeInsets.symmetric(
                     vertical: kDefaultPadding,
@@ -39,14 +37,19 @@ class MangaScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      SizedBox(
-                        width: 100.w,
-                        height: 140.h,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(kBorderRadius),
-                          child: Image.network(
-                            anime.image,
-                            fit: BoxFit.cover,
+                      GestureDetector(
+                        onTap: () {
+                          //TODO: ADD MANGA CARD NAVIGATION HERE
+                        },
+                        child: SizedBox(
+                          width: 100.w,
+                          height: 140.h,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(kBorderRadius),
+                            child: Image.network(
+                              manga.image,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),

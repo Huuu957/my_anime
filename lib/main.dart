@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_anime_list/screens/anime_screens/more_anime_screen.dart';
 import 'package:my_anime_list/screens/watch_trailer_screen.dart';
+import 'package:my_anime_list/widgets/anime_card_widget/anime_card_widget.dart';
 import 'widgets/navigation_bar_widget.dart';
 import 'screens/splash_screen.dart';
 
@@ -35,6 +36,11 @@ class MyApp extends StatelessWidget {
               name: NavigationBarWidget.homeRoute,
               page: () => const NavigationBarWidget(),
             ),
+            //TODO: DELETE OR ACTIVE THIS
+            // GetPage(
+            //   name: AnimeCardWidget.animeCardRouteName,
+            //   page: () => const MoreAnimeScreen(),
+            // ),
             GetPage(
               name: MoreAnimeScreen.moreAnimeScreenRoute,
               page: () => const MoreAnimeScreen(),

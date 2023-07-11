@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/models/anime_model.dart';
 import 'package:my_anime_list/widgets/anime_card_widget/favorite_button.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_anime_list/widgets/anime_card_widget/play_button.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'more_info.dart';
 
 class AnimeCardWidget extends StatelessWidget {
   final AnimeModel anime;
+  static const animeCardRouteName = '/animeCardRouteName';
 
   const AnimeCardWidget({
     Key? key,
