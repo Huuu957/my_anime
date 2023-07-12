@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_anime_list/constants.dart';
-import '../../controller/favorite_controller.dart';
-import '../../models/anime_model.dart';
+import '../controller/favorite_controller.dart';
+import '../models/anime_model.dart';
 
-class FavoriteButton extends StatelessWidget {
-  const FavoriteButton({Key? key, required this.anime}) : super(key: key);
+class FavoriteButtonWidget extends StatelessWidget {
+  const FavoriteButtonWidget({Key? key, required this.anime}) : super(key: key);
   final AnimeModel anime;
 
   @override

@@ -40,4 +40,4 @@ TextStyle myTextStyle(double fontSize) {
 const String kTopAnimeEndpoint = 'https://api.jikan.moe/v4/top/anime';
 const String kTopMovieEndpoint =
     'https://api.jikan.moe/v4/top/anime?type=movie';
-const String kMangas = 'https://api.jikan.moe/v4/top/manga';
+const String kTopMangaEndpoint = 'https://api.jikan.moe/v4/top/manga';

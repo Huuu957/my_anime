@@ -36,11 +36,6 @@ class MyApp extends StatelessWidget {
               name: NavigationBarWidget.homeRoute,
               page: () => const NavigationBarWidget(),
             ),
-            //TODO: DELETE OR ACTIVE THIS
-            // GetPage(
-            //   name: AnimeCardWidget.animeCardRouteName,
-            //   page: () => const MoreAnimeScreen(),
-            // ),
             GetPage(
               name: MoreAnimeScreen.moreAnimeScreenRoute,
               page: () => const MoreAnimeScreen(),

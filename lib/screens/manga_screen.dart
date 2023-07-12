@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:my_anime_list/widgets/manga_card_widget.dart';
 import '../constants.dart';
 import '../models/manga_model.dart';
 import '../api/dio_services.dart';
+import 'package:get/get.dart';
 
 class MangaScreen extends StatelessWidget {
   const MangaScreen({super.key});
@@ -13,7 +14,7 @@ class MangaScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kPaleLavender,
       body: FutureBuilder<List<MangaModel>>(
-        future: APIService().fetchTopManga(kMangas),
+        future: APIService().fetchTopManga(kTopMangaEndpoint),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -39,7 +40,7 @@ class MangaScreen extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          //TODO: ADD MANGA CARD NAVIGATION HERE
+                          Get.to(() => MangaCardWidget(manga: mangas[index]));
                         },
                         child: SizedBox(
                           width: 100.w,
@@ -86,7 +87,7 @@ class MangaScreen extends StatelessWidget {
                                 right: Radius.elliptical(100, 100),
                               ),
                             ),
-                            padding: EdgeInsets.zero, // Remove all padding
+                            padding: EdgeInsets.zero,
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
                               child: Text(

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/models/anime_model.dart';
-import 'package:my_anime_list/widgets/anime_card_widget/favorite_button.dart';
+import 'package:my_anime_list/widgets/favorite_button_widget.dart';
 import 'package:my_anime_list/widgets/anime_card_widget/play_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'more_info.dart';
+import '../more_info_Widget.dart';
 
 class AnimeCardWidget extends StatelessWidget {
   final AnimeModel anime;
@@ -194,7 +194,7 @@ class AnimeCardWidget extends StatelessWidget {
                                     vertical: kDefaultPadding,
                                     horizontal: kDefaultPadding),
                                 child: Text(
-                                  anime.description,
+                                  anime.synopsis,
                                   style: TextStyle(
                                     fontSize: 12.5.sp,
                                     fontFamily: kDefaultFont,
@@ -218,14 +218,16 @@ class AnimeCardWidget extends StatelessWidget {
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: [
-                                    moreInfo('Rank', anime.rank, 10.w),
-                                    moreInfo('Scored by', anime.scoredBy, 10.w),
-                                    moreInfo(
+                                    moreInfoWidget('Rank', anime.rank, 10.w),
+                                    moreInfoWidget(
+                                        'Scored by', anime.scoredBy, 10.w),
+                                    moreInfoWidget(
                                         'Popularity', anime.popularity, 10.w),
-                                    moreInfo(
+                                    moreInfoWidget(
                                         'Favorites', anime.favorites, 10.w),
-                                    moreInfo('Year', anime.year, 10.w),
-                                    moreInfo('Season', anime.season, 10.w),
+                                    moreInfoWidget('Year', anime.year, 10.w),
+                                    moreInfoWidget(
+                                        'Season', anime.season, 10.w),
                                   ],
                                 ),
                               ),
@@ -244,7 +246,7 @@ class AnimeCardWidget extends StatelessWidget {
                       ),
                       Container(
                         margin: EdgeInsets.only(bottom: 10.h),
-                        child: FavoriteButton(anime: anime),
+                        child: FavoriteButtonWidget(anime: anime),
                       ),
                     ],
                   ),

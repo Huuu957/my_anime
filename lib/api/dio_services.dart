@@ -36,7 +36,7 @@ class APIService {
 
   Future<List<MangaModel>> fetchTopManga(String endpoint) async {
     try {
-      final response = await _dio.get(kMangas);
+      final response = await _dio.get(kTopMangaEndpoint);
 
       if (response.statusCode == 200) {
         final dynamic responseData = response.data;

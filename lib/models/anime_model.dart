@@ -2,7 +2,7 @@ class AnimeModel {
   final String id;
   final String image;
   final String title;
-  final String description;
+  final String synopsis;
   final int episodes;
   final double score;
   final String duration;
@@ -19,7 +19,7 @@ class AnimeModel {
     required this.id,
     required this.image,
     required this.title,
-    required this.description,
+    required this.synopsis,
     required this.episodes,
     required this.score,
     required this.duration,
@@ -41,7 +41,7 @@ class AnimeModel {
       score: json['score'].toDouble(),
       episodes: json['episodes'],
       duration: json['duration'],
-      description: json['synopsis'],
+      synopsis: json['synopsis'],
       trailer: json['trailer']['url'] ?? '',
       rank: json['rank']?.toString() ?? '',
       scoredBy: json['scored_by']?.toString() ?? '',
