@@ -59,4 +59,25 @@ class APIService {
       return [];
     }
   }
+
+  Future<List<dynamic>> searchAnime(String keyword) async {
+    try {
+      final response = await _dio.get(kSearchEndpoint);
+      if (response.statusCode == 200) {
+        final responseData = response.data;
+        final genres = responseData['data'];
+        final filteredGenres = genres
+            .where((genre) => genre['name']
+                .toString()
+                .toLowerCase()
+                .contains(keyword.toLowerCase()))
+            .toList();
+        return filteredGenres;
+      } else {
+        throw Exception('Failed to fetch anime genres');
+      }
+    } catch (e) {
+      throw Exception('An error occurred: $e');
+    }
+  }
 }

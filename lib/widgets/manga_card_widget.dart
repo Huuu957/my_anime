@@ -99,11 +99,11 @@ class MangaCardWidget extends StatelessWidget {
                                 right: Radius.elliptical(100, 100),
                               ),
                             ),
-                            padding: EdgeInsets.zero, // Remove all padding
+                            padding: EdgeInsets.zero,
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
                               child: Text(
-                                '9.8',
+                                '${manga.score}',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -127,7 +127,7 @@ class MangaCardWidget extends StatelessWidget {
                         indicatorColor: kPrimaryColor,
                       ),
                       Container(
-                        height: 125.h,
+                        height: 150.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(kBorderRadius),

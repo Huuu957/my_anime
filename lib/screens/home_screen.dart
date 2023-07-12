@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_anime_list/api/anime_search_delegate.dart';
 import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/screens/anime_screens/anime_screen.dart';
 import 'package:my_anime_list/screens/manga_screen.dart';
@@ -42,10 +43,13 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
               ),
-              actions: const [
+              actions: [
                 IconButton(
-                  onPressed: null,
-                  icon: Icon(
+                  onPressed: () {
+                    showSearch(
+                        context: context, delegate: AnimeSearchDelegate());
+                  },
+                  icon: const Icon(
                     Icons.search,
                     color: kSecondaryColor,
                   ),
