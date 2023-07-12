@@ -151,30 +151,32 @@ class MangaCardWidget extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SingleChildScrollView(
-                              child: Container(
-                                margin: EdgeInsets.symmetric(
-                                  vertical: kDefaultPadding,
-                                  horizontal: kDefaultPadding,
-                                ),
-                                padding: EdgeInsets.all(kDefaultPadding),
-                                decoration: BoxDecoration(
-                                  color: kPrimaryColor,
-                                  borderRadius:
-                                      BorderRadius.circular(kBorderRadius),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    moreInfoWidget('Rank', manga.rank, 10.w),
-                                    moreInfoWidget(
-                                        'Scored by', manga.scoredBy, 10.w),
-                                    moreInfoWidget(
-                                        'Popularity', manga.popularity, 10.w),
-                                    moreInfoWidget(
-                                        'Favorites', manga.favorites, 10.w),
-                                  ],
+                            Center(
+                              child: SingleChildScrollView(
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  padding: EdgeInsets.all(kDefaultPadding),
+                                  decoration: BoxDecoration(
+                                    color: kPrimaryColor,
+                                    borderRadius:
+                                        BorderRadius.circular(kBorderRadius),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      moreInfoWidget('Rank', manga.rank, 10.w),
+                                      moreInfoWidget(
+                                          'Scored by', manga.scoredBy, 10.w),
+                                      moreInfoWidget(
+                                          'Popularity', manga.popularity, 10.w),
+                                      moreInfoWidget(
+                                          'Favorites', manga.favorites, 10.w),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

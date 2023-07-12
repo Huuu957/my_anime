@@ -44,7 +44,7 @@ class APIService {
         final List<MangaModel> topManga = topMangaList
             .map((manga) => MangaModel.fromJson(manga))
             .toList()
-            .cast<MangaModel>(); // Explicitly cast to List<MangaModel>
+            .cast<MangaModel>();
         return topManga;
       } else {
         if (kDebugMode) {
@@ -65,9 +65,9 @@ class APIService {
       final response = await _dio.get(kSearchEndpoint);
       if (response.statusCode == 200) {
         final responseData = response.data;
-        final genres = responseData['data'];
-        final filteredGenres = genres
-            .where((genre) => genre['name']
+        final animesSearch = responseData['data'];
+        final filteredGenres = animesSearch
+            .where((anime) => anime['name']
                 .toString()
                 .toLowerCase()
                 .contains(keyword.toLowerCase()))
