@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_anime_list/api/dio_services.dart';
 
@@ -76,11 +77,20 @@ class AnimeSearchDelegate extends SearchDelegate {
               itemBuilder: (context, index) {
                 final anime = AnimeModel.fromJson(searchResults[index]);
                 return ListTile(
-                  leading: Image.network(anime.image),
+                  leading: SizedBox(
+                    width: 100.w,
+                    height: 100.h,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0.w),
+                      child: Image.network(
+                        anime.image,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                   title: Text(anime.title),
                   onTap: () {
-                    // Handle the tap on a search result
-                    // For example, you can open the URL in a web view:
+                    //TODO: Handle the tap on a search result
                     Get.to(() => null);
                   },
                 );

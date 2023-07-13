@@ -66,15 +66,15 @@ class APIService {
       if (response.statusCode == 200) {
         final responseData = response.data;
         final animesSearch = responseData['data'];
-        final filteredGenres = animesSearch
-            .where((anime) => anime['name']
+        final filteredAnimes = animesSearch
+            .where((anime) => anime['title']
                 .toString()
                 .toLowerCase()
                 .contains(keyword.toLowerCase()))
             .toList();
-        return filteredGenres;
+        return filteredAnimes;
       } else {
-        throw Exception('Failed to fetch anime genres');
+        throw Exception('Failed to fetch anime data');
       }
     } catch (e) {
       throw Exception('An error occurred: $e');

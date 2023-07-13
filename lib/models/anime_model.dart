@@ -38,7 +38,7 @@ class AnimeModel {
       id: json['mal_id'].toString(),
       image: json['images']['jpg']['image_url'],
       title: json['title'],
-      score: json['score'].toDouble(),
+      score: json['score'] != null ? json['score'].toDouble() : 0.0,
       episodes: json['episodes'],
       duration: json['duration'],
       synopsis: json['synopsis'],
