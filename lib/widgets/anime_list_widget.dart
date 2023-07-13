@@ -30,7 +30,7 @@ class AnimeListWidget extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              itemCount: animes.length,
+              itemCount: 6,
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
                   Get.to(() => AnimeCardWidget(anime: animes[index]));

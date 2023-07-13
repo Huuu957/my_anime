@@ -39,9 +39,9 @@ class AnimeModel {
       image: json['images']['jpg']['image_url'],
       title: json['title'],
       score: json['score'] != null ? json['score'].toDouble() : 0.0,
-      episodes: json['episodes'],
-      duration: json['duration'],
-      synopsis: json['synopsis'],
+      episodes: json['episodes'] ?? 0,
+      duration: json['duration'] ?? '',
+      synopsis: json['synopsis'] ?? '',
       trailer: json['trailer']['url'] ?? '',
       rank: json['rank']?.toString() ?? '',
       scoredBy: json['scored_by']?.toString() ?? '',
@@ -49,7 +49,7 @@ class AnimeModel {
       favorites: json['favorites']?.toString() ?? '',
       year: json['year']?.toString() ?? '',
       season: json['season'] ?? '',
-      airing: json['airing'] ?? '',
+      airing: json['airing'] ?? false,
     );
   }
 }

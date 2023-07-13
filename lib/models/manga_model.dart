@@ -3,12 +3,10 @@ class MangaModel {
   final String title;
   final String image;
   final double score;
-
   final String rank;
   final String scoredBy;
   final String popularity;
   final String favorites;
-
   final String synopsis;
   final String background;
 

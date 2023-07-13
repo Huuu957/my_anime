@@ -26,9 +26,9 @@ class MangaScreen extends StatelessWidget {
             final mangas = snapshot.data!;
             return GridView.builder(
               shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                mainAxisExtent: 250,
+                mainAxisExtent: 250.w,
               ),
               itemCount: mangas.length,
               itemBuilder: (context, index) {
@@ -71,11 +71,11 @@ class MangaScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
+                          Text(
                             'Score: ',
                             style: TextStyle(
                               color: kSecondaryColor,
-                              fontSize: 12,
+                              fontSize: 12.sp,
                               fontFamily: kDefaultFont,
                             ),
                           ),

@@ -36,7 +36,7 @@ class APIService {
 
   Future<List<MangaModel>> fetchTopManga(String endpoint) async {
     try {
-      final response = await _dio.get(kTopMangaEndpoint);
+      final response = await _dio.get(endpoint);
 
       if (response.statusCode == 200) {
         final dynamic responseData = response.data;
@@ -50,19 +50,20 @@ class APIService {
         if (kDebugMode) {
           print('Failed to fetch top mangas: ${response.statusCode}');
         }
+        throw Exception('Failed to fetch top mangas: ${response.statusCode}');
       }
-      return [];
     } catch (e) {
       if (kDebugMode) {
         print('Failed to fetch top mangas: $e');
       }
-      return [];
+      throw Exception('Failed to fetch top mangas: $e');
     }
   }
 
   Future<List<dynamic>> searchAnime(String keyword) async {
     try {
       final response = await _dio.get(kSearchEndpoint);
+
       if (response.statusCode == 200) {
         final responseData = response.data;
         final animesSearch = responseData['data'];
@@ -77,7 +78,7 @@ class APIService {
         throw Exception('Failed to fetch anime data');
       }
     } catch (e) {
-      throw Exception('An error occurred: $e');
+      throw Exception('Failed to fetch anime data: $e');
     }
   }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/controller/favorite_controller.dart';
 
 class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({super.key});
+  const FavoriteScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +17,15 @@ class FavoriteScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
         backgroundColor: kPaleLavender,
-        title: const Text(
+        title: Text(
           'Favorites',
-          style: TextStyle(color: kSecondaryColor),
+          style: myTextStyle(kBigText + 5),
         ),
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1.0),
+          preferredSize: Size.fromHeight(1.0.h),
           child: Container(
             color: Colors.black,
-            height: 1.0,
+            height: 1.0.h,
           ),
         ),
       ),
@@ -36,12 +37,12 @@ class FavoriteScreen extends StatelessWidget {
           );
         } else {
           return GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 0.75,
+              childAspectRatio: 0.75.w,
             ),
             itemCount: favorites.length,
-            itemBuilder: (context, index) => GestureDetector(
+            itemBuilder: (BuildContext context, int index) => GestureDetector(
               onTap: () {
                 favoriteController.goToAnimeDetails(favorites[index]);
               },

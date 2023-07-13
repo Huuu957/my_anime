@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:my_anime_list/screens/anime_screens/more_anime_screen.dart';
+import 'package:my_anime_list/screens/more_media_screen/more_anime_screen.dart';
+import 'package:my_anime_list/screens/more_media_screen/more_movie_screen.dart';
 import 'package:my_anime_list/screens/watch_trailer_screen.dart';
 import 'widgets/navigation_bar_widget.dart';
 import 'screens/splash_screen.dart';
@@ -38,6 +39,10 @@ class MyApp extends StatelessWidget {
             GetPage(
               name: MoreAnimeScreen.moreAnimeScreenRoute,
               page: () => const MoreAnimeScreen(),
+            ),
+            GetPage(
+              name: MoreMovieScreen.moreMovieScreen,
+              page: () => const MoreMovieScreen(),
             ),
             GetPage(
               name: WatchTrailerScreen.watchMoreScreen,

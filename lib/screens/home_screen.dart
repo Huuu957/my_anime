@@ -84,15 +84,15 @@ class HomeScreen extends StatelessWidget {
           drawer: Drawer(
             child: ListView(
               children: [
-                const DrawerHeader(
-                  decoration: BoxDecoration(
+                DrawerHeader(
+                  decoration: const BoxDecoration(
                     color: kPaleLavender,
                   ),
                   child: Text(
                     'Drawer Header',
                     style: TextStyle(
                       color: kSecondaryColor,
-                      fontSize: 24,
+                      fontSize: 24.sp,
                     ),
                   ),
                 ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_anime_list/constants.dart';
-import 'package:my_anime_list/screens/anime_screens/more_anime_screen.dart';
+import 'package:my_anime_list/screens/more_media_screen/more_anime_screen.dart';
+import 'package:my_anime_list/screens/more_media_screen/more_movie_screen.dart';
 import 'package:my_anime_list/screens/anime_screens/top_movie_list.dart';
 import 'package:my_anime_list/screens/anime_screens/top_anime_list.dart';
 import 'package:get/get.dart';
@@ -18,11 +19,11 @@ class AnimeScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 15.h),
+              margin: EdgeInsets.only(top: kDefaultPadding + 5),
               height: 50,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 10,
+              padding: EdgeInsets.symmetric(
+                horizontal: kDefaultPadding,
+                vertical: kDefaultPadding,
               ),
               child: Row(
                 children: [
@@ -53,10 +54,10 @@ class AnimeScreen extends StatelessWidget {
             SizedBox(height: kDefaultPadding),
             TopAnimeList(size: size),
             Container(
-              height: 50,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 10,
+              height: 50.h,
+              padding: EdgeInsets.symmetric(
+                horizontal: kDefaultPadding,
+                vertical: kDefaultPadding,
               ),
               child: Row(
                 children: [
@@ -71,7 +72,7 @@ class AnimeScreen extends StatelessWidget {
                   const Spacer(),
                   TextButton(
                     onPressed: () {
-                      Get.toNamed(MoreAnimeScreen.moreAnimeScreenRoute);
+                      Get.toNamed(MoreMovieScreen.moreMovieScreen);
                     },
                     child: const Text(
                       'MORE',
