@@ -9,8 +9,6 @@ import '../more_info_Widget.dart';
 
 class AnimeCardWidget extends StatelessWidget {
   final AnimeModel anime;
-  static const animeCardRouteName = '/animeCardRouteName';
-
   const AnimeCardWidget({
     Key? key,
     required this.anime,

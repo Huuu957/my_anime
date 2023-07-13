@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_anime_list/api/dio_services.dart';
+import 'package:my_anime_list/widgets/anime_card_widget/anime_card_widget.dart';
 
 import '../constants.dart';
 import '../models/anime_model.dart';
@@ -72,27 +73,45 @@ class AnimeSearchDelegate extends SearchDelegate {
               );
             }
 
-            return ListView.builder(
+            return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 2 / 3,
+              ),
               itemCount: searchResults.length,
               itemBuilder: (context, index) {
                 final anime = AnimeModel.fromJson(searchResults[index]);
-                return ListTile(
-                  leading: SizedBox(
-                    width: 100.w,
-                    height: 100.h,
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0.w),
-                      child: Image.network(
-                        anime.image,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  title: Text(anime.title),
+                return GestureDetector(
                   onTap: () {
-                    //TODO: Handle the tap on a search result
-                    Get.to(() => null);
+                    Get.to(() => AnimeCardWidget(anime: anime));
                   },
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8.h),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(kBorderRadius),
+                            child: Image.network(
+                              anime.image,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.w),
+                        child: Text(
+                          anime.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontFamily: kDefaultFont,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               },
             );
