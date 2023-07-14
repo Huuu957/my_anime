@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_anime_list/widgets/manga_card_widget.dart';
+import '../widgets/manga_card_widget.dart';
 import '../constants.dart';
 import '../models/manga_model.dart';
 import '../api/dio_services.dart';

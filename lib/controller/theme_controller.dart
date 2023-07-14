@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import '../themes/my_app_theme.dart';
 
 class ThemeController extends GetxController {

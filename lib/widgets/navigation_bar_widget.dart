@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_anime_list/constants.dart';
-import 'package:my_anime_list/screens/setting_screen.dart';
-import 'package:my_anime_list/screens/favorite_screen.dart';
-import 'package:my_anime_list/screens/home_screen.dart';
+import '../constants.dart';
+import '../screens/setting_screen.dart';
+import '../screens/favorite_screen.dart';
+import '../screens/home_screen.dart';
 
 class NavigationBarWidget extends StatefulWidget {
   const NavigationBarWidget({super.key});

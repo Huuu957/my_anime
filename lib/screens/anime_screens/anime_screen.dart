@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_anime_list/constants.dart';
-import 'package:my_anime_list/screens/more_media_screen/more_anime_screen.dart';
-import 'package:my_anime_list/screens/more_media_screen/more_movie_screen.dart';
-import 'package:my_anime_list/screens/anime_screens/top_movie_list.dart';
-import 'package:my_anime_list/screens/anime_screens/top_anime_list.dart';
+import '../../constants.dart';
+import '../../screens/more_media_screen/more_anime_screen.dart';
+import '../../screens/more_media_screen/more_movie_screen.dart';
+import '../../screens/anime_screens/top_movie_list.dart';
+import '../../screens/anime_screens/top_anime_list.dart';
 import 'package:get/get.dart';
 
 class AnimeScreen extends StatelessWidget {

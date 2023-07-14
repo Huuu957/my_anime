@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_anime_list/api/dio_services.dart';
-import 'package:my_anime_list/widgets/anime_list_widget.dart';
+import '../../api/dio_services.dart';
+import '../../widgets/anime_list_widget.dart';
 
 import '../../constants.dart';
 

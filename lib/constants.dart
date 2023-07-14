@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// Colors-----------------------------------------
+// Light Mode Colors--------------------------------
 const kPrimaryColor = Color(0xFF9457EB);
 const kSecondaryColor = Colors.black;
 const kGrey = Colors.grey;
@@ -13,6 +13,9 @@ const kColorLightPurple = Color(0xFFA07CF0);
 const kColorMiddlePurple = Color(0xFFB16FEF);
 const kColorLightPink = Color(0xFFC163EF);
 const kColorLighterPink = Color(0xFFC85EEF);
+
+// Dark Mode Colors--------------------------------
+const kPaleLavenderDark = Colors.black;
 
 // Fonts-------------------------------------------
 const kDefaultFont = 'Roboto';

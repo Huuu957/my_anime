@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:my_anime_list/models/anime_model.dart';
+import '../models/anime_model.dart';
 
 import '../widgets/anime_card_widget/anime_card_widget.dart';
 

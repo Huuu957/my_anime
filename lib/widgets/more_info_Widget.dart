@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_anime_list/constants.dart';
+import '../constants.dart';
 
 Widget moreInfoWidget(String label, String value, double spacing) {
   return Column(

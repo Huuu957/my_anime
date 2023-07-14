@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:my_anime_list/widgets/navigation_bar_widget.dart';
+import '../widgets/navigation_bar_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String splashScreenRoute = '/splash';

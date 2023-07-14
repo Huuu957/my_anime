@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_anime_list/constants.dart';
-import 'package:my_anime_list/models/manga_model.dart';
+import '../constants.dart';
+import '../models/manga_model.dart';
 
 import 'more_info_Widget.dart';
 

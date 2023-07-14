@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:my_anime_list/constants.dart';
-import 'package:my_anime_list/models/anime_model.dart';
-import 'package:my_anime_list/widgets/favorite_button_widget.dart';
-import 'package:my_anime_list/widgets/anime_card_widget/play_button.dart';
+import '../../constants.dart';
+import '../../models/anime_model.dart';
+import '../../widgets/favorite_button_widget.dart';
+import '../../widgets/anime_card_widget/play_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../more_info_Widget.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:my_anime_list/constants.dart';
-import 'package:my_anime_list/controller/favorite_controller.dart';
+import '../constants.dart';
+import '../controller/favorite_controller.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);

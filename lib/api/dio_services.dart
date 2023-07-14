@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:my_anime_list/constants.dart';
+import '../constants.dart';
 
 import '../models/anime_model.dart';
 import '../models/manga_model.dart';

@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:my_anime_list/constants.dart';
+import '../constants.dart';
 
 class MyAppTheme {
   static ThemeData customLightTheme = ThemeData.light().copyWith(
     appBarTheme: const AppBarTheme(
       backgroundColor: kPaleLavender,
     ),
+    textTheme: const TextTheme(
+      displayLarge: TextStyle(
+        color: kPaleLavender,
+      ),
+    ),
   );
   static ThemeData customDarkTheme = ThemeData.dark().copyWith(
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.black,
+      backgroundColor: kPaleLavenderDark,
+    ),
+    textTheme: const TextTheme(
+      displayLarge: TextStyle(
+        color: kPaleLavenderDark,
+      ),
     ),
   );
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_anime_list/constants.dart';
+import '../constants.dart';
 import 'package:get/get.dart';
-import 'package:my_anime_list/api/dio_services.dart';
-import 'package:my_anime_list/models/anime_model.dart';
+import '../api/dio_services.dart';
+import '../models/anime_model.dart';
 
 import 'anime_card_widget/anime_card_widget.dart';
 

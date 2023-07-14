@@ -1,17 +1,20 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:my_anime_list/api/anime_search_delegate.dart';
-import 'package:my_anime_list/constants.dart';
-import 'package:my_anime_list/screens/anime_screens/anime_screen.dart';
-import 'package:my_anime_list/screens/manga_screen.dart';
-import 'package:my_anime_list/themes/my_app_theme.dart';
+import '../api/anime_search_delegate.dart';
+import '../constants.dart';
+import '../screens/anime_screens/anime_screen.dart';
+import '../screens/manga_screen.dart';
+import '../themes/my_app_theme.dart';
 
 import '../controller/favorite_controller.dart';
+import '../controller/theme_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   final controller = Get.put(FavoriteController(), permanent: true);
+  final themeController = Get.put(ThemeController(), permanent: true);
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +29,7 @@ class HomeScreen extends StatelessWidget {
             child: AppBar(
               elevation: 0,
               centerTitle: true,
+              backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
               title: Text(
                 'Browse Anime',
                 style: myTextStyle(kBigText + 5),
@@ -97,16 +101,21 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  title: const Text('Dark mode'),
-                  trailing: Switch(
-                    value: false,
-                    onChanged: (bool value) {
-                      if (Get.isDarkMode) {
-                        Get.changeTheme(ThemeData.light());
-                      } else {
-                        Get.changeTheme(ThemeData.dark());
-                      }
-                    },
+                  title: Text(
+                    'Dark mode',
+                    style: myTextStyle(kBigText - 2),
+                  ),
+                  trailing: Obx(
+                    () => Transform.scale(
+                      scale: 0.8.w,
+                      child: CupertinoSwitch(
+                        value: themeController.isDarkMode.value,
+                        onChanged: (bool value) {
+                          themeController.toggleTheme();
+                        },
+                        activeColor: kPrimaryColor,
+                      ),
+                    ),
                   ),
                 ),
               ],

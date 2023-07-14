@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_anime_list/constants.dart';
+import '../../constants.dart';
 import 'more_media_screen.dart';
 
 class MoreAnimeScreen extends StatelessWidget {
