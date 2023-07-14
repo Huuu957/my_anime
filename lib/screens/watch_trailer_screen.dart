@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../constants.dart';
 
@@ -51,23 +53,50 @@ class _WatchTrailerScreenState extends State<WatchTrailerScreen> {
           onPressed: () => Get.back(),
         ),
       ),
-      body: Center(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-          child: YoutubePlayer(
-            controller: _controller,
-            showVideoProgressIndicator: false,
-            onReady: () => debugPrint('Ready'),
-            bottomActions: [
-              CurrentPosition(),
-              ProgressBar(
-                isExpanded: true,
-                colors: const ProgressBarColors(
-                  playedColor: kPrimaryColor,
-                  handleColor: kVeryLightPurple,
+      body: FractionalTranslation(
+        translation: Offset(0.h, -0.2.w),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: kDefaultPadding,
+            horizontal: kDefaultPadding,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              YoutubePlayer(
+                controller: _controller,
+                showVideoProgressIndicator: false,
+                onReady: () => debugPrint('Ready'),
+                bottomActions: [
+                  CurrentPosition(),
+                  ProgressBar(
+                    isExpanded: true,
+                    colors: const ProgressBarColors(
+                      playedColor: kPrimaryColor,
+                      handleColor: kVeryLightPurple,
+                    ),
+                  ),
+                  const PlaybackSpeedButton(),
+                ],
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  launchUrl(Uri.parse(
+                      'https://www.youtube.com/watch?v=${_getVideoId()}'));
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(kPrimaryColor),
+                ),
+                child: Text(
+                  'Go watch on YouTube',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: kSmallText + 3,
+                    fontFamily: kDefaultFont,
+                  ),
                 ),
               ),
-              const PlaybackSpeedButton(),
             ],
           ),
         ),

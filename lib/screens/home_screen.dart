@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,6 +5,7 @@ import 'package:my_anime_list/api/anime_search_delegate.dart';
 import 'package:my_anime_list/constants.dart';
 import 'package:my_anime_list/screens/anime_screens/anime_screen.dart';
 import 'package:my_anime_list/screens/manga_screen.dart';
+import 'package:my_anime_list/themes/my_app_theme.dart';
 
 import '../controller/favorite_controller.dart';
 
@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: MyAppTheme.customLightTheme,
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: 2,
@@ -24,7 +25,6 @@ class HomeScreen extends StatelessWidget {
             preferredSize: Size.fromHeight(100.h),
             child: AppBar(
               elevation: 0,
-              backgroundColor: kPaleLavender,
               centerTitle: true,
               title: Text(
                 'Browse Anime',
@@ -97,12 +97,14 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  title: const Text('Switch'),
+                  title: const Text('Dark mode'),
                   trailing: Switch(
                     value: false,
                     onChanged: (bool value) {
-                      if (kDebugMode) {
-                        print('Switch Pressed');
+                      if (Get.isDarkMode) {
+                        Get.changeTheme(ThemeData.light());
+                      } else {
+                        Get.changeTheme(ThemeData.dark());
                       }
                     },
                   ),

@@ -33,7 +33,13 @@ class FavoriteScreen extends StatelessWidget {
         final favorites = favoriteController.favList;
         if (favorites.isEmpty) {
           return const Center(
-            child: Text('Your Favorites Collection is Empty'),
+            child: Text(
+              'Your Favorites Collection is Empty',
+              style: TextStyle(
+                color: kSecondaryColor,
+                fontFamily: kDefaultFont,
+              ),
+            ),
           );
         } else {
           return GridView.builder(

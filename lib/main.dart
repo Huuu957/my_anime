@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:my_anime_list/screens/more_media_screen/more_anime_screen.dart';
 import 'package:my_anime_list/screens/more_media_screen/more_movie_screen.dart';
 import 'package:my_anime_list/screens/watch_trailer_screen.dart';
+import 'package:my_anime_list/themes/my_app_theme.dart';
 import 'widgets/navigation_bar_widget.dart';
 import 'screens/splash_screen.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'My Anime',
+          theme: MyAppTheme.customLightTheme,
           initialRoute: SplashScreen.splashScreenRoute,
           getPages: [
             GetPage(
