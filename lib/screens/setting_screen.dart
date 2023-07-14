@@ -15,7 +15,7 @@ class SettingScreen extends StatelessWidget {
         backgroundColor: kPaleLavender,
         title: Text(
           'Settings',
-          style: myTextStyle(kBigText + 5),
+          style: myTextStyle(kBigText + 2.5),
         ),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0.h),
@@ -26,7 +26,9 @@ class SettingScreen extends StatelessWidget {
         ),
       ),
       body: const Center(
-        child: Text('Setting'),
+        child: Text(
+          'Setting',
+        ),
       ),
     );
   }

@@ -15,6 +15,10 @@ class MangaCardWidget extends StatelessWidget {
     return Scaffold(
       backgroundColor: kVeryLightPurple,
       appBar: AppBar(
+        title: Text(
+          manga.title,
+          style: myTextStyle(kBigText),
+        ),
         centerTitle: true,
         elevation: 0,
         backgroundColor: kVeryLightPurple,

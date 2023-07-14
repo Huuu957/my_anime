@@ -9,6 +9,7 @@ import '../models/anime_model.dart';
 
 class AnimeSearchDelegate extends SearchDelegate {
   final animeSearchService = APIService();
+  final searchMode = 'substring';
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -53,7 +54,10 @@ class AnimeSearchDelegate extends SearchDelegate {
       );
     } else {
       return FutureBuilder<List<dynamic>>(
-        future: animeSearchService.searchAnime(query),
+        future: animeSearchService.searchAnime(
+          query: query,
+          searchMode: searchMode,
+        ),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(

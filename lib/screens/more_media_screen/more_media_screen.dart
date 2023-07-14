@@ -63,7 +63,7 @@ class MoreMediaScreen extends StatelessWidget {
               shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                mainAxisExtent: 200.h,
+                mainAxisExtent: 220.h,
               ),
               itemCount: animes.length,
               itemBuilder: (context, index) {
