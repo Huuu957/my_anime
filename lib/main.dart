@@ -6,6 +6,7 @@ import '../screens/more_media_screen/more_anime_screen.dart';
 import '../screens/more_media_screen/more_movie_screen.dart';
 import '../screens/watch_trailer_screen.dart';
 import '../themes/my_app_theme.dart';
+import 'controller/theme_controller.dart';
 import 'widgets/navigation_bar_widget.dart';
 import 'screens/splash_screen.dart';
 
@@ -14,12 +15,13 @@ void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  final ThemeController themeController =
+      Get.put(ThemeController(), permanent: true);
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -27,8 +29,9 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'My Anime',
-          theme: MyAppTheme.customLightTheme,
-          darkTheme: MyAppTheme.customDarkTheme,
+          theme: themeController.isDarkMode.value
+              ? MyAppTheme.customDarkTheme
+              : MyAppTheme.customLightTheme,
           initialRoute: SplashScreen.splashScreenRoute,
           getPages: [
             GetPage(

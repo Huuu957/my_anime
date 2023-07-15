@@ -30,8 +30,8 @@ class AnimeScreen extends StatelessWidget {
                   Text(
                     'Top Animes',
                     style: TextStyle(
-                      fontSize: 17.5.sp,
                       color: kSecondaryColor,
+                      fontSize: 17.5.sp,
                       fontFamily: kDefaultFont,
                     ),
                   ),

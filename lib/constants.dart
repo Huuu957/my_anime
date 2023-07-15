@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_anime/themes/my_app_theme.dart';
+
+import 'controller/theme_controller.dart';
 
 // Light Mode Colors--------------------------------
 const kPrimaryColor = Color(0xFF9457EB);
 const kSecondaryColor = Colors.black;
-const kSecondaryColorDark = Colors.black;
 
 const kGrey = Colors.grey;
 const kVeryLightPurple = Color(0xFFF7F5F9);
@@ -15,9 +17,6 @@ const kColorLightPurple = Color(0xFFA07CF0);
 const kColorMiddlePurple = Color(0xFFB16FEF);
 const kColorLightPink = Color(0xFFC163EF);
 const kColorLighterPink = Color(0xFFC85EEF);
-
-// Dark Mode Colors--------------------------------
-const kPaleLavenderDark = Colors.black;
 
 // Fonts-------------------------------------------
 const kDefaultFont = 'Roboto';
@@ -46,6 +45,27 @@ TextStyle lightTextStyle(double fontSize) {
     fontSize: fontSize.sp,
     color: kSecondaryColor,
     fontFamily: kDefaultFont,
+  );
+}
+
+TextStyle boldThemeText(ThemeController themeController, double fontSize) {
+  return TextStyle(
+    color: themeController.isDarkMode.value
+        ? MyAppTheme.customDarkTheme.textTheme.displayLarge?.color
+        : MyAppTheme.customLightTheme.textTheme.displayLarge?.color,
+    fontFamily: kDefaultFont,
+    fontSize: fontSize.sp,
+    fontWeight: FontWeight.bold,
+  );
+}
+
+TextStyle lightThemeText(ThemeController themeController, double fontSize) {
+  return TextStyle(
+    color: themeController.isDarkMode.value
+        ? MyAppTheme.customDarkTheme.textTheme.displayLarge?.color
+        : MyAppTheme.customLightTheme.textTheme.displayLarge?.color,
+    fontFamily: kDefaultFont,
+    fontSize: fontSize.sp,
   );
 }
 

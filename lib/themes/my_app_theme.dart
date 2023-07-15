@@ -8,17 +8,18 @@ class MyAppTheme {
     ),
     textTheme: const TextTheme(
       displayLarge: TextStyle(
-        color: kSecondaryColor,
+        color: Colors.black,
       ),
     ),
   );
+
   static ThemeData customDarkTheme = ThemeData.dark().copyWith(
     appBarTheme: const AppBarTheme(
-      backgroundColor: kPaleLavenderDark,
+      backgroundColor: Colors.black,
     ),
     textTheme: const TextTheme(
       displayLarge: TextStyle(
-        color: kSecondaryColorDark,
+        color: Colors.white,
       ),
     ),
   );
