@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
               backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
               title: Text(
                 'Browse Anime',
-                style: myTextStyle(kBigText + 5),
+                style: boldTextStyle(kBigText + 5),
               ),
               leading: Builder(
                 builder: (BuildContext context) {
@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                 ListTile(
                   title: Text(
                     'Dark mode',
-                    style: myTextStyle(kBigText - 2),
+                    style: boldTextStyle(kBigText - 2),
                   ),
                   trailing: Obx(
                     () => Transform.scale(

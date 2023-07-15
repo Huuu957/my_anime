@@ -19,7 +19,7 @@ class FavoriteScreen extends StatelessWidget {
         backgroundColor: kPaleLavender,
         title: Text(
           'Favorites',
-          style: myTextStyle(kBigText + 2.5),
+          style: boldTextStyle(kBigText + 2.5),
         ),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0.h),
@@ -67,7 +67,7 @@ class FavoriteScreen extends StatelessWidget {
                       favorites[index].title,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
-                      style: myTextStyle(kSmallText + 2),
+                      style: boldTextStyle(kSmallText + 2),
                     ),
                   ],
                 ),

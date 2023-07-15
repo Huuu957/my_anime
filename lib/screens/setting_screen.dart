@@ -15,7 +15,7 @@ class SettingScreen extends StatelessWidget {
         backgroundColor: kPaleLavender,
         title: Text(
           'Settings',
-          style: myTextStyle(kBigText + 2.5),
+          style: boldTextStyle(kBigText + 2.5),
         ),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0.h),

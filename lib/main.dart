@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'My Anime',
           theme: MyAppTheme.customLightTheme,
+          darkTheme: MyAppTheme.customDarkTheme,
           initialRoute: SplashScreen.splashScreenRoute,
           getPages: [
             GetPage(

@@ -20,7 +20,7 @@ class AnimeScreen extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.only(top: kDefaultPadding + 5),
-              height: 50,
+              height: 50.h,
               padding: EdgeInsets.symmetric(
                 horizontal: kDefaultPadding,
                 vertical: kDefaultPadding,

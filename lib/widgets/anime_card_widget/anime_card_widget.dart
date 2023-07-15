@@ -26,7 +26,7 @@ class AnimeCardWidget extends StatelessWidget {
           anime.title,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: myTextStyle(kBigText),
+          style: boldTextStyle(kBigText),
         ),
       ),
       body: Stack(
@@ -94,7 +94,7 @@ class AnimeCardWidget extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: myTextStyle(kSmallText),
+                                  style: boldTextStyle(kSmallText),
                                 ),
                               ),
                               SizedBox(height: 10.h),
@@ -102,18 +102,12 @@ class AnimeCardWidget extends StatelessWidget {
                                 children: [
                                   Text(
                                     '${anime.episodes} Episodes -',
-                                    style: TextStyle(
-                                      fontSize: kDefaultPadding,
-                                      fontFamily: kDefaultFont,
-                                    ),
+                                    style: lightTextStyle(kSmallText - 1),
                                   ),
                                   SizedBox(width: 3.w),
                                   Text(
                                     'Duration: ${anime.duration}',
-                                    style: TextStyle(
-                                      fontSize: kDefaultPadding,
-                                      fontFamily: kDefaultFont,
-                                    ),
+                                    style: lightTextStyle(kSmallText - 1),
                                   ),
                                 ],
                               ),
@@ -123,11 +117,7 @@ class AnimeCardWidget extends StatelessWidget {
                             children: [
                               Text(
                                 'Score',
-                                style: TextStyle(
-                                  fontSize: kDefaultPadding,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: kDefaultFont,
-                                ),
+                                style: lightTextStyle(kSmallText - 1),
                               ),
                               SizedBox(height: 5.h),
                               Container(
@@ -193,10 +183,7 @@ class AnimeCardWidget extends StatelessWidget {
                                     horizontal: kDefaultPadding),
                                 child: Text(
                                   anime.synopsis,
-                                  style: TextStyle(
-                                    fontSize: 12.5.sp,
-                                    fontFamily: kDefaultFont,
-                                  ),
+                                  style: lightTextStyle(kSmallText + 1),
                                 ),
                               ),
                             ),
@@ -233,10 +220,7 @@ class AnimeCardWidget extends StatelessWidget {
                             Center(
                               child: Text(
                                 'Watching anime without paying is illegal :)',
-                                style: TextStyle(
-                                  fontSize: 12.5.sp,
-                                  fontFamily: kDefaultFont,
-                                ),
+                                style: lightTextStyle(kSmallText + 1),
                               ),
                             ),
                           ],

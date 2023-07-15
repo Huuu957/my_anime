@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // Light Mode Colors--------------------------------
 const kPrimaryColor = Color(0xFF9457EB);
 const kSecondaryColor = Colors.black;
+const kSecondaryColorDark = Colors.black;
+
 const kGrey = Colors.grey;
 const kVeryLightPurple = Color(0xFFF7F5F9);
 const kPaleLavender = Color(0xFFF0EEFF);
@@ -30,12 +32,20 @@ double kIndicatorWidth = 60.0.w;
 double kBigText = 15.0.sp;
 double kSmallText = 10.0.sp;
 
-TextStyle myTextStyle(double fontSize) {
+TextStyle boldTextStyle(double fontSize) {
   return TextStyle(
     fontSize: fontSize.sp,
     color: kSecondaryColor,
     fontFamily: kDefaultFont,
     fontWeight: FontWeight.bold,
+  );
+}
+
+TextStyle lightTextStyle(double fontSize) {
+  return TextStyle(
+    fontSize: fontSize.sp,
+    color: kSecondaryColor,
+    fontFamily: kDefaultFont,
   );
 }
 

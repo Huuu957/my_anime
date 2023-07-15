@@ -8,7 +8,7 @@ class MyAppTheme {
     ),
     textTheme: const TextTheme(
       displayLarge: TextStyle(
-        color: kPaleLavender,
+        color: kSecondaryColor,
       ),
     ),
   );
@@ -18,7 +18,7 @@ class MyAppTheme {
     ),
     textTheme: const TextTheme(
       displayLarge: TextStyle(
-        color: kPaleLavenderDark,
+        color: kSecondaryColorDark,
       ),
     ),
   );

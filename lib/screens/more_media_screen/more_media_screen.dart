@@ -102,7 +102,7 @@ class MoreMediaScreen extends StatelessWidget {
                           animes[index].title,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: myTextStyle(kSmallText),
+                          style: boldTextStyle(kSmallText),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
