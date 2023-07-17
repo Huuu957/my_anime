@@ -80,8 +80,8 @@ class MangaScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            height: 17,
-                            width: 40,
+                            height: 17.h,
+                            width: 40.w,
                             decoration: const BoxDecoration(
                               color: kPrimaryColor,
                               borderRadius: BorderRadius.horizontal(

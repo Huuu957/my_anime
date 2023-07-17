@@ -6,20 +6,22 @@ class MyAppTheme {
     appBarTheme: const AppBarTheme(
       backgroundColor: kPaleLavender,
     ),
+    canvasColor: kPaleLavender,
     textTheme: const TextTheme(
       displayLarge: TextStyle(
-        color: Colors.black,
+        color: kTextLight,
       ),
     ),
   );
 
   static ThemeData customDarkTheme = ThemeData.dark().copyWith(
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.black,
+      backgroundColor: kDarkColor,
     ),
+    canvasColor: kDarkColor,
     textTheme: const TextTheme(
       displayLarge: TextStyle(
-        color: Colors.white,
+        color: kTextDark,
       ),
     ),
   );

@@ -18,6 +18,17 @@ const kColorMiddlePurple = Color(0xFFB16FEF);
 const kColorLightPink = Color(0xFFC163EF);
 const kColorLighterPink = Color(0xFFC85EEF);
 
+// Dark Mode Colors--------------------------------
+const kDarkColor = Colors.black;
+const kDarkTeal = Color(0xFF163E59);
+const kDarkTeal1 = Color(0xFF226F92);
+const kDarkTeal2 = Color(0xFFF9BE02);
+
+// Color(0xFF333333)
+
+const kTextDark = Colors.white;
+const kTextLight = Colors.black;
+
 // Fonts-------------------------------------------
 const kDefaultFont = 'Roboto';
 
@@ -66,6 +77,17 @@ TextStyle lightThemeText(ThemeController themeController, double fontSize) {
         : MyAppTheme.customLightTheme.textTheme.displayLarge?.color,
     fontFamily: kDefaultFont,
     fontSize: fontSize.sp,
+  );
+}
+
+TextStyle lightBoldThemeText(ThemeController themeController, double fontSize) {
+  return TextStyle(
+    color: themeController.isDarkMode.value
+        ? MyAppTheme.customDarkTheme.textTheme.displayLarge?.color
+        : MyAppTheme.customLightTheme.textTheme.displayLarge?.color,
+    fontFamily: kDefaultFont,
+    fontSize: fontSize.sp,
+    fontWeight: FontWeight.bold,
   );
 }
 

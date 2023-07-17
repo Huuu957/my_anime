@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../api/anime_search_delegate.dart';
 import '../constants.dart';
-import '../screens/anime_screens/anime_screen.dart';
+import 'anime_screen.dart';
 import '../screens/manga_screen.dart';
 import '../controller/favorite_controller.dart';
 import '../controller/theme_controller.dart';
@@ -18,109 +18,105 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: DefaultTabController(
-            length: 2,
-            child: Scaffold(
-              appBar: PreferredSize(
-                preferredSize: Size.fromHeight(100.h),
-                child: AppBar(
-                  elevation: 0,
-                  centerTitle: true,
-                  backgroundColor:
-                      Theme.of(context).appBarTheme.backgroundColor,
-                  title: Text(
-                    'Browse Anime',
-                    style: boldThemeText(themeController, kBigText + 1),
-                  ),
-                  leading: Builder(
-                    builder: (BuildContext context) {
-                      return IconButton(
-                        onPressed: () {
-                          Scaffold.of(context).openDrawer();
-                        },
-                        icon: const Icon(
-                          Icons.menu,
-                          color: kSecondaryColor,
-                        ),
-                      );
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(100.h),
+            child: AppBar(
+              elevation: 0,
+              centerTitle: true,
+              backgroundColor: Get.theme.appBarTheme.backgroundColor,
+              title: Text(
+                'Browse Anime',
+                style: lightBoldThemeText(themeController, kBigText + 1),
+              ),
+              leading: Builder(
+                builder: (BuildContext context) {
+                  return IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
                     },
-                  ),
-                  actions: [
-                    IconButton(
-                      onPressed: () {
-                        showSearch(
-                          context: context,
-                          delegate: AnimeSearchDelegate(),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.search,
-                        color: kSecondaryColor,
-                      ),
+                    icon: Icon(
+                      Icons.menu,
+                      color: lightThemeText(themeController, kBigText).color,
                     ),
-                  ],
-                  bottom: TabBar(
-                    indicatorColor: kPrimaryColor,
-                    indicatorSize: TabBarIndicatorSize.label,
-                    labelPadding:
-                        EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
-                    tabs: [
-                      Text(
-                        'Anime',
-                        style: lightThemeText(themeController, kBigText),
-                      ),
-                      Text(
-                        'Manga',
-                        style: lightThemeText(themeController, kBigText),
-                      ),
-                    ],
+                  );
+                },
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: AnimeSearchDelegate(),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    color: lightThemeText(themeController, kBigText).color,
                   ),
                 ),
-              ),
-              drawer: Drawer(
-                child: ListView(
-                  children: [
-                    DrawerHeader(
-                      decoration: const BoxDecoration(
-                        color: kPaleLavender,
-                      ),
-                      child: Text(
-                        'Drawer Header',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                          fontSize: 24.sp,
-                        ),
-                      ),
-                    ),
-                    ListTile(
-                      title: Text(
-                        'Dark mode',
-                        style: boldTextStyle(kBigText - 2),
-                      ),
-                      trailing: Transform.scale(
-                        scale: 0.8.w,
-                        child: CupertinoSwitch(
-                          value: themeController.isDarkMode.value,
-                          onChanged: (bool value) {
-                            themeController.toggleTheme();
-                          },
-                          activeColor: kPrimaryColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              body: const TabBarView(
-                children: [
-                  AnimeScreen(),
-                  MangaScreen(),
+              ],
+              bottom: TabBar(
+                indicatorColor: kPrimaryColor,
+                indicatorSize: TabBarIndicatorSize.label,
+                labelPadding:
+                    EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
+                tabs: [
+                  Text(
+                    'Anime',
+                    style: lightThemeText(themeController, kBigText),
+                  ),
+                  Text(
+                    'Manga',
+                    style: lightThemeText(themeController, kBigText),
+                  ),
                 ],
               ),
             ),
           ),
-        ));
+          drawer: Drawer(
+            child: Container(
+              color: Theme.of(context).canvasColor,
+              child: ListView(
+                children: [
+                  DrawerHeader(
+                    child: Text(
+                      'Drawer Header',
+                      style: lightBoldThemeText(themeController, 24.sp),
+                    ),
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Dark mode',
+                      style: lightThemeText(themeController, kBigText - 1),
+                    ),
+                    trailing: Transform.scale(
+                      scale: 0.8.w,
+                      child: CupertinoSwitch(
+                        value: themeController.isDarkMode.value,
+                        onChanged: (bool value) {
+                          themeController.toggleTheme();
+                        },
+                        activeColor: kPrimaryColor,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          body: TabBarView(
+            children: [
+              AnimeScreen(),
+              const MangaScreen(),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

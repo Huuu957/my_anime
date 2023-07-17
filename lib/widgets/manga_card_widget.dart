@@ -148,10 +148,7 @@ class MangaCardWidget extends StatelessWidget {
                                 ),
                                 child: Text(
                                   manga.synopsis,
-                                  style: TextStyle(
-                                    fontSize: 12.5.sp,
-                                    fontFamily: kDefaultFont,
-                                  ),
+                                  style: lightTextStyle(kSmallText + 1),
                                 ),
                               ),
                             ),
@@ -192,10 +189,7 @@ class MangaCardWidget extends StatelessWidget {
                                 ),
                                 child: Text(
                                   manga.background,
-                                  style: TextStyle(
-                                    fontSize: 12.5.sp,
-                                    fontFamily: kDefaultFont,
-                                  ),
+                                  style: lightTextStyle(kSmallText + 1),
                                 ),
                               ),
                             ),

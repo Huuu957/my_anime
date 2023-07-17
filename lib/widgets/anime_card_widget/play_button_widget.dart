@@ -6,8 +6,8 @@ import '../../constants.dart';
 import '../../models/anime_model.dart';
 import '../../screens/watch_trailer_screen.dart';
 
-class PlayButton extends StatelessWidget {
-  const PlayButton({
+class PlayButtonWidget extends StatelessWidget {
+  const PlayButtonWidget({
     super.key,
     required this.anime,
   });

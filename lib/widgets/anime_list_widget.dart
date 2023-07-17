@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants.dart';
 import 'package:get/get.dart';
 import '../api/dio_services.dart';
@@ -9,11 +10,9 @@ import 'anime_card_widget/anime_card_widget.dart';
 class AnimeListWidget extends StatelessWidget {
   AnimeListWidget({
     Key? key,
-    required this.size,
     required this.apiMethod,
   }) : super(key: key);
 
-  final Size size;
   final Future<List<AnimeModel>> Function() apiMethod;
   final APIService apiService = APIService();
 
@@ -22,116 +21,127 @@ class AnimeListWidget extends StatelessWidget {
     return FutureBuilder<List<AnimeModel>>(
       future: apiMethod(),
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final List<AnimeModel> animes = snapshot.data!;
-
-          return SizedBox(
-            height: size.height * 0.36,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemCount: 6,
-              itemBuilder: (context, index) => InkWell(
-                onTap: () {
-                  Get.to(() => AnimeCardWidget(anime: animes[index]));
-                },
-                child: Container(
-                  width: size.width * 0.4,
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(kBorderRadius),
-                        child: Image.network(
-                          animes[index].image,
-                          width: double.infinity,
-                          height: size.height * 0.25,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        animes[index].title,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                          fontSize: kBigText,
-                          fontFamily: kDefaultFont,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Row(
-                        children: [
-                          const Text(
-                            'Score: ',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                              fontSize: 12,
-                              fontFamily: kDefaultFont,
-                            ),
-                          ),
-                          Container(
-                            height: 17,
-                            width: 40,
-                            decoration: const BoxDecoration(
-                              color: kPrimaryColor,
-                              borderRadius: BorderRadius.horizontal(
-                                left: Radius.elliptical(100, 100),
-                                right: Radius.elliptical(100, 100),
-                              ),
-                            ),
-                            padding: EdgeInsets.zero, // Remove all padding
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                '${animes[index].score}',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: kDefaultPadding,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontFamily: kDefaultFont,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: kDefaultPadding / 2),
-                      Row(
-                        children: [
-                          Text(
-                            '${animes[index].episodes} Eps - ',
-                            style: TextStyle(
-                              color: kSecondaryColor.withOpacity(0.6),
-                              fontSize: 12,
-                              fontFamily: kDefaultFont,
-                            ),
-                          ),
-                          Text(
-                            animes[index].duration,
-                            style: TextStyle(
-                              color: kSecondaryColor.withOpacity(0.6),
-                              fontSize: 12,
-                              fontFamily: kDefaultFont,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(kPrimaryColor),
             ),
           );
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
-        } else {
-          return const CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(kPrimaryColor),
+        } else if (snapshot.hasData) {
+          final List<AnimeModel> animes = snapshot.data!;
+          final int itemCount = animes.length < 6 ? animes.length : 6;
+
+          return SizedBox(
+            height: 250.h,
+            width: 400.w,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: itemCount,
+              itemBuilder: (context, index) {
+                final AnimeModel anime = animes[index];
+                return InkWell(
+                  onTap: () {
+                    Get.to(() => AnimeCardWidget(anime: anime));
+                  },
+                  child: Container(
+                    width: 150.w,
+                    margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(kBorderRadius),
+                            child: Image.network(
+                              anime.image,
+                              width: double.infinity,
+                              height: 130.h,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: kDefaultPadding),
+                        Text(
+                          anime.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: kSecondaryColor,
+                            fontSize: kBigText,
+                            fontFamily: kDefaultFont,
+                          ),
+                        ),
+                        SizedBox(height: kDefaultPadding / 2),
+                        Row(
+                          children: [
+                            Text(
+                              'Score: ',
+                              style: TextStyle(
+                                color: kSecondaryColor,
+                                fontSize: 12.sp,
+                                fontFamily: kDefaultFont,
+                              ),
+                            ),
+                            Container(
+                              height: 17.h,
+                              width: 40.w,
+                              decoration: const BoxDecoration(
+                                color: kPrimaryColor,
+                                borderRadius: BorderRadius.horizontal(
+                                  left: Radius.elliptical(100, 100),
+                                  right: Radius.elliptical(100, 100),
+                                ),
+                              ),
+                              padding: EdgeInsets.zero, // Remove all padding
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  '${anime.score}',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: kSmallText,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontFamily: kDefaultFont,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: kDefaultPadding / 2),
+                        Row(
+                          children: [
+                            Text(
+                              '${anime.episodes} Eps - ',
+                              style: TextStyle(
+                                color: kSecondaryColor.withOpacity(0.6),
+                                fontSize: kSmallText + 2,
+                                fontFamily: kDefaultFont,
+                              ),
+                            ),
+                            Text(
+                              anime.duration,
+                              style: TextStyle(
+                                color: kSecondaryColor.withOpacity(0.6),
+                                fontSize: kSmallText + 2,
+                                fontFamily: kDefaultFont,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
           );
+        } else {
+          return Container();
         }
       },
     );

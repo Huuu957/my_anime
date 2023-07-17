@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../constants.dart';
 import '../../models/anime_model.dart';
 import '../../widgets/favorite_button_widget.dart';
-import '../../widgets/anime_card_widget/play_button.dart';
+import '../../widgets/anime_card_widget/play_button_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../more_info_Widget.dart';
 
@@ -259,7 +259,7 @@ class AnimeCardWidget extends StatelessWidget {
               ),
             ),
           ),
-          PlayButton(anime: anime),
+          PlayButtonWidget(anime: anime),
         ],
       ),
     );
