@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants.dart';
+import '../controller/theme_controller.dart';
 import '../screens/setting_screen.dart';
 import '../screens/favorite_screen.dart';
 import '../screens/home_screen.dart';
+import 'package:get/get.dart';
 
 class NavigationBarWidget extends StatefulWidget {
-  const NavigationBarWidget({super.key});
+  const NavigationBarWidget({Key? key}) : super(key: key);
 
   static const homeRoute = '/home';
 
@@ -15,45 +18,47 @@ class NavigationBarWidget extends StatefulWidget {
 
 class _NavigationBarWidgetState extends State<NavigationBarWidget> {
   int currentPageIndex = 0;
+  final ThemeController themeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
-        height: 64,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-        ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: kPrimaryColor,
-          onTap: (int index) {
-            setState(() {
-              currentPageIndex = index;
-            });
-          },
-          currentIndex: currentPageIndex,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: '', // Empty string to remove the label
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: '',
-            ),
-          ],
+      bottomNavigationBar: Obx(
+        () => SizedBox(
+          height: 60.h,
+          child: BottomNavigationBar(
+            backgroundColor:
+                themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: kPrimaryColor,
+            onTap: (int index) {
+              setState(() {
+                currentPageIndex = index;
+              });
+            },
+            currentIndex: currentPageIndex,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: '', // Empty string to remove the label
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: '',
+              ),
+            ],
+          ),
         ),
       ),
       body: IndexedStack(
         index: currentPageIndex,
         children: <Widget>[
           HomeScreen(),
-          const FavoriteScreen(),
+          FavoriteScreen(themeController: themeController),
           const SettingScreen(),
         ],
       ),

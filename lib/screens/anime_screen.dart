@@ -24,8 +24,8 @@ class AnimeScreen extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(top: kDefaultPadding + 5),
                 height: 50.h,
+                margin: EdgeInsets.only(top: kDefaultPadding + 5),
                 padding: EdgeInsets.symmetric(
                   horizontal: kDefaultPadding,
                   vertical: kDefaultPadding,
@@ -34,7 +34,7 @@ class AnimeScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Top Animes',
-                      style: lightThemeText(themeController, kBigText),
+                      style: kLightLargeThemeText(themeController, kBigText),
                     ),
                     const Spacer(),
                     TextButton(
@@ -58,6 +58,7 @@ class AnimeScreen extends StatelessWidget {
               ),
               Container(
                 height: 50.h,
+                margin: EdgeInsets.only(top: kDefaultPadding + 5),
                 padding: EdgeInsets.symmetric(
                   horizontal: kDefaultPadding,
                   vertical: kDefaultPadding,
@@ -66,7 +67,7 @@ class AnimeScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Top Movies',
-                      style: lightThemeText(themeController, kBigText),
+                      style: kLightLargeThemeText(themeController, kBigText),
                     ),
                     const Spacer(),
                     TextButton(

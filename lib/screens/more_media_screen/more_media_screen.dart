@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_anime/controller/theme_controller.dart';
 import '../../constants.dart';
 import 'package:get/get.dart';
 
@@ -38,13 +39,17 @@ class MoreMediaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: kPaleLavender,
+      backgroundColor:
+          themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
       appBar: AppBar(
-        backgroundColor: kPaleLavender,
+        backgroundColor:
+            themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          color: kSecondaryColor,
+          color:
+              themeController.isDarkMode.value ? kLightColor : kSecondaryColor,
           onPressed: () => Get.back(),
         ),
       ),
@@ -102,29 +107,23 @@ class MoreMediaScreen extends StatelessWidget {
                           animes[index].title,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: boldTextStyle(kSmallText),
+                          style: kBoldThemeText(themeController, kSmallText),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
                               anime.airing ? 'airing' : 'not airing',
-                              style: TextStyle(
-                                fontSize: kSmallText,
-                                color: kSecondaryColor,
-                                fontFamily: kDefaultFont,
-                              ),
+                              style: kLightSmallThemeText(
+                                  themeController, kSmallText - 1),
                             ),
                             SizedBox(width: 5.w),
                             FittedBox(
                               fit: BoxFit.scaleDown,
                               child: Text(
                                 'Score: ',
-                                style: TextStyle(
-                                  fontSize: kSmallText,
-                                  color: kSecondaryColor,
-                                  fontFamily: kDefaultFont,
-                                ),
+                                style: kLightSmallThemeText(
+                                    themeController, kSmallText - 1),
                               ),
                             ),
                             Container(

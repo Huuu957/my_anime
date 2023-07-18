@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants.dart';
 import 'package:get/get.dart';
 import '../api/dio_services.dart';
+import '../controller/theme_controller.dart';
 import '../models/anime_model.dart';
 
 import 'anime_card_widget/anime_card_widget.dart';
@@ -18,6 +19,7 @@ class AnimeListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
     return FutureBuilder<List<AnimeModel>>(
       future: apiMethod(),
       builder: (context, snapshot) {
@@ -68,22 +70,16 @@ class AnimeListWidget extends StatelessWidget {
                           anime.title,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: kSecondaryColor,
-                            fontSize: kBigText,
-                            fontFamily: kDefaultFont,
-                          ),
+                          style:
+                              kLightLargeThemeText(themeController, kBigText),
                         ),
                         SizedBox(height: kDefaultPadding / 2),
                         Row(
                           children: [
                             Text(
                               'Score: ',
-                              style: TextStyle(
-                                color: kSecondaryColor,
-                                fontSize: 12.sp,
-                                fontFamily: kDefaultFont,
-                              ),
+                              style: kLightSmallThemeText(
+                                  themeController, kSmallText + 2),
                             ),
                             Container(
                               height: 17.h,
@@ -102,10 +98,10 @@ class AnimeListWidget extends StatelessWidget {
                                   '${anime.score}',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: kSmallText,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
                                     fontFamily: kDefaultFont,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: kSmallText,
+                                    color: kTextDark,
                                   ),
                                 ),
                               ),
@@ -118,7 +114,9 @@ class AnimeListWidget extends StatelessWidget {
                             Text(
                               '${anime.episodes} Eps - ',
                               style: TextStyle(
-                                color: kSecondaryColor.withOpacity(0.6),
+                                color: themeController.isDarkMode.value
+                                    ? kTextDark
+                                    : kSecondaryColor.withOpacity(0.6),
                                 fontSize: kSmallText + 2,
                                 fontFamily: kDefaultFont,
                               ),
@@ -126,7 +124,9 @@ class AnimeListWidget extends StatelessWidget {
                             Text(
                               anime.duration,
                               style: TextStyle(
-                                color: kSecondaryColor.withOpacity(0.6),
+                                color: themeController.isDarkMode.value
+                                    ? kTextDark
+                                    : kSecondaryColor.withOpacity(0.6),
                                 fontSize: kSmallText + 2,
                                 fontFamily: kDefaultFont,
                               ),

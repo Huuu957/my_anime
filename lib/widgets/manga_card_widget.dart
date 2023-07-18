@@ -17,7 +17,7 @@ class MangaCardWidget extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           manga.title,
-          style: boldTextStyle(kBigText),
+          style: kBoldTextStyle(kBigText),
         ),
         centerTitle: true,
         elevation: 0,
@@ -74,7 +74,7 @@ class MangaCardWidget extends StatelessWidget {
                               textAlign: TextAlign.center,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: boldTextStyle(kSmallText),
+                              style: kBoldTextStyle(kSmallText),
                             ),
                           ),
                           SizedBox(height: 10.h),
@@ -148,7 +148,7 @@ class MangaCardWidget extends StatelessWidget {
                                 ),
                                 child: Text(
                                   manga.synopsis,
-                                  style: lightTextStyle(kSmallText + 1),
+                                  style: kLightTextStyle(kSmallText + 1),
                                 ),
                               ),
                             ),
@@ -189,7 +189,7 @@ class MangaCardWidget extends StatelessWidget {
                                 ),
                                 child: Text(
                                   manga.background,
-                                  style: lightTextStyle(kSmallText + 1),
+                                  style: kLightTextStyle(kSmallText + 1),
                                 ),
                               ),
                             ),
