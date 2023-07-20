@@ -8,30 +8,30 @@ import '../api/dio_services.dart';
 import 'package:get/get.dart';
 
 class MangaScreen extends StatelessWidget {
-  const MangaScreen({super.key});
+  const MangaScreen({Key? key, required this.themeController})
+      : super(key: key);
+
+  final ThemeController themeController;
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController themeController = Get.find();
     return Scaffold(
       backgroundColor: kPaleLavender,
-      body: FutureBuilder<List<MangaModel>>(
-        future: APIService().fetchTopManga(kTopMangaEndpoint),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(kPrimaryColor),
-              ),
-            );
-          } else if (snapshot.hasData) {
-            final mangas = snapshot.data!;
-            return Obx(
-              () => Container(
-                color: themeController.isDarkMode.value
-                    ? kDarkColor
-                    : kPaleLavender,
-                child: GridView.builder(
+      body: Obx(
+        () => Container(
+          color: themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
+          child: FutureBuilder<List<MangaModel>>(
+            future: APIService().fetchTopManga(kTopMangaEndpoint),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(kPrimaryColor),
+                  ),
+                );
+              } else if (snapshot.hasData) {
+                final mangas = snapshot.data!;
+                return GridView.builder(
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
@@ -113,18 +113,18 @@ class MangaScreen extends StatelessWidget {
                       ),
                     );
                   },
-                ),
-              ),
-            );
-          } else if (snapshot.hasError) {
-            return const Center(
-              child: Text('Failed to fetch manga data'),
-            );
-          }
-          return const Center(
-            child: Text('No data available'),
-          );
-        },
+                );
+              } else if (snapshot.hasError) {
+                return const Center(
+                  child: Text('Failed to fetch manga data'),
+                );
+              }
+              return const Center(
+                child: Text('No data available'),
+              );
+            },
+          ),
+        ),
       ),
     );
   }

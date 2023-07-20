@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_anime/controller/theme_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../constants.dart';
@@ -42,14 +43,17 @@ class _WatchTrailerScreenState extends State<WatchTrailerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: kPaleLavender,
+      backgroundColor:
+          themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: kPaleLavender,
+        backgroundColor:
+            themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          color: kSecondaryColor,
+          color: themeController.isDarkMode.value ? kLightColor : kDarkColor,
           onPressed: () => Get.back(),
         ),
       ),
@@ -86,7 +90,10 @@ class _WatchTrailerScreenState extends State<WatchTrailerScreen> {
                       'https://www.youtube.com/watch?v=${_getVideoId()}'));
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(kPrimaryColor),
+                  backgroundColor: MaterialStateProperty.all(
+                      themeController.isDarkMode.value
+                          ? kDarkTeal1
+                          : kPrimaryColor),
                 ),
                 child: Text(
                   'Go watch on YouTube',

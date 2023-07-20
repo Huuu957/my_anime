@@ -25,6 +25,10 @@ const kDarkTeal = Color(0xFF163E59);
 const kDarkTeal1 = Color(0xFF226F92);
 const kDarkTeal2 = Color(0xFFF9BE02);
 
+const kDarkPurple = Color(0xFF533D71);
+const kDarkLavender = Color(0xFF42356C);
+const kDarkGrey = Color(0x33000000);
+
 // Color(0xFF333333)
 
 const kTextDark = Colors.white;

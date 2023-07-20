@@ -5,7 +5,9 @@ import 'package:my_anime/controller/theme_controller.dart';
 import 'package:get/get.dart';
 
 class SettingScreen extends StatelessWidget {
-  const SettingScreen({Key? key}) : super(key: key);
+  const SettingScreen({Key? key, required this.themeController})
+      : super(key: key);
+  final ThemeController themeController;
 
   @override
   Widget build(BuildContext context) {

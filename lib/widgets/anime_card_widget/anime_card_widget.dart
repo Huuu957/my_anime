@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:my_anime/controller/theme_controller.dart';
+import 'package:get/get.dart';
 import '../../constants.dart';
 import '../../models/anime_model.dart';
 import '../../widgets/favorite_button_widget.dart';
@@ -9,40 +10,57 @@ import '../more_info_Widget.dart';
 
 class AnimeCardWidget extends StatelessWidget {
   final AnimeModel anime;
-  const AnimeCardWidget({
+  final ThemeController themeController = Get.find();
+  AnimeCardWidget({
     Key? key,
     required this.anime,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final gradientColors = themeController.isDarkMode.value
+        ? [kDarkTeal, kDarkTeal1]
+        : [kVeryLightPurple, kPaleLavender];
+    final gradientScoreColors = themeController.isDarkMode.value
+        ? [kDarkTeal, kDarkTeal1]
+        : [
+            kPinkishPurple,
+            kBluishPurple,
+          ];
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: kVeryLightPurple,
+        backgroundColor:
+            themeController.isDarkMode.value ? kDarkTeal : kVeryLightPurple,
         iconTheme: const IconThemeData(color: kSecondaryColor),
         title: Text(
           anime.title,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: kBoldTextStyle(kBigText),
+          style: kBoldThemeText(themeController, kBigText),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: Icon(Icons.arrow_back,
+              color:
+                  themeController.isDarkMode.value ? kLightColor : kDarkColor),
         ),
       ),
       body: Stack(
         children: [
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [
-                  kVeryLightPurple,
-                  kPaleLavender,
-                ],
+                colors: gradientColors,
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
             ),
           ),
+          // The Floating Container-----------------------------------------------
           Positioned(
             bottom: 50.h,
             left: 0.w,
@@ -52,7 +70,8 @@ class AnimeCardWidget extends StatelessWidget {
               padding: EdgeInsets.only(top: 120.h),
               margin: EdgeInsets.symmetric(horizontal: 15.w),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color:
+                    themeController.isDarkMode.value ? kDarkGrey : kLightColor,
                 borderRadius: BorderRadius.circular(kBorderRadius),
                 boxShadow: [
                   BoxShadow(
@@ -94,7 +113,8 @@ class AnimeCardWidget extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: kBoldTextStyle(kSmallText),
+                                  style: kBoldThemeText(
+                                      themeController, kSmallText),
                                 ),
                               ),
                               SizedBox(height: 10.h),
@@ -102,12 +122,14 @@ class AnimeCardWidget extends StatelessWidget {
                                 children: [
                                   Text(
                                     '${anime.episodes} Episodes -',
-                                    style: kLightTextStyle(kSmallText - 1),
+                                    style: kLightSmallThemeText(
+                                        themeController, kSmallText - 1),
                                   ),
                                   SizedBox(width: 3.w),
                                   Text(
                                     'Duration: ${anime.duration}',
-                                    style: kLightTextStyle(kSmallText - 1),
+                                    style: kLightSmallThemeText(
+                                        themeController, kSmallText - 1),
                                   ),
                                 ],
                               ),
@@ -117,22 +139,20 @@ class AnimeCardWidget extends StatelessWidget {
                             children: [
                               Text(
                                 'Score',
-                                style: kLightTextStyle(kSmallText - 1),
+                                style: kLightSmallThemeText(
+                                    themeController, kSmallText - 1),
                               ),
-                              SizedBox(height: 5.h),
+                              SizedBox(height: kDefaultPadding / 2),
                               Container(
                                 height: 25.h,
                                 width: 37.w,
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
-                                    colors: [
-                                      kPinkishPurple,
-                                      kBluishPurple,
-                                    ],
+                                    colors: gradientScoreColors,
                                   ),
-                                  borderRadius: BorderRadius.horizontal(
+                                  borderRadius: const BorderRadius.horizontal(
                                     left: Radius.elliptical(100, 100),
                                     right: Radius.elliptical(100, 100),
                                   ),
@@ -144,8 +164,8 @@ class AnimeCardWidget extends StatelessWidget {
                                     '${anime.score}',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: kDefaultPadding,
+                                      color: kLightColor,
+                                      fontSize: kSmallText,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: kDefaultFont,
                                     ),
@@ -156,15 +176,19 @@ class AnimeCardWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const TabBar(
-                        tabs: [
+                      TabBar(
+                        tabs: const [
                           Tab(text: 'Overview'),
                           Tab(text: 'More info'),
                           Tab(text: 'Episodes'),
                         ],
-                        labelColor: kSecondaryColor,
+                        labelColor: themeController.isDarkMode.value
+                            ? kLightColor
+                            : kDarkColor,
                         indicatorSize: TabBarIndicatorSize.label,
-                        indicatorColor: kPrimaryColor,
+                        indicatorColor: themeController.isDarkMode.value
+                            ? kDarkTeal1
+                            : kPrimaryColor,
                       ),
                       Container(
                         height: 125.h,
@@ -183,7 +207,8 @@ class AnimeCardWidget extends StatelessWidget {
                                     horizontal: kDefaultPadding),
                                 child: Text(
                                   anime.synopsis,
-                                  style: kLightTextStyle(kSmallText + 1),
+                                  style: kLightSmallThemeText(
+                                      themeController, kSmallText + 1),
                                 ),
                               ),
                             ),
@@ -195,7 +220,9 @@ class AnimeCardWidget extends StatelessWidget {
                                 ),
                                 padding: EdgeInsets.all(kDefaultPadding),
                                 decoration: BoxDecoration(
-                                  color: kPrimaryColor,
+                                  color: themeController.isDarkMode.value
+                                      ? kDarkTeal1
+                                      : kPrimaryColor,
                                   borderRadius:
                                       BorderRadius.circular(kBorderRadius),
                                 ),
@@ -220,7 +247,8 @@ class AnimeCardWidget extends StatelessWidget {
                             Center(
                               child: Text(
                                 'Watching anime without paying is illegal :)',
-                                style: kLightTextStyle(kSmallText + 1),
+                                style: kLightSmallThemeText(
+                                    themeController, kSmallText + 1),
                               ),
                             ),
                           ],

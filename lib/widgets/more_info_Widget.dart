@@ -10,8 +10,8 @@ Widget moreInfoWidget(String label, String value, double spacing) {
           Text(
             label,
             style: TextStyle(
-              fontSize: kDefaultPadding + 3,
-              color: Colors.white,
+              fontSize: kSmallText + 3,
+              color: kLightColor,
               fontFamily: kDefaultFont,
               fontWeight: FontWeight.bold,
             ),
@@ -20,8 +20,8 @@ Widget moreInfoWidget(String label, String value, double spacing) {
           Text(
             value,
             style: TextStyle(
-              fontSize: kDefaultPadding + 3,
-              color: Colors.white,
+              fontSize: kSmallText + 3,
+              color: kLightColor,
               fontFamily: kDefaultFont,
               fontWeight: FontWeight.bold,
             ),

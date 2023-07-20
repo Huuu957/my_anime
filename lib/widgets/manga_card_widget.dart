@@ -1,43 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_anime/controller/theme_controller.dart';
 import '../constants.dart';
 import '../models/manga_model.dart';
-
+import 'package:get/get.dart';
 import 'more_info_Widget.dart';
 
 class MangaCardWidget extends StatelessWidget {
-  const MangaCardWidget({super.key, required this.manga});
+  MangaCardWidget({super.key, required this.manga});
 
   final MangaModel manga;
-
+  final ThemeController themeController = Get.find();
   @override
   Widget build(BuildContext context) {
+    final gradientColors = themeController.isDarkMode.value
+        ? [kDarkTeal, kDarkTeal1]
+        : [
+            kVeryLightPurple,
+            kPaleLavender,
+          ];
+    final gradientScoreColors = themeController.isDarkMode.value
+        ? [kDarkTeal, kDarkTeal1]
+        : [
+            kPinkishPurple,
+            kBluishPurple,
+          ];
     return Scaffold(
       backgroundColor: kVeryLightPurple,
       appBar: AppBar(
         title: Text(
           manga.title,
-          style: kBoldTextStyle(kBigText),
+          style: kBoldThemeText(themeController, kBigText),
         ),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: kVeryLightPurple,
-        iconTheme: const IconThemeData(color: kSecondaryColor),
+        backgroundColor:
+            themeController.isDarkMode.value ? kDarkTeal : kVeryLightPurple,
+        iconTheme: IconThemeData(
+            color: themeController.isDarkMode.value ? kLightColor : kDarkColor),
       ),
       body: Stack(
         children: [
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [
-                  kVeryLightPurple,
-                  kPaleLavender,
-                ],
+                colors: gradientColors,
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
             ),
           ),
+          //Floating Container----------------------------------------------
           Positioned(
             bottom: 50.h,
             left: 0.w,
@@ -47,7 +60,8 @@ class MangaCardWidget extends StatelessWidget {
               padding: EdgeInsets.only(top: 120.h),
               margin: EdgeInsets.symmetric(horizontal: 15.w),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color:
+                    themeController.isDarkMode.value ? kDarkGrey : kLightColor,
                 borderRadius: BorderRadius.circular(kBorderRadius),
                 boxShadow: [
                   BoxShadow(
@@ -74,61 +88,64 @@ class MangaCardWidget extends StatelessWidget {
                               textAlign: TextAlign.center,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: kBoldTextStyle(kSmallText),
+                              style:
+                                  kBoldThemeText(themeController, kSmallText),
                             ),
                           ),
-                          SizedBox(height: 10.h),
-                          Text(
-                            'Score',
-                            style: TextStyle(
-                              fontSize: kDefaultPadding,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: kDefaultFont,
-                            ),
-                          ),
-                          Container(
-                            height: 25.h,
-                            width: 37.w,
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  kPinkishPurple,
-                                  kBluishPurple,
-                                ],
+                          SizedBox(width: kDefaultPadding),
+                          Column(
+                            children: [
+                              Text(
+                                'Score',
+                                style: kLightSmallThemeText(
+                                    themeController, kSmallText - 1),
                               ),
-                              borderRadius: BorderRadius.horizontal(
-                                left: Radius.elliptical(100, 100),
-                                right: Radius.elliptical(100, 100),
-                              ),
-                            ),
-                            padding: EdgeInsets.zero,
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                '${manga.score}',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: kDefaultPadding,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: kDefaultFont,
+                              Container(
+                                height: 25.h,
+                                width: 37.w,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: gradientScoreColors,
+                                  ),
+                                  borderRadius: const BorderRadius.horizontal(
+                                    left: Radius.elliptical(100, 100),
+                                    right: Radius.elliptical(100, 100),
+                                  ),
+                                ),
+                                padding: EdgeInsets.zero,
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    '${manga.score}',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: kSmallText,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: kDefaultFont,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                            ],
                           ),
                         ],
                       ),
-                      const TabBar(
-                        tabs: [
+                      TabBar(
+                        tabs: const [
                           Tab(text: 'Overview'),
                           Tab(text: 'More Info'),
                           Tab(text: 'History'),
                         ],
-                        labelColor: kSecondaryColor,
+                        labelColor: themeController.isDarkMode.value
+                            ? kLightColor
+                            : kDarkColor,
+                        indicatorColor: themeController.isDarkMode.value
+                            ? kDarkTeal1
+                            : kPrimaryColor,
                         indicatorSize: TabBarIndicatorSize.label,
-                        indicatorColor: kPrimaryColor,
                       ),
                       Container(
                         height: 150.h,
@@ -148,7 +165,8 @@ class MangaCardWidget extends StatelessWidget {
                                 ),
                                 child: Text(
                                   manga.synopsis,
-                                  style: kLightTextStyle(kSmallText + 1),
+                                  style: kLightSmallThemeText(
+                                      themeController, kSmallText + 1),
                                 ),
                               ),
                             ),
@@ -161,7 +179,9 @@ class MangaCardWidget extends StatelessWidget {
                                   ),
                                   padding: EdgeInsets.all(kDefaultPadding),
                                   decoration: BoxDecoration(
-                                    color: kPrimaryColor,
+                                    color: themeController.isDarkMode.value
+                                        ? kDarkTeal1
+                                        : kPrimaryColor,
                                     borderRadius:
                                         BorderRadius.circular(kBorderRadius),
                                   ),
@@ -189,7 +209,8 @@ class MangaCardWidget extends StatelessWidget {
                                 ),
                                 child: Text(
                                   manga.background,
-                                  style: kLightTextStyle(kSmallText + 1),
+                                  style: kLightSmallThemeText(
+                                      themeController, kSmallText + 1),
                                 ),
                               ),
                             ),

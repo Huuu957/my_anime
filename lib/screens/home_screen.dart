@@ -121,7 +121,7 @@ class HomeScreen extends StatelessWidget {
             body: TabBarView(
               children: [
                 AnimeScreen(),
-                const MangaScreen(),
+                MangaScreen(themeController: themeController),
               ],
             ),
           ),

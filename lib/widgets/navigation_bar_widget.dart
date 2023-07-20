@@ -59,7 +59,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
         children: <Widget>[
           HomeScreen(),
           FavoriteScreen(themeController: themeController),
-          const SettingScreen(),
+          SettingScreen(themeController: themeController),
         ],
       ),
     );
