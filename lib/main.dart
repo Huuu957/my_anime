@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
 import '../screens/more_media_screen/more_anime_screen.dart';
 import '../screens/more_media_screen/more_movie_screen.dart';
 import '../screens/watch_trailer_screen.dart';
@@ -13,31 +11,18 @@ import 'controller/theme_controller.dart';
 import 'widgets/navigation_bar_widget.dart';
 import 'screens/splash_screen.dart';
 
-Future<Box> openHiveBox(String boxname) async {
-  if (!Hive.isBoxOpen(boxname)) {
-    final directory = await getApplicationDocumentsDirectory();
-    Hive.init(directory.path);
-  }
-  return await Hive.openBox(boxname);
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  final themeController = Get.put(ThemeController(), permanent: true);
-  final FavoriteController favoriteController =
-      Get.put(FavoriteController(), permanent: true);
-
+  Get.put<ThemeController>(ThemeController(), permanent: true);
+  Get.put<FavoriteController>(FavoriteController(), permanent: true);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final ThemeController themeController =
-      Get.put(ThemeController(), permanent: true);
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -45,7 +30,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'My Anime',
-          theme: themeController.isDarkMode.value
+          theme: Get.find<ThemeController>().isDarkMode.value
               ? MyAppTheme.customDarkTheme
               : MyAppTheme.customLightTheme,
           initialRoute: SplashScreen.splashScreenRoute,
