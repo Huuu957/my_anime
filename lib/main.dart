@@ -8,11 +8,10 @@ import '../screens/more_media_screen/more_anime_screen.dart';
 import '../screens/more_media_screen/more_movie_screen.dart';
 import '../screens/watch_trailer_screen.dart';
 import '../themes/my_app_theme.dart';
+import 'controller/favorite_controller.dart';
 import 'controller/theme_controller.dart';
 import 'widgets/navigation_bar_widget.dart';
 import 'screens/splash_screen.dart';
-
-Box? themeBox;
 
 Future<Box> openHiveBox(String boxname) async {
   if (!Hive.isBoxOpen(boxname)) {
@@ -25,15 +24,9 @@ Future<Box> openHiveBox(String boxname) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Open the "theme" box and retrieve the theme preference
-  themeBox = await openHiveBox('theme');
-  bool? isDarkMode = themeBox?.get('isDarkMode');
-
   final themeController = Get.put(ThemeController(), permanent: true);
-
-  if (isDarkMode != null) {
-    themeController.isDarkMode.value = isDarkMode;
-  }
+  final FavoriteController favoriteController =
+      Get.put(FavoriteController(), permanent: true);
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

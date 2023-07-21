@@ -12,8 +12,7 @@ import '../controller/theme_controller.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  final FavoriteController controller =
-      Get.put(FavoriteController(), permanent: true);
+  final FavoriteController favoriteController = Get.find();
   final ThemeController themeController = Get.find();
 
   @override
