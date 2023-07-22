@@ -6,14 +6,13 @@ import '../controller/favorite_controller.dart';
 import '../models/anime_model.dart';
 
 class FavoriteButtonWidget extends StatelessWidget {
-  const FavoriteButtonWidget({Key? key, required this.anime}) : super(key: key);
+  FavoriteButtonWidget({Key? key, required this.anime}) : super(key: key);
   final AnimeModel anime;
+  final FavoriteController favoriteController = Get.find();
+  final ThemeController themeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    final FavoriteController favoriteController = Get.find();
-    final ThemeController themeController = Get.find();
-
     return Obx(() {
       final isFavorite = favoriteController.favList.contains(anime);
       return ElevatedButton(

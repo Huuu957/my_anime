@@ -14,32 +14,20 @@ class MoreMedia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MoreMediaScreen(
+    return MoreMediaScreen(
       endpoint: kTopAnimeEndpoint,
-    );
-  }
-}
-
-class MoreMovieScreen extends StatelessWidget {
-  const MoreMovieScreen({Key? key}) : super(key: key);
-  static const moreMovieScreen = '/moreMovieScreen';
-
-  @override
-  Widget build(BuildContext context) {
-    return const MoreMediaScreen(
-      endpoint: kTopMovieEndpoint,
     );
   }
 }
 
 class MoreMediaScreen extends StatelessWidget {
   final String endpoint;
+  final ThemeController themeController = Get.find();
 
-  const MoreMediaScreen({Key? key, required this.endpoint}) : super(key: key);
+  MoreMediaScreen({Key? key, required this.endpoint}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController themeController = Get.find();
     return Scaffold(
       backgroundColor:
           themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
@@ -78,83 +66,81 @@ class MoreMediaScreen extends StatelessWidget {
                     vertical: kDefaultPadding,
                     horizontal: kDefaultPadding - 5,
                   ),
-                  child: Expanded(
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Get.to(() =>
-                                    AnimeCardWidget(anime: animes[index]));
-                              },
-                              child: AspectRatio(
-                                aspectRatio: 2 / 3,
-                                child: ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.circular(kBorderRadius),
-                                  child: Image.network(
-                                    anime.image,
-                                    fit: BoxFit.cover,
-                                  ),
+                  child: Column(
+                    children: [
+                      Stack(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                  () => AnimeCardWidget(anime: animes[index]));
+                            },
+                            child: AspectRatio(
+                              aspectRatio: 2 / 3,
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.circular(kBorderRadius),
+                                child: Image.network(
+                                  anime.image,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                        SizedBox(height: 5.h),
-                        Text(
-                          animes[index].title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: kBoldThemeText(themeController, kSmallText),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              anime.airing ? 'airing' : 'not airing',
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5.h),
+                      Text(
+                        animes[index].title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: kBoldThemeText(themeController, kSmallText),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            anime.airing ? 'airing' : 'not airing',
+                            style: kLightSmallThemeText(
+                                themeController, kSmallText - 1),
+                          ),
+                          SizedBox(width: 5.w),
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              'Score: ',
                               style: kLightSmallThemeText(
                                   themeController, kSmallText - 1),
                             ),
-                            SizedBox(width: 5.w),
-                            FittedBox(
+                          ),
+                          Container(
+                            height: 17.h,
+                            width: 30.w,
+                            decoration: const BoxDecoration(
+                              color: kPrimaryColor,
+                              borderRadius: BorderRadius.horizontal(
+                                left: Radius.elliptical(100, 100),
+                                right: Radius.elliptical(100, 100),
+                              ),
+                            ),
+                            padding: EdgeInsets.zero, // Remove all padding
+                            child: FittedBox(
                               fit: BoxFit.scaleDown,
                               child: Text(
-                                'Score: ',
-                                style: kLightSmallThemeText(
-                                    themeController, kSmallText - 1),
-                              ),
-                            ),
-                            Container(
-                              height: 17.h,
-                              width: 30.w,
-                              decoration: const BoxDecoration(
-                                color: kPrimaryColor,
-                                borderRadius: BorderRadius.horizontal(
-                                  left: Radius.elliptical(100, 100),
-                                  right: Radius.elliptical(100, 100),
-                                ),
-                              ),
-                              padding: EdgeInsets.zero, // Remove all padding
-                              child: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  '${animes[index].score}',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: kDefaultPadding,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontFamily: kDefaultFont,
-                                  ),
+                                '${animes[index].score}',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: kDefaultPadding,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontFamily: kDefaultFont,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 );
               },

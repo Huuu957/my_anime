@@ -17,6 +17,7 @@ class WatchTrailerScreen extends StatefulWidget {
 
 class _WatchTrailerScreenState extends State<WatchTrailerScreen> {
   late YoutubePlayerController _controller;
+  final ThemeController themeController = Get.find();
 
   @override
   void initState() {
@@ -43,7 +44,6 @@ class _WatchTrailerScreenState extends State<WatchTrailerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController themeController = Get.find();
     return Scaffold(
       backgroundColor:
           themeController.isDarkMode.value ? kDarkColor : kPaleLavender,

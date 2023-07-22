@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_anime/controller/theme_controller.dart';
+import 'package:get/get.dart';
 import '../constants.dart';
+import '../controller/anime_list_controller.dart';
+import '../controller/theme_controller.dart';
+import '../widgets/anime_list_widget.dart';
 import 'more_media_screen/more_anime_screen.dart';
 import 'more_media_screen/more_movie_screen.dart';
-import '../api/dio_services.dart';
-import '../widgets/anime_list_widget.dart';
-import 'package:get/get.dart';
 
 class AnimeScreen extends StatelessWidget {
   AnimeScreen({Key? key}) : super(key: key);
-
-  final APIService apiService = APIService();
+  final ThemeController themeController = Get.find();
+  final AnimeListController animeListController =
+      Get.put(AnimeListController());
 
   @override
   Widget build(BuildContext context) {
-    final ThemeController themeController = Get.find();
     return Obx(
       () => Scaffold(
         backgroundColor:
@@ -53,8 +53,21 @@ class AnimeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: kDefaultPadding),
-              AnimeListWidget(
-                apiMethod: () => apiService.fetchTopAnime(kTopAnimeEndpoint),
+              Obx(
+                () {
+                  if (animeListController.animeList.isEmpty) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(kPrimaryColor),
+                      ),
+                    );
+                  } else {
+                    return AnimeListWidget(
+                      animes: animeListController.animeList.toList(),
+                    );
+                  }
+                },
               ),
               Container(
                 height: 50.h,
@@ -86,8 +99,21 @@ class AnimeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: kDefaultPadding),
-              AnimeListWidget(
-                apiMethod: () => apiService.fetchTopAnime(kTopMovieEndpoint),
+              Obx(
+                () {
+                  if (animeListController.movieList.isEmpty) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(kPrimaryColor),
+                      ),
+                    );
+                  } else {
+                    return AnimeListWidget(
+                      animes: animeListController.movieList.toList(),
+                    );
+                  }
+                },
               ),
             ],
           ),
