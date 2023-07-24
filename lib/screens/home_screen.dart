@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_anime/locale/locale_controller.dart';
 import '../api/anime_search_delegate.dart';
 import '../constants.dart';
 import 'anime_screen.dart';
@@ -14,6 +15,7 @@ class HomeScreen extends StatelessWidget {
 
   final FavoriteController favoriteController = Get.find();
   final ThemeController themeController = Get.find();
+  final MyLocaleController localeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class HomeScreen extends StatelessWidget {
               backgroundColor:
                   themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
               title: Text(
-                'Browse Anime',
+                '1'.tr,
                 style: kLightBoldLargeThemeText(themeController, kBigText + 1),
               ),
               leading: Builder(
@@ -84,29 +86,72 @@ class HomeScreen extends StatelessWidget {
               color:
                   themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
               child: ListView(
+                shrinkWrap: true,
                 children: [
-                  DrawerHeader(
-                    child: Text(
-                      'Drawer Header',
-                      style: kLightBoldLargeThemeText(themeController, 24.sp),
-                    ),
+                  const DrawerHeader(
+                    child: Text('Drawer Header'),
                   ),
-                  ListTile(
-                    title: Text(
-                      'Dark mode',
-                      style:
-                          kLightLargeThemeText(themeController, kBigText - 1),
-                    ),
-                    trailing: Transform.scale(
-                      scale: 0.8.w,
-                      child: CupertinoSwitch(
-                        value: themeController.isDarkMode.value,
-                        onChanged: (bool value) {
-                          themeController.toggleTheme();
-                        },
-                        activeColor: kPrimaryColor,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      ListTile(
+                        title: Text(
+                          'Dark mode',
+                          style: kLightLargeThemeText(
+                              themeController, kBigText - 1),
+                        ),
+                        trailing: Transform.scale(
+                          scale: 0.8.w,
+                          child: CupertinoSwitch(
+                            value: themeController.isDarkMode.value,
+                            onChanged: (bool value) {
+                              themeController.toggleTheme();
+                            },
+                            activeColor: kPrimaryColor,
+                          ),
+                        ),
                       ),
-                    ),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: kDefaultPadding + 5),
+                        child: DropdownButton<String>(
+                          isExpanded: true,
+                          icon: const Icon(Icons.arrow_forward),
+                          value: Get.locale?.languageCode,
+                          items: [
+                            DropdownMenuItem(
+                              value: 'en',
+                              child: Text(
+                                'English',
+                                style: TextStyle(
+                                  color: themeController.isDarkMode.value
+                                      ? kLightColor
+                                      : kDarkColor,
+                                  fontFamily: kDefaultFont,
+                                ),
+                              ),
+                            ),
+                            DropdownMenuItem(
+                              value: 'de',
+                              child: Text(
+                                'German',
+                                style: TextStyle(
+                                  color: themeController.isDarkMode.value
+                                      ? kLightColor
+                                      : kDarkColor,
+                                  fontFamily: kDefaultFont,
+                                ),
+                              ),
+                            ),
+                          ],
+                          onChanged: (String? selectedLang) {
+                            if (selectedLang != null) {
+                              localeController.changeLang(selectedLang);
+                            }
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

@@ -158,8 +158,16 @@ class AnimeSearchDelegate extends SearchDelegate {
       appBarTheme: AppBarTheme(
         color: themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
       ),
-      inputDecorationTheme: const InputDecorationTheme(
+      inputDecorationTheme: InputDecorationTheme(
         border: InputBorder.none,
+        hintStyle: TextStyle(
+          color: themeController.isDarkMode.value ? kLightColor : kDarkColor,
+        ),
+      ),
+      textTheme: TextTheme(
+        titleLarge: TextStyle(
+          color: themeController.isDarkMode.value ? kLightColor : kDarkColor,
+        ),
       ),
     );
   }

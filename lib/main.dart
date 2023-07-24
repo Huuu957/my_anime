@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_anime/controller/anime_list_controller.dart';
+import 'package:my_anime/locale/locale.dart';
+import 'package:my_anime/locale/locale_controller.dart';
 import '../screens/more_media_screen/more_anime_screen.dart';
 import '../screens/more_media_screen/more_movie_screen.dart';
 import '../screens/watch_trailer_screen.dart';
@@ -19,6 +21,7 @@ void main() async {
   Get.put<FavoriteController>(FavoriteController(), permanent: true);
   Get.put<AnimeListController>(AnimeListController(), permanent: true);
   Get.put<MangaController>(MangaController(), permanent: true);
+  Get.put<MyLocaleController>(MyLocaleController(), permanent: true);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
@@ -27,6 +30,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -37,6 +41,8 @@ class MyApp extends StatelessWidget {
           theme: Get.find<ThemeController>().isDarkMode.value
               ? MyAppTheme.customDarkTheme
               : MyAppTheme.customLightTheme,
+          locale: Get.find<MyLocaleController>().getCurrentLocale(),
+          translations: MyLocale(),
           initialRoute: SplashScreen.splashScreenRoute,
           getPages: [
             GetPage(

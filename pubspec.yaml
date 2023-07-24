@@ -19,8 +19,9 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   flutter_screenutil: ^5.8.4
   url_launcher: ^6.1.12
-  hive: ^2.2.3
   path_provider: ^2.0.15
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -31,7 +32,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/
+    - assets/images/
   fonts:
     - family: Roboto
       fonts:

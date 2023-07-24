@@ -37,7 +37,6 @@ class ThemeController extends GetxController {
         ? MyAppTheme.customDarkTheme
         : MyAppTheme.customLightTheme);
 
-    // Save the updated theme preference to the theme box
     themeBox.put('isDarkMode', isDarkMode.value);
     if (kDebugMode) {
       print('Theme preference saved: ${isDarkMode.value}');
