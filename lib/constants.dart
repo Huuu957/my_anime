@@ -17,6 +17,8 @@ const kColorLightPurple = Color(0xFFA07CF0);
 const kColorMiddlePurple = Color(0xFFB16FEF);
 const kColorLightPink = Color(0xFFC163EF);
 const kColorLighterPink = Color(0xFFC85EEF);
+const kShadeColor = Color(0xFFEEF0FF);
+const kComplementPrimary = Color(0xFFF48BFF);
 
 // Dark Mode Colors--------------------------------
 const kDarkColor = Colors.black;

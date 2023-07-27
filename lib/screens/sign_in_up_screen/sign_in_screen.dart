@@ -1,0 +1,216 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../auth.dart';
+import '../../constants.dart';
+import 'package:get/get.dart';
+import 'form_elements.dart';
+import 'forgot_password_screen.dart';
+import 'sign_up_screen.dart';
+import '../../widgets/navigation_bar_widget.dart';
+
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
+  static const singInScreenRoute = '/singInScreenRoute';
+
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  final formKey = GlobalKey<FormState>();
+
+  final TextEditingController emailController = TextEditingController();
+
+  final TextEditingController passwordController = TextEditingController();
+
+  handleSubmit() async {
+    if (formKey.currentState == null) {
+      if (kDebugMode) {
+        print("Form state is null!");
+      }
+      return;
+    }
+
+    if (!formKey.currentState!.validate()) {
+      if (kDebugMode) {
+        print("Form validation failed!");
+      }
+      return;
+    }
+
+    final email = emailController.text;
+    final password = passwordController.text;
+
+    if (kDebugMode) {
+      print("Email: $email");
+    }
+    if (kDebugMode) {
+      print("Password: $password");
+    }
+
+    try {
+      await Auth().signInWithEmailAndPassword(email, password);
+      Get.toNamed(NavigationBarWidget.homeRoute);
+    } catch (e) {
+      Get.snackbar(
+        "Error",
+        "Incorrect email or password.",
+        duration: const Duration(seconds: 2),
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: kPaleLavender,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.asset('assets/images/background.jpg'),
+              Container(
+                margin: EdgeInsets.only(
+                  top: kDefaultPadding * 8,
+                  right: kDefaultPadding,
+                  left: kDefaultPadding,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(kDefaultPadding),
+                      decoration: BoxDecoration(
+                        color: kShadeColor,
+                        borderRadius: BorderRadius.circular(kBorderRadius),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color.fromRGBO(128, 132, 227, .3),
+                            blurRadius: 20.0,
+                            offset: Offset(0, 10),
+                          ),
+                        ],
+                      ),
+                      child: Form(
+                        key: formKey,
+                        child: Column(
+                          children: [
+                            buildTextFormField('Email or Phone Number', false,
+                                emailController, formKey),
+                            buildDivider(),
+                            buildTextFormField(
+                                'Password', true, passwordController, formKey),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: kDefaultPadding * 2),
+                    ElevatedButton(
+                      onPressed: () => handleSubmit(),
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: Size(double.infinity, 42.h),
+                        backgroundColor: kPrimaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(kBorderRadius),
+                        ),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'Login',
+                          style: TextStyle(
+                            color: kLightColor,
+                            fontFamily: kDefaultFont,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: kDefaultPadding),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Divider(
+                            color: kGrey,
+                            thickness: 1,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
+                            'or',
+                            style: TextStyle(
+                              color: kGrey,
+                              fontFamily: kDefaultFont,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            color: kGrey,
+                            thickness: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: kDefaultPadding),
+                    ElevatedButton(
+                      onPressed: () =>
+                          Get.toNamed(NavigationBarWidget.homeRoute),
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: Size(double.infinity, 42.h),
+                        backgroundColor: kGrey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(kBorderRadius),
+                        ),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'Enter as a Guest',
+                          style: TextStyle(
+                            color: kLightColor,
+                            fontFamily: kDefaultFont,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: kDefaultPadding * 2),
+                    TextButton(
+                      onPressed: () => Get.toNamed(
+                          ForgotPasswordScreen.forgotPasswordScreenRoute),
+                      child: const Text(
+                        'Forget Password?',
+                        style: TextStyle(color: kPrimaryColor),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Don\'t have an Account?',
+                          style: TextStyle(color: kDarkColor),
+                        ),
+                        TextButton(
+                          onPressed: () =>
+                              Get.toNamed(SignUpScreen.signUpScreenRoute),
+                          child: const Text(
+                            'Sign up',
+                            style: TextStyle(color: kPrimaryColor),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

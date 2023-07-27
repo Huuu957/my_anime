@@ -31,11 +31,9 @@ class MyLocaleController extends GetxController {
         print('Language preference retrieved: $storedLanguageCode');
       }
     } else {
-      Locale? deviceLocale = Get.deviceLocale;
-      if (deviceLocale != null) {
-        String defaultLanguageCode = deviceLocale.languageCode;
-        changeLang(defaultLanguageCode);
-      }
+      Locale? deviceLocale = const Locale('en');
+      String defaultLanguageCode = deviceLocale.languageCode;
+      changeLang(defaultLanguageCode);
     }
   }
 

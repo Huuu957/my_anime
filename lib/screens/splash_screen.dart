@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:my_anime/constants.dart';
 import 'package:my_anime/controller/theme_controller.dart';
+import '../../screens/sign_in_up_screen/sign_in_screen.dart';
 import '../widgets/navigation_bar_widget.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
         themeController.isDarkMode();
       });
       Future.delayed(const Duration(milliseconds: 300), () {
-        Get.offAllNamed(NavigationBarWidget.homeRoute);
+        Get.offAllNamed(SignInScreen.singInScreenRoute);
       });
     });
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants.dart';
 import '../controller/theme_controller.dart';
-import '../screens/setting_screen.dart';
+import '../screens/account_screen.dart';
 import '../screens/favorite_screen.dart';
 import '../screens/home_screen.dart';
 import 'package:get/get.dart';
@@ -31,6 +31,8 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
                 themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
             type: BottomNavigationBarType.fixed,
             selectedItemColor: kPrimaryColor,
+            unselectedItemColor:
+                themeController.isDarkMode.value ? kLightColor : kDarkColor,
             onTap: (int index) {
               setState(() {
                 currentPageIndex = index;
@@ -59,7 +61,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
         children: <Widget>[
           HomeScreen(),
           FavoriteScreen(themeController: themeController),
-          SettingScreen(themeController: themeController),
+          AccountScreen(themeController: themeController),
         ],
       ),
     );
