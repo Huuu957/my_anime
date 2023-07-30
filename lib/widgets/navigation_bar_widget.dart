@@ -49,7 +49,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
+                icon: Icon(Icons.person),
                 label: '',
               ),
             ],

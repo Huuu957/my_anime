@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/adapters.dart';
 import '../controller/anime_list_controller.dart';
 import '../locale/locale.dart';
 import '../locale/locale_controller.dart';
@@ -22,13 +23,13 @@ import 'screens/splash_screen.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await Hive.initFlutter();
+  await Hive.openBox<bool>('auth_box');
   Get.put<ThemeController>(ThemeController(), permanent: true);
   Get.put<FavoriteController>(FavoriteController(), permanent: true);
   Get.put<AnimeListController>(AnimeListController(), permanent: true);
   Get.put<MangaController>(MangaController(), permanent: true);
   Get.put<MyLocaleController>(MyLocaleController(), permanent: true);
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
@@ -59,11 +60,11 @@ class MyApp extends StatelessWidget {
             ),
             GetPage(
               name: SignInScreen.singInScreenRoute,
-              page: () => SignInScreen(),
+              page: () => const SignInScreen(),
             ),
             GetPage(
               name: SignUpScreen.signUpScreenRoute,
-              page: () => SignUpScreen(),
+              page: () => const SignUpScreen(),
             ),
             GetPage(
               name: ForgotPasswordScreen.forgotPasswordScreenRoute,

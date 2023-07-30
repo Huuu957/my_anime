@@ -97,11 +97,21 @@ class _SignInScreenState extends State<SignInScreen> {
                         key: formKey,
                         child: Column(
                           children: [
-                            buildTextFormField('Email or Phone Number', false,
-                                emailController, formKey),
+                            buildTextFormField(
+                              'Enter Your Email',
+                              false,
+                              emailController,
+                              formKey,
+                              'Please enter your email',
+                            ),
                             buildDivider(),
                             buildTextFormField(
-                                'Password', true, passwordController, formKey),
+                              'Password',
+                              true,
+                              passwordController,
+                              formKey,
+                              'Please enter your password',
+                            ),
                           ],
                         ),
                       ),

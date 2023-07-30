@@ -8,14 +8,18 @@ Divider buildDivider() {
   );
 }
 
-TextFormField buildTextFormField(String hintText, bool obscureText,
-    TextEditingController controller, GlobalKey<FormState> formKey) {
+TextFormField buildTextFormField(
+    String hintText,
+    bool obscureText,
+    TextEditingController controller,
+    GlobalKey<FormState> formKey,
+    String errorMessage) {
   return TextFormField(
     controller: controller,
     obscureText: obscureText,
     validator: (value) {
       if (value == null || value.isEmpty) {
-        return 'Please enter your email';
+        return errorMessage;
       }
       return null;
     },

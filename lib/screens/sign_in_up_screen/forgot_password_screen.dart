@@ -122,6 +122,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       false,
                       emailController,
                       formKey,
+                      'Please enter your email',
                     ),
                   ),
                   SizedBox(height: kDefaultPadding * 2),
