@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:my_anime/constants.dart';
 import 'package:my_anime/controller/theme_controller.dart';
 import '../../screens/sign_in_up_screen/sign_in_screen.dart';
+import '../auth.dart';
 import '../widgets/navigation_bar_widget.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,10 +13,10 @@ class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends State<SplashScreen> {
   final ThemeController themeController = Get.find();
 
   @override
@@ -24,13 +25,18 @@ class _SplashScreenState extends State<SplashScreen> {
     navigateToHome();
   }
 
-  void navigateToHome() {
-    Future.delayed(const Duration(seconds: 1), () {
+  void navigateToHome() async {
+    await Future.delayed(const Duration(seconds: 1), () async {
+      bool isAuthenticated = await Auth().checkAuthenticationStatus();
       setState(() {
         themeController.isDarkMode();
       });
       Future.delayed(const Duration(milliseconds: 300), () {
-        Get.offAllNamed(SignInScreen.singInScreenRoute);
+        if (isAuthenticated) {
+          Get.offAllNamed(NavigationBarWidget.homeRoute);
+        } else {
+          Get.offAllNamed(SignInScreen.singInScreenRoute);
+        }
       });
     });
   }
