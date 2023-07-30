@@ -59,8 +59,8 @@ TextStyle kBoldText(ThemeController themeController, double fontSize) {
 TextStyle kLightText(ThemeController themeController, double fontSize) {
   return TextStyle(
     color: themeController.isDarkMode.value
-        ? MyAppTheme.customDarkTheme.textTheme.displaySmall?.color
-        : MyAppTheme.customLightTheme.textTheme.displaySmall?.color,
+        ? MyAppTheme.customDarkTheme.textTheme.displayLarge?.color
+        : MyAppTheme.customLightTheme.textTheme.displayLarge?.color,
     fontFamily: kDefaultFont,
     fontSize: fontSize.sp,
   );

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_anime/controller/theme_controller.dart';
 import '../../auth.dart';
 import '../../constants.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  ThemeController themeController = Get.find();
   final formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = TextEditingController();
@@ -70,8 +72,10 @@ class _SignInScreenState extends State<SignInScreen> {
         backgroundColor: kPaleLavender,
         body: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
+                margin: EdgeInsets.symmetric(vertical: kDefaultPadding * 5),
                 width: 100.w,
                 height: 100.h,
                 child: ClipRRect(
@@ -82,9 +86,13 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
               ),
+              Text(
+                'Welcome To My App :)',
+                style: kLightText(themeController, kSmallText + 5),
+              ),
               Container(
                 margin: EdgeInsets.only(
-                  top: kDefaultPadding * 8,
+                  top: kDefaultPadding * 6,
                   right: kDefaultPadding,
                   left: kDefaultPadding,
                 ),

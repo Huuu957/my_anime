@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../auth.dart';
 import '../../screens/sign_in_up_screen/sign_in_screen.dart';
-
+import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import '../../constants.dart';
 import 'form_elements.dart';
 
@@ -18,6 +21,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  File? _image;
+
   final formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = TextEditingController();
@@ -27,9 +32,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
+  final TextEditingController userNameController = TextEditingController();
+
+  Future<String?> _uploadImageToStorage(String userId) async {
+    if (_image == null) return null;
+
+    try {
+      final ref = firebase_storage.FirebaseStorage.instance
+          .ref()
+          .child('profile_images')
+          .child(userId);
+
+      await ref.putFile(_image!);
+
+      final downloadUrl = await ref.getDownloadURL();
+
+      if (kDebugMode) {
+        print("Image uploaded. Download URL: $downloadUrl");
+      }
+
+      return downloadUrl;
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error uploading image: $e");
+      }
+      return null;
+    }
+  }
+
   handleSubmit() async {
     if (!formKey.currentState!.validate()) return;
 
+    final userName = userNameController.text;
     final email = emailController.text;
     final password = passwordController.text;
     final confirmPassword = confirmPasswordController.text;
@@ -46,7 +80,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       return;
     }
 
-    // Check if password and confirm password match
     if (password != confirmPassword) {
       Get.snackbar(
         "Error",
@@ -60,6 +93,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     try {
       await Auth().registerWithEmailAndPassword(email, password);
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        await user.updateDisplayName(userName);
+        await _uploadImageToStorage(user.uid);
+        Get.snackbar(
+          "Success!",
+          "You have successfully signed up.",
+          duration: const Duration(seconds: 2),
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        userNameController.clear();
+        emailController.clear();
+        passwordController.clear();
+        confirmPasswordController.clear();
+        setState(() {
+          _image = null;
+        });
+      }
       Get.toNamed(SignUpScreen.signUpScreenRoute);
     } catch (e) {
       // Handle Firebase exceptions for email already in use
@@ -84,6 +136,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
   }
 
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedImage != null) {
+        _image = File(pickedImage.path);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,22 +164,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text(
-              'Create Account',
-              style: TextStyle(
-                color: kDarkColor,
-                fontSize: kBigText + 5,
-                fontFamily: kDefaultFont,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
             Container(
               margin: EdgeInsets.symmetric(vertical: kDefaultPadding * 3),
               child: CircleAvatar(
-                radius: 50,
-                child: Image.asset(
-                  'assets/images/anime_icon.jpg',
-                  fit: BoxFit.cover,
+                backgroundColor: kPrimaryColor,
+                radius: 40.w,
+                child: ClipOval(
+                  child: _image != null
+                      ? Image.file(
+                          _image!,
+                          fit: BoxFit.cover,
+                          width: 90.w,
+                          height: 90.h,
+                        )
+                      : InkWell(
+                          onTap: _pickImage,
+                          child: Icon(
+                            Icons.add_a_photo,
+                            size: 40.w,
+                            color: kLightColor,
+                          ),
+                        ),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                bottom: kDefaultPadding * 2,
+              ),
+              child: Text(
+                'Create Account',
+                style: TextStyle(
+                  color: kDarkColor,
+                  fontSize: kBigText + 4,
+                  fontFamily: kDefaultFont,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -145,7 +227,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       key: formKey,
                       child: Column(
                         children: [
-                          buildTextFormFieldNoAuth('User Name'),
+                          buildTextFormField(
+                            'User Name',
+                            false,
+                            userNameController,
+                            formKey,
+                            'Please enter your user name',
+                            isUserNameField: true,
+                          ),
                           buildDivider(),
                           buildTextFormField(
                             'Enter Your Email',
@@ -160,7 +249,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             true,
                             passwordController,
                             formKey,
-                            'Please enter your email',
+                            'Please enter your password',
                           ),
                           buildDivider(),
                           buildTextFormField(

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,14 +12,16 @@ import '../controller/favorite_controller.dart';
 import '../controller/theme_controller.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
-
+  HomeScreen({Key? key, this.userImageUrl}) : super(key: key);
   final FavoriteController favoriteController = Get.find();
   final ThemeController themeController = Get.find();
   final MyLocaleController localeController = Get.find();
+  final String? userImageUrl;
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+    String userName = user?.displayName ?? 'Guest';
     return Obx(
       () => DefaultTabController(
         length: 2,
@@ -101,8 +104,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                         SizedBox(width: 50.w),
                         Text(
-                          'user name',
-                          style: kLightText(themeController, kSmallText),
+                          userName,
+                          style: kBoldText(themeController, kSmallText),
                         ),
                       ],
                     ),
