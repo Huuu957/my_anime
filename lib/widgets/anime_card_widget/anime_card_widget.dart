@@ -38,7 +38,7 @@ class AnimeCardWidget extends StatelessWidget {
           anime.title,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: kBoldThemeText(themeController, kBigText),
+          style: kBoldText(themeController, kBigText),
         ),
         leading: IconButton(
           onPressed: () {
@@ -113,8 +113,7 @@ class AnimeCardWidget extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: kBoldThemeText(
-                                      themeController, kSmallText),
+                                  style: kBoldText(themeController, kSmallText),
                                 ),
                               ),
                               SizedBox(height: 10.h),
@@ -122,13 +121,13 @@ class AnimeCardWidget extends StatelessWidget {
                                 children: [
                                   Text(
                                     '${anime.episodes} Episodes -',
-                                    style: kLightSmallThemeText(
+                                    style: kLightText(
                                         themeController, kSmallText - 1),
                                   ),
                                   SizedBox(width: 3.w),
                                   Text(
                                     'Duration: ${anime.duration}',
-                                    style: kLightSmallThemeText(
+                                    style: kLightText(
                                         themeController, kSmallText - 1),
                                   ),
                                 ],
@@ -139,8 +138,8 @@ class AnimeCardWidget extends StatelessWidget {
                             children: [
                               Text(
                                 'Score',
-                                style: kLightSmallThemeText(
-                                    themeController, kSmallText - 1),
+                                style:
+                                    kLightText(themeController, kSmallText - 1),
                               ),
                               SizedBox(height: kDefaultPadding / 2),
                               Container(
@@ -207,7 +206,7 @@ class AnimeCardWidget extends StatelessWidget {
                                     horizontal: kDefaultPadding),
                                 child: Text(
                                   anime.synopsis,
-                                  style: kLightSmallThemeText(
+                                  style: kLightText(
                                       themeController, kSmallText + 1),
                                 ),
                               ),
@@ -247,8 +246,8 @@ class AnimeCardWidget extends StatelessWidget {
                             Center(
                               child: Text(
                                 'Watching anime without paying is illegal :)',
-                                style: kLightSmallThemeText(
-                                    themeController, kSmallText + 1),
+                                style:
+                                    kLightText(themeController, kSmallText + 1),
                               ),
                             ),
                           ],

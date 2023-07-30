@@ -57,7 +57,7 @@ class MangaScreen extends StatelessWidget {
                       manga.title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: kLightLargeThemeText(themeController, kBigText),
+                      style: kLightText(themeController, kBigText),
                     ),
                     SizedBox(height: 5.h),
                     Row(
@@ -65,8 +65,7 @@ class MangaScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Score: ',
-                          style: kLightSmallThemeText(
-                              themeController, kSmallText + 2),
+                          style: kLightText(themeController, kSmallText + 2),
                         ),
                         Container(
                           height: 17.h,

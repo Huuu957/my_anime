@@ -23,8 +23,8 @@ class AccountScreen extends StatelessWidget {
         backgroundColor:
             themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
         title: Text(
-          'Settings',
-          style: kBoldThemeText(themeController, kBigText + 2.5),
+          'Account',
+          style: kBoldText(themeController, kBigText + 2.5),
         ),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0.h),

@@ -34,7 +34,7 @@ class AnimeScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Top Animes',
-                      style: kLightLargeThemeText(themeController, kBigText),
+                      style: kLightText(themeController, kBigText),
                     ),
                     const Spacer(),
                     TextButton(
@@ -80,7 +80,7 @@ class AnimeScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Top Movies',
-                      style: kLightLargeThemeText(themeController, kBigText),
+                      style: kLightText(themeController, kBigText),
                     ),
                     const Spacer(),
                     TextButton(

@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                   themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
               title: Text(
                 '1'.tr,
-                style: kLightBoldLargeThemeText(themeController, kBigText + 1),
+                style: kBoldText(themeController, kBigText + 1),
               ),
               leading: Builder(
                 builder: (BuildContext context) {
@@ -42,8 +42,7 @@ class HomeScreen extends StatelessWidget {
                     },
                     icon: Icon(
                       Icons.menu,
-                      color:
-                          kLightLargeThemeText(themeController, kBigText).color,
+                      color: kLightText(themeController, kBigText).color,
                     ),
                   );
                 },
@@ -58,8 +57,7 @@ class HomeScreen extends StatelessWidget {
                   },
                   icon: Icon(
                     Icons.search,
-                    color:
-                        kLightLargeThemeText(themeController, kBigText).color,
+                    color: kLightText(themeController, kBigText).color,
                   ),
                 ),
               ],
@@ -71,11 +69,11 @@ class HomeScreen extends StatelessWidget {
                 tabs: [
                   Text(
                     'Anime',
-                    style: kLightLargeThemeText(themeController, kBigText),
+                    style: kLightText(themeController, kBigText),
                   ),
                   Text(
                     'Manga',
-                    style: kLightLargeThemeText(themeController, kBigText),
+                    style: kLightText(themeController, kBigText),
                   ),
                 ],
               ),
@@ -86,10 +84,28 @@ class HomeScreen extends StatelessWidget {
               color:
                   themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
               child: ListView(
-                shrinkWrap: true,
                 children: [
-                  const DrawerHeader(
-                    child: Text('Drawer Header'),
+                  DrawerHeader(
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 70.0.h,
+                          width: 70.0.w,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/anime_icon.jpg'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 50.w),
+                        Text(
+                          'user name',
+                          style: kLightText(themeController, kSmallText),
+                        ),
+                      ],
+                    ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -97,8 +113,7 @@ class HomeScreen extends StatelessWidget {
                       ListTile(
                         title: Text(
                           'Dark mode',
-                          style: kLightLargeThemeText(
-                              themeController, kBigText - 1),
+                          style: kLightText(themeController, kBigText - 1),
                         ),
                         trailing: Transform.scale(
                           scale: 0.8.w,

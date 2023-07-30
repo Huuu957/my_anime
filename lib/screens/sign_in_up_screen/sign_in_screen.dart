@@ -71,7 +71,17 @@ class _SignInScreenState extends State<SignInScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset('assets/images/background.jpg'),
+              Container(
+                width: 100.w,
+                height: 100.h,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(kButtonRadius),
+                  child: Image.asset(
+                    'assets/images/anime_icon.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
               Container(
                 margin: EdgeInsets.only(
                   top: kDefaultPadding * 8,

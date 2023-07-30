@@ -54,15 +54,14 @@ class AnimeListWidget extends StatelessWidget {
                     anime.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: kLightLargeThemeText(themeController, kBigText),
+                    style: kLightText(themeController, kBigText),
                   ),
                   SizedBox(height: kDefaultPadding / 2),
                   Row(
                     children: [
                       Text(
                         'Score: ',
-                        style: kLightSmallThemeText(
-                            themeController, kSmallText + 2),
+                        style: kLightText(themeController, kSmallText + 2),
                       ),
                       Container(
                         height: 17.h,

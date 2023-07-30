@@ -31,8 +31,6 @@ const kDarkPurple = Color(0xFF533D71);
 const kDarkLavender = Color(0xFF42356C);
 const kDarkGrey = Color(0x33000000);
 
-// Color(0xFF333333)
-
 const kTextDark = Colors.white;
 const kTextLight = Colors.black;
 
@@ -41,32 +39,13 @@ const kDefaultFont = 'Roboto';
 
 // Dimensions--------------------------------------
 double kDefaultPadding = 10.w;
-double kBorderRadius = 13.0.sp;
+double kBorderRadius = 13.0;
 double kButtonRadius = 50.0.sp;
-double kIndicatorWidth = 60.0.w;
-
 double kBigText = 15.0.sp;
 double kSmallText = 10.0.sp;
 
 // Text Styles-------------------------------------
-TextStyle kBoldTextStyle(double fontSize) {
-  return TextStyle(
-    fontSize: fontSize.sp,
-    color: kSecondaryColor,
-    fontFamily: kDefaultFont,
-    fontWeight: FontWeight.bold,
-  );
-}
-
-TextStyle kLightTextStyle(double fontSize) {
-  return TextStyle(
-    fontSize: fontSize.sp,
-    color: kSecondaryColor,
-    fontFamily: kDefaultFont,
-  );
-}
-
-TextStyle kBoldThemeText(ThemeController themeController, double fontSize) {
+TextStyle kBoldText(ThemeController themeController, double fontSize) {
   return TextStyle(
     color: themeController.isDarkMode.value
         ? MyAppTheme.customDarkTheme.textTheme.displayLarge?.color
@@ -77,48 +56,13 @@ TextStyle kBoldThemeText(ThemeController themeController, double fontSize) {
   );
 }
 
-TextStyle kLightLargeThemeText(
-    ThemeController themeController, double fontSize) {
-  return TextStyle(
-    color: themeController.isDarkMode.value
-        ? MyAppTheme.customDarkTheme.textTheme.displayLarge?.color
-        : MyAppTheme.customLightTheme.textTheme.displayLarge?.color,
-    fontFamily: kDefaultFont,
-    fontSize: fontSize.sp,
-  );
-}
-
-TextStyle kLightSmallThemeText(
-    ThemeController themeController, double fontSize) {
+TextStyle kLightText(ThemeController themeController, double fontSize) {
   return TextStyle(
     color: themeController.isDarkMode.value
         ? MyAppTheme.customDarkTheme.textTheme.displaySmall?.color
         : MyAppTheme.customLightTheme.textTheme.displaySmall?.color,
     fontFamily: kDefaultFont,
     fontSize: fontSize.sp,
-  );
-}
-
-TextStyle kLightMediumThemeText(
-    ThemeController themeController, double fontSize) {
-  return TextStyle(
-    color: themeController.isDarkMode.value
-        ? MyAppTheme.customDarkTheme.textTheme.displayMedium?.color
-        : MyAppTheme.customLightTheme.textTheme.displayMedium?.color,
-    fontFamily: kDefaultFont,
-    fontSize: fontSize.sp,
-  );
-}
-
-TextStyle kLightBoldLargeThemeText(
-    ThemeController themeController, double fontSize) {
-  return TextStyle(
-    color: themeController.isDarkMode.value
-        ? MyAppTheme.customDarkTheme.textTheme.displayLarge?.color
-        : MyAppTheme.customLightTheme.textTheme.displayLarge?.color,
-    fontFamily: kDefaultFont,
-    fontSize: fontSize.sp,
-    fontWeight: FontWeight.bold,
   );
 }
 

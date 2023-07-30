@@ -8,7 +8,6 @@ import '../widgets/anime_card_widget/anime_card_widget.dart';
 import '../constants.dart';
 import '../models/anime_model.dart';
 
-//TODO: ADD SEARCH DARK TEXT IN BAR
 class AnimeSearchDelegate extends SearchDelegate {
   final animeSearchService = APIService();
   final searchMode = 'substring';
@@ -63,7 +62,7 @@ class AnimeSearchDelegate extends SearchDelegate {
         child: Center(
           child: Text(
             'Enter an Anime name to search',
-            style: kLightSmallThemeText(themeController, kSmallText + 1),
+            style: kLightText(themeController, kSmallText + 1),
           ),
         ),
       );
@@ -86,7 +85,7 @@ class AnimeSearchDelegate extends SearchDelegate {
               return Center(
                 child: Text(
                   'An error occurred',
-                  style: kLightSmallThemeText(themeController, kSmallText + 1),
+                  style: kLightText(themeController, kSmallText + 1),
                 ),
               );
             } else {
@@ -95,8 +94,7 @@ class AnimeSearchDelegate extends SearchDelegate {
                 return Center(
                   child: Text(
                     'No results found',
-                    style:
-                        kLightSmallThemeText(themeController, kSmallText + 1),
+                    style: kLightText(themeController, kSmallText + 1),
                   ),
                 );
               }
@@ -136,8 +134,7 @@ class AnimeSearchDelegate extends SearchDelegate {
                             anime.title,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: kLightSmallThemeText(
-                                themeController, kSmallText + 1),
+                            style: kLightText(themeController, kSmallText + 1),
                           ),
                         ),
                       ],

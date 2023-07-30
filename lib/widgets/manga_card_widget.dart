@@ -30,7 +30,7 @@ class MangaCardWidget extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           manga.title,
-          style: kBoldThemeText(themeController, kBigText),
+          style: kBoldText(themeController, kBigText),
         ),
         centerTitle: true,
         elevation: 0,
@@ -88,8 +88,7 @@ class MangaCardWidget extends StatelessWidget {
                               textAlign: TextAlign.center,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style:
-                                  kBoldThemeText(themeController, kSmallText),
+                              style: kBoldText(themeController, kSmallText),
                             ),
                           ),
                           SizedBox(width: kDefaultPadding),
@@ -97,8 +96,8 @@ class MangaCardWidget extends StatelessWidget {
                             children: [
                               Text(
                                 'Score',
-                                style: kLightSmallThemeText(
-                                    themeController, kSmallText - 1),
+                                style:
+                                    kLightText(themeController, kSmallText - 1),
                               ),
                               Container(
                                 height: 25.h,
@@ -165,7 +164,7 @@ class MangaCardWidget extends StatelessWidget {
                                 ),
                                 child: Text(
                                   manga.synopsis,
-                                  style: kLightSmallThemeText(
+                                  style: kLightText(
                                       themeController, kSmallText + 1),
                                 ),
                               ),
@@ -209,7 +208,7 @@ class MangaCardWidget extends StatelessWidget {
                                 ),
                                 child: Text(
                                   manga.background,
-                                  style: kLightSmallThemeText(
+                                  style: kLightText(
                                       themeController, kSmallText + 1),
                                 ),
                               ),

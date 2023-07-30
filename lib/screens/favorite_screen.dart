@@ -23,7 +23,7 @@ class FavoriteScreen extends StatelessWidget {
             themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
         title: Text(
           'Favorites',
-          style: kBoldThemeText(themeController, kBigText + 2.5),
+          style: kBoldText(themeController, kBigText + 2.5),
         ),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0.h),
@@ -38,7 +38,7 @@ class FavoriteScreen extends StatelessWidget {
             ? Center(
                 child: Text(
                   'Your Favorites Collection is Empty',
-                  style: kLightSmallThemeText(themeController, kSmallText + 2),
+                  style: kLightText(themeController, kSmallText + 2),
                 ),
               )
             : GridView.builder(
@@ -69,8 +69,7 @@ class FavoriteScreen extends StatelessWidget {
                           favoriteController.favList[index].title,
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
-                          style:
-                              kBoldThemeText(themeController, kSmallText + 2),
+                          style: kBoldText(themeController, kSmallText + 2),
                         ),
                       ],
                     ),

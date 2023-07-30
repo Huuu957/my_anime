@@ -11,12 +11,6 @@ class MyAppTheme {
       displayLarge: TextStyle(
         color: kTextLight,
       ),
-      displayMedium: TextStyle(
-        color: kTextDark,
-      ),
-      displaySmall: TextStyle(
-        color: kTextLight,
-      ),
     ),
   );
 
@@ -27,12 +21,6 @@ class MyAppTheme {
     canvasColor: kDarkColor,
     textTheme: const TextTheme(
       displayLarge: TextStyle(
-        color: kTextDark,
-      ),
-      displayMedium: TextStyle(
-        color: kTextDark,
-      ),
-      displaySmall: TextStyle(
         color: kTextDark,
       ),
     ),

@@ -59,7 +59,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
 
     try {
-      // Call the registerWithEmailAndPassword method
       await Auth().registerWithEmailAndPassword(email, password);
       Get.toNamed(SignUpScreen.signUpScreenRoute);
     } catch (e) {

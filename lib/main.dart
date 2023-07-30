@@ -24,7 +24,6 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await Hive.initFlutter();
-  await Hive.openBox<bool>('auth_box');
   Get.put<ThemeController>(ThemeController(), permanent: true);
   Get.put<FavoriteController>(FavoriteController(), permanent: true);
   Get.put<AnimeListController>(AnimeListController(), permanent: true);

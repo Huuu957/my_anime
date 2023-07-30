@@ -94,23 +94,22 @@ class MoreMediaScreen extends StatelessWidget {
                         animes[index].title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: kBoldThemeText(themeController, kSmallText),
+                        style: kBoldText(themeController, kSmallText),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
                             anime.airing ? 'airing' : 'not airing',
-                            style: kLightSmallThemeText(
-                                themeController, kSmallText - 1),
+                            style: kLightText(themeController, kSmallText - 1),
                           ),
                           SizedBox(width: 5.w),
                           FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
                               'Score: ',
-                              style: kLightSmallThemeText(
-                                  themeController, kSmallText - 1),
+                              style:
+                                  kLightText(themeController, kSmallText - 1),
                             ),
                           ),
                           Container(
