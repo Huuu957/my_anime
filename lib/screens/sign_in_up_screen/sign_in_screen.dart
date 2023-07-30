@@ -187,7 +187,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: kDefaultPadding),
                     ElevatedButton(
                       onPressed: () =>
-                          Get.toNamed(NavigationBarWidget.homeRoute),
+                          Get.offAllNamed(NavigationBarWidget.homeRoute),
                       style: ElevatedButton.styleFrom(
                         fixedSize: Size(double.infinity, 42.h),
                         backgroundColor: kGrey,
