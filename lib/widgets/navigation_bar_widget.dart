@@ -59,7 +59,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
       body: IndexedStack(
         index: currentPageIndex,
         children: <Widget>[
-          HomeScreen(),
+          const HomeScreen(),
           FavoriteScreen(themeController: themeController),
           AccountScreen(themeController: themeController),
         ],

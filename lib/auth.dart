@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 
 class Auth {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -21,5 +23,20 @@ class Auth {
       email: email,
       password: password,
     );
+  }
+
+  Future<String?> getUserProfileImageUrl(String userId) async {
+    try {
+      final ref =
+          FirebaseStorage.instance.ref().child('profile_images').child(userId);
+
+      final downloadUrl = await ref.getDownloadURL();
+      return downloadUrl;
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error getting profile image URL: $e");
+      }
+      return null;
+    }
   }
 }

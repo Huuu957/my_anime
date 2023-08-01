@@ -52,4 +52,24 @@ class AnimeModel {
       airing: json['airing'] ?? false,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'image': image,
+      'title': title,
+      'synopsis': synopsis,
+      'episodes': episodes,
+      'score': score,
+      'duration': duration,
+      'trailer': trailer,
+      'rank': rank,
+      'scoredBy': scoredBy,
+      'popularity': popularity,
+      'favorites': favorites,
+      'year': year,
+      'season': season,
+      'airing': airing,
+    };
+  }
 }

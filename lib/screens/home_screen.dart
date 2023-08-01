@@ -1,22 +1,56 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_anime/locale/locale_controller.dart';
 import '../api/anime_search_delegate.dart';
+import '../auth.dart';
 import '../constants.dart';
 import 'anime_screen.dart';
 import '../screens/manga_screen.dart';
 import '../controller/favorite_controller.dart';
 import '../controller/theme_controller.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key, this.userImageUrl}) : super(key: key);
-  final FavoriteController favoriteController = Get.find();
-  final ThemeController themeController = Get.find();
-  final MyLocaleController localeController = Get.find();
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key, this.userImageUrl}) : super(key: key);
   final String? userImageUrl;
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final FavoriteController favoriteController = Get.find();
+
+  final ThemeController themeController = Get.find();
+
+  final MyLocaleController localeController = Get.find();
+
+  String? userProfileImageUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    loadUserProfileImageUrl();
+  }
+
+  Future<void> loadUserProfileImageUrl() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        String? imageUrl = await Auth().getUserProfileImageUrl(user.uid);
+        setState(() {
+          userProfileImageUrl = imageUrl;
+        });
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error loading user profile image: $e");
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,21 +125,30 @@ class HomeScreen extends StatelessWidget {
                   DrawerHeader(
                     child: Row(
                       children: [
-                        Container(
-                          height: 70.0.h,
-                          width: 70.0.w,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: AssetImage('assets/images/anime_icon.jpg'),
-                              fit: BoxFit.cover,
-                            ),
+                        CircleAvatar(
+                          radius: 50.w,
+                          child: ClipOval(
+                            child: userProfileImageUrl != null
+                                ? Image.network(
+                                    userProfileImageUrl!,
+                                    fit: BoxFit.cover,
+                                    width: 100.w,
+                                    height: 100.h,
+                                  )
+                                : Image.asset(
+                                    'assets/images/anime_icon.jpg',
+                                    fit: BoxFit.cover,
+                                    width: 100.w,
+                                    height: 100.h,
+                                  ),
                           ),
                         ),
                         SizedBox(width: 50.w),
                         Text(
                           userName,
-                          style: kBoldText(themeController, kSmallText),
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: kBoldText(themeController, kBigText),
                         ),
                       ],
                     ),
