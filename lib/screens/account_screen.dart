@@ -56,7 +56,7 @@ class AccountScreenState extends State<AccountScreen> {
         backgroundColor:
             themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
         title: Text(
-          'Account',
+          '8'.tr,
           style: kBoldText(themeController, kBigText + 2.5),
         ),
         bottom: PreferredSize(
@@ -106,7 +106,7 @@ class AccountScreenState extends State<AccountScreen> {
                   maxLength: 200,
                   maxLines: 5,
                   decoration: InputDecoration(
-                    hintText: 'Enter Your Feedback Here',
+                    hintText: '11'.tr,
                     hintStyle: kLightText(themeController, kSmallText),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(kBorderRadius),
@@ -133,9 +133,9 @@ class AccountScreenState extends State<AccountScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                   ),
-                  child: const Text(
-                    'Sign Out',
-                    style: TextStyle(color: kLightColor),
+                  child: Text(
+                    '12'.tr,
+                    style: const TextStyle(color: kLightColor),
                   ),
                 ),
               ),

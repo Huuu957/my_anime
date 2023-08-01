@@ -22,7 +22,7 @@ class FavoriteScreen extends StatelessWidget {
         backgroundColor:
             themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
         title: Text(
-          'Favorites',
+          '6'.tr,
           style: kBoldText(themeController, kBigText + 2.5),
         ),
         bottom: PreferredSize(
@@ -37,7 +37,7 @@ class FavoriteScreen extends StatelessWidget {
         () => favoriteController.favList.isEmpty
             ? Center(
                 child: Text(
-                  'Your Favorites Collection is Empty',
+                  '7'.tr,
                   style: kLightText(themeController, kSmallText + 2),
                 ),
               )

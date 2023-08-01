@@ -71,8 +71,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     // Validate email format
     if (!GetUtils.isEmail(email)) {
       Get.snackbar(
-        "Error",
-        "Please enter a valid email address.",
+        "45".tr,
+        "51".tr,
         duration: const Duration(seconds: 2),
         backgroundColor: Colors.red,
         colorText: Colors.white,
@@ -82,8 +82,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     if (password != confirmPassword) {
       Get.snackbar(
-        "Error",
-        "Passwords do not match.",
+        "45".tr,
+        "52".tr,
         duration: const Duration(seconds: 2),
         backgroundColor: Colors.red,
         colorText: Colors.white,
@@ -98,8 +98,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         await user.updateDisplayName(userName);
         await _uploadImageToStorage(user.uid);
         Get.snackbar(
-          "Success!",
-          "You have successfully signed up.",
+          "49".tr,
+          "53".tr,
           duration: const Duration(seconds: 2),
           backgroundColor: Colors.green,
           colorText: Colors.white,
@@ -117,8 +117,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       // Handle Firebase exceptions for email already in use
       if (e is FirebaseAuthException && e.code == 'email-already-in-use') {
         Get.snackbar(
-          "Error",
-          "This email is already registered. Please sign in instead.",
+          "45".tr,
+          "54".tr,
           duration: const Duration(seconds: 2),
           backgroundColor: Colors.red,
           colorText: Colors.white,
@@ -126,8 +126,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       } else {
         // Show a generic error message for other exceptions
         Get.snackbar(
-          "Error",
-          "An error occurred. Please try again later.",
+          "45".tr,
+          "55".tr,
           duration: const Duration(seconds: 2),
           backgroundColor: Colors.red,
           colorText: Colors.white,
@@ -152,6 +152,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       backgroundColor: kPaleLavender,
       appBar: AppBar(
+        backgroundColor: kPaleLavender,
         elevation: 0,
         leading: IconButton(
           onPressed: () => Get.back(),
@@ -193,7 +194,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 bottom: kDefaultPadding * 2,
               ),
               child: Text(
-                'Create Account',
+                '33'.tr,
                 style: TextStyle(
                   color: kDarkColor,
                   fontSize: kBigText + 4,
@@ -228,36 +229,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: Column(
                         children: [
                           buildTextFormField(
-                            'User Name',
+                            '47'.tr,
                             false,
                             userNameController,
                             formKey,
-                            'Please enter your user name',
+                            '56'.tr,
                             isUserNameField: true,
                           ),
                           buildDivider(),
                           buildTextFormField(
-                            'Enter Your Email',
+                            '35'.tr,
                             false,
                             emailController,
                             formKey,
-                            'Please enter your email',
+                            '42'.tr,
                           ),
                           buildDivider(),
                           buildTextFormField(
-                            'Password',
+                            '36'.tr,
                             true,
                             passwordController,
                             formKey,
-                            'Please enter your password',
+                            '43'.tr,
                           ),
                           buildDivider(),
                           buildTextFormField(
-                            'Password Confirm',
+                            '57'.tr,
                             true,
                             confirmPasswordController,
                             formKey,
-                            'Please enter your password',
+                            '43'.tr,
                           ),
                         ],
                       ),
@@ -273,10 +274,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderRadius: BorderRadius.circular(kBorderRadius),
                       ),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        'Sign up',
-                        style: TextStyle(
+                        '32'.tr,
+                        style: const TextStyle(
                           color: kLightColor,
                           fontFamily: kDefaultFont,
                           fontWeight: FontWeight.bold,
@@ -291,11 +292,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Expanded(
                         child: buildDivider(),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: kDefaultPadding),
                         child: Text(
-                          'or',
-                          style: TextStyle(
+                          '27'.tr,
+                          style: const TextStyle(
                             color: kGrey,
                             fontFamily: kDefaultFont,
                             fontWeight: FontWeight.bold,
@@ -318,10 +320,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderRadius: BorderRadius.circular(kBorderRadius),
                       ),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        'Log in',
-                        style: TextStyle(
+                        '26'.tr,
+                        style: const TextStyle(
                           color: kLightColor,
                           fontFamily: kDefaultFont,
                           fontWeight: FontWeight.bold,

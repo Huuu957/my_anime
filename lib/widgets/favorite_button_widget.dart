@@ -40,7 +40,7 @@ class FavoriteButtonWidget extends StatelessWidget {
           ),
         ),
         child: Text(
-          isFavorite ? 'Got Added !' : 'Add To My Favorites',
+          isFavorite ? '24'.tr : '23'.tr,
           style: TextStyle(
             color: isFavorite
                 ? kLightColor

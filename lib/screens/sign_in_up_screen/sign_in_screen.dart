@@ -56,8 +56,8 @@ class _SignInScreenState extends State<SignInScreen> {
       Get.toNamed(NavigationBarWidget.homeRoute);
     } catch (e) {
       Get.snackbar(
-        "Error",
-        "Incorrect email or password.",
+        "45".tr,
+        "44".tr,
         duration: const Duration(seconds: 2),
         backgroundColor: Colors.red,
         colorText: Colors.white,
@@ -87,8 +87,13 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               Text(
-                'Welcome To My App :)',
-                style: kLightText(themeController, kSmallText + 5),
+                '41'.tr,
+                style: TextStyle(
+                  color: kDarkColor,
+                  fontSize: kBigText + 2,
+                  fontFamily: kDefaultFont,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Container(
                 margin: EdgeInsets.only(
@@ -116,19 +121,19 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: Column(
                           children: [
                             buildTextFormField(
-                              'Enter Your Email',
+                              '35'.tr,
                               false,
                               emailController,
                               formKey,
-                              'Please enter your email',
+                              '42'.tr,
                             ),
                             buildDivider(),
                             buildTextFormField(
-                              'Password',
+                              '36'.tr,
                               true,
                               passwordController,
                               formKey,
-                              'Please enter your password',
+                              '43'.tr,
                             ),
                           ],
                         ),
@@ -144,10 +149,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           borderRadius: BorderRadius.circular(kBorderRadius),
                         ),
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Text(
-                          'Login',
-                          style: TextStyle(
+                          '26'.tr,
+                          style: const TextStyle(
                             color: kLightColor,
                             fontFamily: kDefaultFont,
                             fontWeight: FontWeight.bold,
@@ -156,27 +161,27 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                     SizedBox(height: kDefaultPadding),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Expanded(
+                        const Expanded(
                           child: Divider(
                             color: kGrey,
                             thickness: 1,
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
-                            'or',
-                            style: TextStyle(
+                            '27'.tr,
+                            style: const TextStyle(
                               color: kGrey,
                               fontFamily: kDefaultFont,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                           child: Divider(
                             color: kGrey,
                             thickness: 1,
@@ -195,10 +200,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           borderRadius: BorderRadius.circular(kBorderRadius),
                         ),
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Text(
-                          'Enter as a Guest',
-                          style: TextStyle(
+                          '28'.tr,
+                          style: const TextStyle(
                             color: kLightColor,
                             fontFamily: kDefaultFont,
                             fontWeight: FontWeight.bold,
@@ -210,24 +215,24 @@ class _SignInScreenState extends State<SignInScreen> {
                     TextButton(
                       onPressed: () => Get.toNamed(
                           ForgotPasswordScreen.forgotPasswordScreenRoute),
-                      child: const Text(
-                        'Forget Password?',
-                        style: TextStyle(color: kPrimaryColor),
+                      child: Text(
+                        '29'.tr,
+                        style: const TextStyle(color: kPrimaryColor),
                       ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          'Don\'t have an Account?',
-                          style: TextStyle(color: kDarkColor),
+                        Text(
+                          '30'.tr,
+                          style: const TextStyle(color: kDarkColor),
                         ),
                         TextButton(
                           onPressed: () =>
                               Get.toNamed(SignUpScreen.signUpScreenRoute),
-                          child: const Text(
-                            'Sign up',
-                            style: TextStyle(color: kPrimaryColor),
+                          child: Text(
+                            '32'.tr,
+                            style: const TextStyle(color: kPrimaryColor),
                           ),
                         ),
                       ],

@@ -133,10 +133,10 @@ class MangaCardWidget extends StatelessWidget {
                         ],
                       ),
                       TabBar(
-                        tabs: const [
-                          Tab(text: 'Overview'),
-                          Tab(text: 'More Info'),
-                          Tab(text: 'History'),
+                        tabs: [
+                          Tab(text: '13'.tr),
+                          Tab(text: '14'.tr),
+                          Tab(text: '25'.tr),
                         ],
                         labelColor: themeController.isDarkMode.value
                             ? kLightColor
@@ -188,13 +188,13 @@ class MangaCardWidget extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
                                     children: [
-                                      moreInfoWidget('Rank', manga.rank, 10.w),
+                                      moreInfoWidget('18'.tr, manga.rank, 10.w),
                                       moreInfoWidget(
-                                          'Scored by', manga.scoredBy, 10.w),
+                                          '19'.tr, manga.scoredBy, 10.w),
                                       moreInfoWidget(
-                                          'Popularity', manga.popularity, 10.w),
+                                          '20'.tr, manga.popularity, 10.w),
                                       moreInfoWidget(
-                                          'Favorites', manga.favorites, 10.w),
+                                          '6'.tr, manga.favorites, 10.w),
                                     ],
                                   ),
                                 ),

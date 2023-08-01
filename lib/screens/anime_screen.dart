@@ -41,9 +41,9 @@ class AnimeScreen extends StatelessWidget {
                       onPressed: () {
                         Get.toNamed(MoreAnimeScreen.moreAnimeScreenRoute);
                       },
-                      child: const Text(
-                        'MORE',
-                        style: TextStyle(
+                      child: Text(
+                        '2'.tr,
+                        style: const TextStyle(
                           fontFamily: kDefaultFont,
                           color: kGrey,
                         ),
@@ -87,9 +87,9 @@ class AnimeScreen extends StatelessWidget {
                       onPressed: () {
                         Get.toNamed(MoreMovieScreen.moreMovieScreen);
                       },
-                      child: const Text(
-                        'MORE',
-                        style: TextStyle(
+                      child: Text(
+                        '2'.tr,
+                        style: const TextStyle(
                           fontFamily: kDefaultFont,
                           color: kGrey,
                         ),

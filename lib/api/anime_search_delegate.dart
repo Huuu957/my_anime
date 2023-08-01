@@ -14,6 +14,9 @@ class AnimeSearchDelegate extends SearchDelegate {
   final ThemeController themeController = Get.find();
 
   @override
+  String get searchFieldLabel => '10'.tr;
+
+  @override
   List<Widget> buildActions(BuildContext context) {
     if (query.isEmpty) {
       return [];
@@ -61,7 +64,7 @@ class AnimeSearchDelegate extends SearchDelegate {
         color: themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
         child: Center(
           child: Text(
-            'Enter an Anime name to search',
+            '9'.tr,
             style: kLightText(themeController, kSmallText + 1),
           ),
         ),

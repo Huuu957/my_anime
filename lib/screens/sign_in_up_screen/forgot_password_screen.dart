@@ -14,30 +14,26 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  // Define the emailController and formKey as instance variables
   final TextEditingController emailController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   void _sendPasswordResetEmail() async {
-    // Get the email or phone number entered by the user
     String email = emailController.text.trim();
 
     try {
-      // Send the password reset email
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
 
       Get.snackbar(
-        "Success",
-        "A password reset email has been sent to $email",
+        "49".tr,
+        "50 $email".tr,
         duration: const Duration(seconds: 5),
         backgroundColor: Colors.green,
         colorText: Colors.white,
       );
     } catch (e) {
-      // Handle any errors that occur during the password reset process
       Get.snackbar(
-        "Error",
-        "An error occurred. Please check your email and try again.",
+        "45".tr,
+        "48".tr,
         duration: const Duration(seconds: 5),
         backgroundColor: Colors.red,
         colorText: Colors.white,
@@ -50,6 +46,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return Scaffold(
       backgroundColor: kPaleLavender,
       appBar: AppBar(
+        backgroundColor: kPaleLavender,
         elevation: 0,
         leading: IconButton(
           onPressed: () => Get.back(),
@@ -75,7 +72,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               margin: EdgeInsets.only(
                   top: kDefaultPadding + 5, bottom: kDefaultPadding / 2),
               child: Text(
-                'Forgot Your \n Password?',
+                '29'.tr,
                 style: TextStyle(
                   fontSize: kBigText + 5,
                   color: kDarkColor,
@@ -88,7 +85,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               margin: EdgeInsets.only(
                   top: kDefaultPadding, bottom: kDefaultPadding + 2),
               child: Text(
-                'We will send a code to your email \n so we can confirm it\'s you',
+                '39'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: kBigText,
@@ -118,11 +115,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       ],
                     ),
                     child: buildTextFormField(
-                      'Enter Your Email',
+                      '35'.tr,
                       false,
                       emailController,
                       formKey,
-                      'Please enter your email',
+                      '42'.tr,
                     ),
                   ),
                   SizedBox(height: kDefaultPadding * 2),
@@ -135,10 +132,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         borderRadius: BorderRadius.circular(kBorderRadius),
                       ),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        'Send',
-                        style: TextStyle(
+                        '40'.tr,
+                        style: const TextStyle(
                           color: kLightColor,
                           fontFamily: kDefaultFont,
                           fontWeight: FontWeight.bold,

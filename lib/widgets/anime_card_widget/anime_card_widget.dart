@@ -176,10 +176,10 @@ class AnimeCardWidget extends StatelessWidget {
                         ],
                       ),
                       TabBar(
-                        tabs: const [
-                          Tab(text: 'Overview'),
-                          Tab(text: 'More info'),
-                          Tab(text: 'Episodes'),
+                        tabs: [
+                          Tab(text: '13'.tr),
+                          Tab(text: '14'.tr),
+                          Tab(text: '15'.tr),
                         ],
                         labelColor: themeController.isDarkMode.value
                             ? kLightColor
@@ -229,23 +229,24 @@ class AnimeCardWidget extends StatelessWidget {
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: [
-                                    moreInfoWidget('Rank', anime.rank, 10.w),
+                                    moreInfoWidget('18'.tr, anime.rank, 10.w),
                                     moreInfoWidget(
-                                        'Scored by', anime.scoredBy, 10.w),
+                                        '19'.tr, anime.scoredBy, 10.w),
                                     moreInfoWidget(
-                                        'Popularity', anime.popularity, 10.w),
+                                        '20'.tr, anime.popularity, 10.w),
                                     moreInfoWidget(
-                                        'Favorites', anime.favorites, 10.w),
-                                    moreInfoWidget('Year', anime.year, 10.w),
-                                    moreInfoWidget(
-                                        'Season', anime.season, 10.w),
+                                        '6'.tr, anime.favorites, 10.w),
+                                    moreInfoWidget('21'.tr, anime.year, 10.w),
+                                    moreInfoWidget('22'.tr, anime.season, 10.w),
                                   ],
                                 ),
                               ),
                             ),
                             Center(
                               child: Text(
-                                'Watching anime without paying is illegal :)',
+                                '17'.tr,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                                 style:
                                     kLightText(themeController, kSmallText + 1),
                               ),

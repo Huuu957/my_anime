@@ -158,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       ListTile(
                         title: Text(
-                          'Dark mode',
+                          '3'.tr,
                           style: kLightText(themeController, kBigText - 1),
                         ),
                         trailing: Transform.scale(
@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             DropdownMenuItem(
                               value: 'en',
                               child: Text(
-                                'English',
+                                '4'.tr,
                                 style: TextStyle(
                                   color: themeController.isDarkMode.value
                                       ? kLightColor
@@ -195,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             DropdownMenuItem(
                               value: 'de',
                               child: Text(
-                                'German',
+                                '5'.tr,
                                 style: TextStyle(
                                   color: themeController.isDarkMode.value
                                       ? kLightColor

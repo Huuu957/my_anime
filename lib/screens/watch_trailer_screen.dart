@@ -96,7 +96,7 @@ class _WatchTrailerScreenState extends State<WatchTrailerScreen> {
                           : kPrimaryColor),
                 ),
                 child: Text(
-                  'Go watch on YouTube',
+                  '16'.tr,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: kSmallText + 3,
