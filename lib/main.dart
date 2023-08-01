@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:my_anime/controller/feed_back_controller.dart';
 import '../controller/anime_list_controller.dart';
 import '../locale/locale.dart';
 import '../locale/locale_controller.dart';
@@ -29,6 +30,7 @@ Future main() async {
   Get.put<AnimeListController>(AnimeListController(), permanent: true);
   Get.put<MangaController>(MangaController(), permanent: true);
   Get.put<MyLocaleController>(MyLocaleController(), permanent: true);
+  Get.put<FeedbackController>(FeedbackController(), permanent: true);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);

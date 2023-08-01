@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_anime/constants.dart';
+import 'package:my_anime/controller/feed_back_controller.dart';
 import 'package:my_anime/controller/theme_controller.dart';
 import 'package:get/get.dart';
 import 'package:my_anime/screens/sign_in_up_screen/sign_in_screen.dart';
@@ -45,6 +46,7 @@ class AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     final ThemeController themeController = Get.find();
+    final FeedbackController feedbackController = Get.find();
     return Scaffold(
       backgroundColor:
           themeController.isDarkMode.value ? kDarkColor : kPaleLavender,
@@ -94,13 +96,28 @@ class AccountScreenState extends State<AccountScreen> {
               Container(
                 margin: EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
                 child: TextFormField(
+                  style: kBoldText(themeController, kSmallText),
+                  onChanged: (value) {
+                    if (value.length > 200) {
+                      value = value.substring(0, 200);
+                    }
+                    feedbackController.updateFeedbackText(value);
+                  },
+                  maxLength: 200,
+                  maxLines: 5,
                   decoration: InputDecoration(
-                    hintText: 'Enter Your Feed Back Here',
-                    hintStyle: const TextStyle(
-                      fontFamily: kDefaultFont,
-                    ),
+                    hintText: 'Enter Your Feedback Here',
+                    hintStyle: kLightText(themeController, kSmallText),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(kBorderRadius),
+                    ),
+                    counter: const SizedBox
+                        .shrink(), // Hide the built-in character counter
+                    suffix: Obx(
+                      () => Text(
+                        '${feedbackController.feedbackText.value.length}/200',
+                        style: kBoldText(themeController, kSmallText),
+                      ),
                     ),
                   ),
                 ),
