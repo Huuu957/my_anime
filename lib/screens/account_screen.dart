@@ -161,14 +161,14 @@ class AccountScreenState extends State<AccountScreen> {
                         if (emailSent) {
                           Get.snackbar(
                             '49'.tr,
-                            'A FeedBack has been sent Thank You',
+                            '58'.tr,
                             colorText: kLightColor,
                             backgroundColor: Colors.green,
                           );
                         } else {
                           Get.snackbar(
                             '49'.tr,
-                            'A FeedBack has been sent Thank You',
+                            '58'.tr,
                             colorText: kLightColor,
                             backgroundColor: Colors.green,
                           );

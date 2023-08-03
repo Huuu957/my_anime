@@ -61,6 +61,7 @@ class MyLocale implements Translations {
           '55': 'An error occurred. Please try again later.',
           '56': 'Please enter your user name.',
           '57': 'Password Confirm',
+          '58': 'A FeedBack has been sent Thank You',
         },
         'de': {
           '1': 'Durchsuche Anime',
@@ -124,6 +125,7 @@ class MyLocale implements Translations {
               'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.',
           '56': 'Bitte geben Sie Ihren Benutzernamen ein.',
           '57': 'Passwortbestätigung',
+          '58': 'Es wurde ein Feedback gesendet. Vielen Dank',
         },
       };
 }
