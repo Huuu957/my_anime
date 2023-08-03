@@ -50,8 +50,8 @@ class AccountScreenState extends State<AccountScreen> {
 
     final message = Message()
       ..from = const Address('alimehsen57@gmail.com')
-      ..recipients
-          .add('recipient_email@example.com') // Replace with your email address
+      ..recipients.add(
+          'recipient_email@example.com') // I'm not writing my email address this is just an example it should work
       ..subject = 'Feedback from MyAnime App'
       ..text = feedbackText;
 
