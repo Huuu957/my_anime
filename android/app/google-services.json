@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "278075204025",
-    "project_id": "my-anime-9b5b8",
-    "storage_bucket": "my-anime-9b5b8.appspot.com"
+    "project_number": "41877641311",
+    "project_id": "my-anime-da292",
+    "storage_bucket": "my-anime-da292.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:278075204025:android:699e165c1cab788c5cd668",
+        "mobilesdk_app_id": "1:41877641311:android:eb815a150b15bcee6de3ea",
         "android_client_info": {
           "package_name": "com.example.my_anime_list"
         }
       },
       "oauth_client": [
         {
-          "client_id": "278075204025-2cf5a84p6uooa8e611in49ak95fc2r0d.apps.googleusercontent.com",
+          "client_id": "41877641311-5ulm3csbbhslq4o5e5ueem793u9sp2f5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAeeORgIQ4mrcVN66ymU_owiEBq5nl6OP8"
+          "current_key": "AIzaSyAbtCXteAlbsQo4mVWrvIWBHc9bARbFMdM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "278075204025-2cf5a84p6uooa8e611in49ak95fc2r0d.apps.googleusercontent.com",
+              "client_id": "41877641311-5ulm3csbbhslq4o5e5ueem793u9sp2f5.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "41877641311-vrh2ik7esq6c87gs589c2v06qfa7f0oq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.myAnimeList"
+              }
             }
           ]
         }

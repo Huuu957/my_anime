@@ -33,7 +33,7 @@ class FavoriteController extends GetxController {
       final user = _auth.currentUser;
       if (user != null) {
         final userId = user.uid;
-        await _usersCollection.doc(userId).set({
+        await FirebaseFirestore.instance.collection('users').doc(userId).set({
           'favorites': favList.map((anime) => anime.toJson()).toList(),
         });
 
